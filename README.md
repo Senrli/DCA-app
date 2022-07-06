@@ -4,6 +4,39 @@ Generate a Microsoft Teams application.
 
 TODO: Add your documentation here
 
+## Set-up 
+Yeoman Generator 
+``` bash
+npm i -g yo
+```
+
+Gulp.js 
+``` bash
+npm i -g gulp-cli
+```
+
+MS Teams Generator for Yeoman 
+``` bash
+npm i -g generator-teams
+```
+
+## Running
+Gulp
+*Ensure you are not on SUTD_Wifi
+``` bash
+gulp build
+gulp start-ngrok
+```
+
+Then in a new terminal
+``` bash
+gulp nodemon
+```
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 ## Getting started with Microsoft Teams Apps development
 
 Head on over to [Microsoft Teams official documentation](https://developer.microsoft.com/en-us/microsoft-teams) to learn how to build Microsoft Teams Tabs or the [Microsoft Teams Yeoman generator docs](https://github.com/PnP/generator-teams/docs) for details on how this solution is set up.
