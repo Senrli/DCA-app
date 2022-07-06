@@ -1,0 +1,9 @@
+{
+  "generator-teams": {
+    "promptValues": {
+      "developer": "Senrli"
+    },
+    "libraryName": "teamsBotPocYeoman",
+    "generator-version": "4.0.1"
+  }
+}
