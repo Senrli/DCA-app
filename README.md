@@ -20,6 +20,8 @@ MS Teams Generator for Yeoman
 npm i -g generator-teams
 ```
 
+Duplicate .env.example file as .env at root folder
+
 ## Running
 Gulp
 *Ensure you are not on SUTD_Wifi
