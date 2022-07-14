@@ -61,14 +61,6 @@ export const TeamsPocTab = () => {
     dialog.submit(taskModuleInfo);
   }
 
-  // private appRoot(): string {
-  //   if (typeof window == "undefined") {
-  //     return "https://{{HOSTNAME}}";
-  //   } else {
-  //     return window.location.protocol + "//" + window.location.host;
-  //   }
-  // }
-
   /**
    * The render() method to create the UI of the tab
    */
