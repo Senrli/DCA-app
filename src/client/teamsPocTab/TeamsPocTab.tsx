@@ -2,10 +2,9 @@ import * as React from 'react';
 import { Provider, Flex, Text, Button, Header, Divider } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
-import { app, authentication } from '@microsoft/teams-js';
+import { app, authentication, dialog } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 
-import * as microsoftTeams from "@microsoft/teams-js";
 // import * as constants from "./constants";
 // import { cardTemplates, appRoot } from "./dialogs/CardTemplates";
 // import { taskModuleLink } from "./utils/DeepLinks";
@@ -49,19 +48,17 @@ export const TeamsPocTab = () => {
     }
   }, [context]);
 
-  microsoftTeams.initialize();
+  dialog.initialize();
 
-
-
-  function generateClaimForm(){
+  function generateClaimForm() {
     const taskModuleInfo = {
-      title:`hello`,
-      url: "https://www.youtube.com/watch?v=mB-1j6wqzYE&t=203s",
-      width:600,
-      height:350
+      title: `fuck senrui`,
+      url: `${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
+      width: 1024,
+      height: 768
     };
 
-    microsoftTeams.tasks.startTask(taskModuleInfo);
+    dialog.submit(taskModuleInfo);
   }
 
   // private appRoot(): string {
@@ -71,7 +68,6 @@ export const TeamsPocTab = () => {
   //     return window.location.protocol + "//" + window.location.host;
   //   }
   // }
-  
 
   /**
    * The render() method to create the UI of the tab

@@ -4,3 +4,5 @@ export const nonce = {}; // Do not remove!
 export * from './teamsPocTab/TeamsPocTab';
 // Automatically added for the teamsBotPocYeomanBot bot
 export * from './teamsBotPocYeomanBot/TeamsBotPocYeomanBot';
+// Automatically added for the teamsPocTab gform tab
+export * from './teamsPocTab/GForm';

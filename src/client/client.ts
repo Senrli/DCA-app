@@ -8,3 +8,6 @@ export const render = (type: any, element: HTMLElement) => {
 };
 // Automatically added for the teamsPocTab tab
 export * from './teamsPocTab/TeamsPocTab';
+
+// add the gform page
+export * from './teamsPocTab/GForm';

@@ -9,7 +9,9 @@
         "es6": true
     },
     "extends": [
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "standard",
+        "prettier"
     ],
     "plugins": [
         "react",
@@ -19,6 +21,8 @@
         "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
         "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
         "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error"]
+        "@typescript-eslint/no-use-before-define": ["error"],
+        "no-console": 1,       // Means warning
+        "prettier/prettier": 2 // Means error
     }
 }
