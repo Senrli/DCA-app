@@ -1,2 +1,2 @@
-const WelcomeCard = require("./welcomeCard.json");
+const WelcomeCard = require('./welcomeCard.json');
 export default WelcomeCard;
