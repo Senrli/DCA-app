@@ -6,9 +6,9 @@
   "packageName": "teamsbotpocyeoman",
   "developer": {
     "name": "Senrli",
-    "websiteUrl": "https://6a6e-122-11-212-135.ap.ngrok.io",
-    "privacyUrl": "https://6a6e-122-11-212-135.ap.ngrok.io/privacy.html",
-    "termsOfUseUrl": "https://6a6e-122-11-212-135.ap.ngrok.io/tou.html"
+    "websiteUrl": "https://fda7-116-88-208-159.ap.ngrok.io",
+    "privacyUrl": "https://fda7-116-88-208-159.ap.ngrok.io/privacy.html",
+    "termsOfUseUrl": "https://fda7-116-88-208-159.ap.ngrok.io/tou.html"
   },
   "name": {
     "short": "teams bot poc yeoman",
@@ -28,7 +28,7 @@
     {
       "entityId": "45003861-1dd6-4cdc-b123-556001aade47",
       "name": "teams poc Tab",
-      "contentUrl": "https://6a6e-122-11-212-135.ap.ngrok.io/teamsPocTab/?name={loginHint}&tenant={tid}&theme={theme}",
+      "contentUrl": "https://fda7-116-88-208-159.ap.ngrok.io/teamsPocTab/?name={loginHint}&tenant={tid}&theme={theme}",
       "scopes": [
         "personal"
       ]
@@ -76,11 +76,11 @@
     "messageTeamMembers"
   ],
   "validDomains": [
-    "6a6e-122-11-212-135.ap.ngrok.io"
+    "fda7-116-88-208-159.ap.ngrok.io"
   ],
   "showLoadingIndicator": true,
   "webApplicationInfo": {
     "id": "10ffefdd-0fe2-4f6b-8560-0774b80b54d2",
-    "resource": "api://6a6e-122-11-212-135.ap.ngrok.io/10ffefdd-0fe2-4f6b-8560-0774b80b54d2"
+    "resource": "api://fda7-116-88-208-159.ap.ngrok.io/10ffefdd-0fe2-4f6b-8560-0774b80b54d2"
   }
 }
