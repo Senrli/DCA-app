@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   app-repo:
+    container_name: app-repo
     image: fjcvtcs/esc-teams:latest
     restart: unless-stopped
     ports:
