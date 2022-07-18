@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   app-repo:
-    build: .
+    image: fjcvtcs/esc-teams:latest
     ports:
       - "3007:3007"
 
