@@ -1,5 +1,1 @@
 version: "3.9"
-services:
-  app-repo:
-    env_file:
-    - .env

@@ -1,6 +1,4 @@
-#Ignoring the env variable
-.env
-.env.example
+
 
 #Ignoring git and temp folders
 .git
