@@ -15,7 +15,7 @@ services:
         - 80:80
         - 443:443
     volumes:
-        - ./nginx/nginx.conf:/etc/nginx/nginx_step1.conf
+        - ./nginx/nginx_step1.conf:/etc/nginx/nginx.conf
 
   # certbot:
   #   image: certbot/certbot
