@@ -1,4 +1,6 @@
-
+# do not include the local environment files
+.env
+.env.example
 
 #Ignoring git and temp folders
 .git
