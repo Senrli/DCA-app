@@ -6,6 +6,9 @@ WORKDIR /app
 
 COPY . /app/
 
+# trying to access npmjs to see what happened
+RUN curl -v https://registry.npmjs.com/
+
 RUN node --max-old-space-size=256
 # install 
 RUN npm install 
