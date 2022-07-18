@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  app-repo:
+    image: teamsapp:latest
+    container_name: app-repo
+    build: .
+    ports:
+      - "3007:3007"
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+        - 80:80
+        - 443:443
+    volumes:
+        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+  db:
+    image: mongo:3.6.1
+    container_name: db
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+    ports:
+      - 27017:27017
+    command: mongod
+
+volumes:
+  mongodb:
+  mongodb_config:
