@@ -6,6 +6,7 @@ WORKDIR /app
 
 COPY . /app/
 
+RUN node --max-old-space-size=256
 # install 
 RUN npm install 
 
