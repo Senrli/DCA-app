@@ -1,4 +1,4 @@
-FROM node:16 AS BUILD_IMAGE
+FROM node AS BUILD_IMAGE
 
 RUN curl -sfL https://gobinaries.com/tj/node-prune | bash -s -- -b /usr/local/bin
 
@@ -19,7 +19,7 @@ RUN npm prune --production
 # run node prune
 RUN /usr/local/bin/node-prune
 
-FROM node:16-alpine
+FROM node:alpine
 
 WORKDIR /app
 
