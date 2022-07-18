@@ -21,7 +21,6 @@ services:
 
   certbot:
     image: certbot/certbot
-    restart: unless-stopped
     container_name: certbot
     volumes: 
       - ./certbot/conf:/etc/letsencrypt
