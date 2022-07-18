@@ -3,8 +3,11 @@ services:
   app-repo:
     container_name: app-repo
     image: fjcvtcs/esc-teams:latest
+    restart: unless-stopped
     ports:
       - "3007:3007"
+    env_file:
+      - .env
 
 
   nginx:
@@ -19,24 +22,12 @@ services:
         - ./certbot/conf:/etc/letsencrypt
         - ./certbot/www:/var/www/certbot
 
+
   certbot:
     image: certbot/certbot
     container_name: certbot
+    restart: "no"   # never start certbot automatically
     volumes: 
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     command: certonly --webroot -w /var/www/certbot --force-renewal --email 19980321lsr@gmail.com -d api-dev.veriform.ml --agree-tos
-
-#   db:
-#     image: mongo:3.6.1
-#     container_name: db
-#     volumes:
-#       - mongodb:/data/db
-#       - mongodb_config:/data/configdb
-#     ports:
-#       - 27017:27017
-#     command: mongod
-
-# volumes:
-#   mongodb:
-#   mongodb_config:
