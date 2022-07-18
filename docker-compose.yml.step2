@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   app-repo:
+    container_name: app-repo
     image: fjcvtcs/esc-teams:latest
     ports:
       - "3007:3007"
@@ -21,6 +22,7 @@ services:
   # certbot:
   #   image: certbot/certbot
   #   container_name: certbot
+  #   restart: unless-stopped
   #   volumes: 
   #     - ./certbot/conf:/etc/letsencrypt
   #     - ./certbot/www:/var/www/certbot
