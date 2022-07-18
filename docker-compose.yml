@@ -4,6 +4,9 @@ services:
     build: .
     ports:
       - "3007:3007"
+    dns:
+    - 8.8.8.8
+    - 9.9.9.9
 
   nginx:
     image: nginx
