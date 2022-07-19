@@ -2,13 +2,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license.
 
-const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const path = require('path');
-const fs = require('fs');
 const argv = require('yargs').argv;
 
 const debug = argv.debug !== undefined;
@@ -92,7 +90,7 @@ const config = [
       ]
     },
     plugins: [
-      new webpack.EnvironmentPlugin({ PUBLIC_HOSTNAME: undefined, TAB_APP_ID: null, TAB_APP_URI: null }),
+      // new webpack.EnvironmentPlugin({ PUBLIC_HOSTNAME: undefined, TAB_APP_ID: null, TAB_APP_URI: null }),
       new ForkTsCheckerWebpackPlugin({
         typescript: {
           configFile: './src/client/tsconfig.json'

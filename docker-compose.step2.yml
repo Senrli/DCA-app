@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  app-repo:
+    container_name: app-repo
+    image: fjcvtcs/esc-teams-pub:latest
+    restart: unless-stopped
+    ports:
+      - "3007:3007"
+    env_file:
+      - .env
+
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: unless-stopped
+    depends_on:
+      - "app-repo"
+    ports:
+        - 80:80
+        - 443:443
+    volumes:
+        - ./nginx/nginx_step2.conf:/etc/nginx/nginx.conf
+        - ./certbot/conf:/etc/letsencrypt
+        - ./certbot/www:/var/www/certbot
+
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    restart: "no"   # never start certbot automatically
+    depends_on:
+      - "nginx"
+    volumes: 
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email 19980321lsr@gmail.com -d api-dev.veriform.ml --agree-tos
