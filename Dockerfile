@@ -1,11 +1,15 @@
-FROM node:14 AS BUILD_IMAGE
+FROM node AS BUILD_IMAGE
 
-RUN curl -sfL https://install.goreleaser.com/github.com/tj/node-prune.sh | bash -s -- -b /usr/local/bin
+RUN curl -sfL https://gobinaries.com/tj/node-prune | bash -s -- -b /usr/local/bin
 
 WORKDIR /app
 
 COPY . /app/
 
+# trying to access npmjs to see what happened
+RUN curl -v https://registry.npmjs.com/
+
+RUN node --max-old-space-size=256
 # install 
 RUN npm install 
 
@@ -18,7 +22,7 @@ RUN npm prune --production
 # run node prune
 RUN /usr/local/bin/node-prune
 
-FROM node:14-alpine
+FROM node:alpine
 
 WORKDIR /app
 
