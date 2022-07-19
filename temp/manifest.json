@@ -28,6 +28,7 @@
     {
       "entityId": "45003861-1dd6-4cdc-b123-556001aade47",
       "name": "teams poc Tab",
+
       "contentUrl": "https://fda7-116-88-208-159.ap.ngrok.io/teamsPocTab/?name={loginHint}&tenant={tid}&theme={theme}",
       "scopes": [
         "personal"
