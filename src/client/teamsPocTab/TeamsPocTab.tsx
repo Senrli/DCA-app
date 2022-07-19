@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Provider, Flex, Text, Button, Header, Divider } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
-import { app, authentication, dialog, tasks} from '@microsoft/teams-js';
+import { app, authentication, dialog, tasks } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 
 /**
@@ -13,8 +13,6 @@ export const TeamsPocTab = () => {
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
-
-  dialog.initialize();
 
   useEffect(() => {
     if (inTeams === true) {
@@ -46,14 +44,15 @@ export const TeamsPocTab = () => {
     }
   }, [context]);
 
-  function generateClaimForm() {
+  dialog.initialize();
 
+  function generateClaimForm() {
     const generateFormURLDialogInfo = {
       url: `https://${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
-      size: {height: 510 , width: 424},
+      size: { height: 510, width: 424 },
       // fallbackURL: `${process.env.PUBLIC_HOSTNAME.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
       title: `/teamsPocTab/gform.html`
-    }
+    };
     // const generateFormCard = {
     //   title: "Generate Claim Form",
     //   url: `${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
@@ -75,10 +74,9 @@ export const TeamsPocTab = () => {
     //     "version": "1.0"
     //   }
     // };
-    
+
     dialog.open(generateFormURLDialogInfo);
     dialog.submit();
-
   }
 
   /**
