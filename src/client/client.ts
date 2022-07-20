@@ -10,4 +10,4 @@ export const render = (type: any, element: HTMLElement) => {
 export * from './teamsPocTab/TeamsPocTab';
 
 // add the gform page
-export * from './teamsPocTab/GForm';
+export * from './teamsPocTab/Generate';
