@@ -90,7 +90,11 @@ const config = [
       ]
     },
     plugins: [
-      new webpack.EnvironmentPlugin({ PUBLIC_HOSTNAME: undefined, TAB_APP_ID: null, TAB_APP_URI: null }),
+      new webpack.EnvironmentPlugin({
+        PUBLIC_HOSTNAME: 'api-dev.veriform.ml',
+        TAB_APP_ID: '10ffefdd-0fe2-4f6b-8560-0774b80b54d2',
+        TAB_APP_URI: 'api://api-dev.veriform.ml/10ffefdd-0fe2-4f6b-8560-0774b80b54d2'
+      }),
       new ForkTsCheckerWebpackPlugin({
         typescript: {
           configFile: './src/client/tsconfig.json'
