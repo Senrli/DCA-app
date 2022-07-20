@@ -5,7 +5,14 @@ import * as morgan from 'morgan';
 import { MsTeamsApiRouter, MsTeamsPageRouter } from 'express-msteams-host';
 import * as debug from 'debug';
 import * as compression from 'compression';
-
+import {
+  CardFactory,
+  CloudAdapter,
+  ConfigurationServiceClientCredentialFactory,
+  createBotFrameworkAuthenticationFromConfiguration
+} from 'botbuilder';
+import DiscountClaimRequestCard from './teamsBotPocYeomanBot/cards/discountClaimRequestCard';
+import { MessageBot } from './teamsBotPocYeomanBot/messageBot';
 // Initialize debug logging module
 const log = debug('msteams');
 
@@ -17,6 +24,19 @@ require('dotenv').config();
 // The import of components has to be done AFTER the dotenv config
 // eslint-disable-next-line import/first
 import * as allComponents from './TeamsAppsComponents';
+
+const credentialsFactory = new ConfigurationServiceClientCredentialFactory({
+  MicrosoftAppId: process.env.MicrosoftAppId,
+  MicrosoftAppPassword: process.env.MicrosoftAppPassword,
+  MicrosoftAppType: process.env.MicrosoftAppType,
+  MicrosoftAppTenantId: process.env.MicrosoftAppTenantId
+});
+
+const botFrameworkAuthentication = createBotFrameworkAuthenticationFromConfiguration(null, credentialsFactory);
+
+const adapter = new CloudAdapter(botFrameworkAuthentication);
+const conversationReferences = {};
+const myBot = new MessageBot(conversationReferences);
 
 // Create the Express webserver
 const express = Express();
@@ -68,6 +88,26 @@ express.use(
 
 // Set the port
 express.set('port', port);
+
+express.post('/api/notify', async(req, res) => {
+const discountClaimRequestCard = CardFactory.adaptiveCard(DiscountClaimRequestCard);
+
+var user = req.body["user"]
+for (const conversationReference of Object.values(conversationReferences)) {
+    if (conversationReference["user"]["name"] == user){
+      await adapter.continueConversationAsync(process.env.MicrosoftAppId, conversationReference, async turnContext => {
+      await turnContext.sendActivity({ attachments: [discountClaimRequestCard] });
+    }
+    );
+
+}
+res.setHeader('Content-Type', 'text/html');
+res.writeHead(200);
+res.write('Notification has been sent.');
+res.end();
+}
+});
+
 
 // Start the webserver
 http.createServer(express).listen(port, () => {

@@ -1,9 +1,10 @@
 import { BotDeclaration } from 'express-msteams-host';
 import * as debug from 'debug';
 import { CardFactory, ConversationState, MemoryStorage, UserState, TurnContext } from 'botbuilder';
-import { DialogBot } from './dialogBot';
+import {MessageBot} from './messageBot';
 import { MainDialog } from './dialogs/mainDialog';
 import WelcomeCard from './cards/welcomeCard';
+
 
 // Initialize debug logging module
 const log = debug('msteams');
@@ -19,7 +20,7 @@ const log = debug('msteams');
   // eslint-disable-next-line no-undef
   process.env.MICROSOFT_APP_PASSWORD
 )
-export class TeamsBotPocYeomanBot extends DialogBot {
+export class TeamsBotPocYeomanBot extends MessageBot {
   constructor(conversationState: ConversationState, userState: UserState) {
     super(conversationState, userState, new MainDialog());
 
