@@ -1,7 +1,10 @@
 {
     "extends": [
         "standard",
-        "prettier"
+        "prettier",
+        "eslint:recommended", 
+        "plugin:react/recommended", 
+        "plugin:prettier/recommended"
     ],
     "globals": {
         "Atomics": "readonly",

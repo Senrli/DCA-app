@@ -2,12 +2,8 @@ import * as React from 'react';
 import { Provider, Flex, Text, Button, Header, Divider } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
-import { app, authentication, dialog } from '@microsoft/teams-js';
+import { app, authentication, dialog, tasks } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
-
-// import * as constants from "./constants";
-// import { cardTemplates, appRoot } from "./dialogs/CardTemplates";
-// import { taskModuleLink } from "./utils/DeepLinks";
 
 /**
  * Implementation of the teams poc Tab content page
@@ -20,7 +16,7 @@ export const TeamsPocTab = () => {
 
   useEffect(() => {
     if (inTeams === true) {
-      authentication
+      const result = authentication
         .getAuthToken({
           resources: [process.env.TAB_APP_URI as string],
           silent: false
@@ -51,14 +47,36 @@ export const TeamsPocTab = () => {
   dialog.initialize();
 
   function generateClaimForm() {
-    const taskModuleInfo = {
-      title: `fuck senrui`,
-      url: `${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
-      width: 1024,
-      height: 768
+    const generateFormURLDialogInfo = {
+      url: `https://${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
+      size: { height: 510, width: 424 },
+      // fallbackURL: `${process.env.PUBLIC_HOSTNAME.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
+      title: `/teamsPocTab/gform.html`
     };
+    // const generateFormCard = {
+    //   title: "Generate Claim Form",
+    //   url: `${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
+    //   width: 1024,
+    //   height: 768,
+    //   card:{
+    //     "type": "AdaptiveCard",
+    //     "body": [
+    //         {
+    //             "type": "TextBlock",
+    //             "text": "Here is a ninja cat:"
+    //         },
+    //         {
+    //             "type": "Image",
+    //             "url": "http://adaptivecards.io/content/cats/1.png",
+    //             "size": "Medium"
+    //         }
+    //     ],
+    //     "version": "1.0"
+    //   }
+    // };
 
-    dialog.submit(taskModuleInfo);
+    dialog.open(generateFormURLDialogInfo);
+    dialog.submit();
   }
 
   /**

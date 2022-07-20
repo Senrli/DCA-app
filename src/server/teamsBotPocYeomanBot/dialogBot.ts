@@ -1,5 +1,7 @@
-import { ConversationState, UserState, TeamsActivityHandler, TurnContext } from 'botbuilder';
+import { ContentIcon } from '@fluentui/react-northstar';
+import { ConversationState, UserState, TeamsActivityHandler, TurnContext, CardFactory } from 'botbuilder';
 import { MainDialog } from './dialogs/mainDialog';
+import DiscountClaimRequestCard from './cards/discountClaimRequestCard';
 
 export class DialogBot extends TeamsActivityHandler {
   public dialogState: any;
@@ -12,6 +14,9 @@ export class DialogBot extends TeamsActivityHandler {
     this.dialogState = this.conversationState.createProperty('DialogState');
 
     this.onMessage(async (context, next) => {
+      // Shows discount claim request adaptive card given any command
+      const discountClaimRequestCard = CardFactory.adaptiveCard(DiscountClaimRequestCard);
+      await context.sendActivity({ attachments: [discountClaimRequestCard] });
       // Run the MainDialog with the new message Activity.
       await this.dialog.run(context, this.dialogState);
       await next();

@@ -1,14 +1,12 @@
 // Copyright (c) Wictor Wilén. All rights reserved.
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license.
-
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const path = require('path');
-const fs = require('fs');
 const argv = require('yargs').argv;
 
 const debug = argv.debug !== undefined;
@@ -92,7 +90,11 @@ const config = [
       ]
     },
     plugins: [
-      new webpack.EnvironmentPlugin({ PUBLIC_HOSTNAME: undefined, TAB_APP_ID: null, TAB_APP_URI: null }),
+      new webpack.EnvironmentPlugin({
+        PUBLIC_HOSTNAME: 'api-dev.veriform.ml',
+        TAB_APP_ID: '10ffefdd-0fe2-4f6b-8560-0774b80b54d2',
+        TAB_APP_URI: 'api://api-dev.veriform.ml/10ffefdd-0fe2-4f6b-8560-0774b80b54d2'
+      }),
       new ForkTsCheckerWebpackPlugin({
         typescript: {
           configFile: './src/client/tsconfig.json'
