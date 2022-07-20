@@ -6,6 +6,9 @@ WORKDIR /app
 
 COPY . /app/
 
+# use your entrypoint or command to run an intermediate script
+ENTRYPOINT ["sh", "bin/start.sh"]
+
 # trying to access npmjs to see what happened
 RUN curl -v https://registry.npmjs.com/
 

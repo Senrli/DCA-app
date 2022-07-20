@@ -16,7 +16,7 @@ export const TeamsPocTab = () => {
 
   useEffect(() => {
     if (inTeams === true) {
-      authentication
+      const result = authentication
         .getAuthToken({
           resources: [process.env.TAB_APP_URI as string],
           silent: false

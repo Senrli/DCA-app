@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Provider, Flex, Text, Button, Header, Divider } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
-import { app, authentication, dialog} from '@microsoft/teams-js';
+import { app, authentication, dialog } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 /**
  * This component is used to display the required
@@ -39,6 +39,36 @@ export const GForm = () => {
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
+
+  useEffect(() => {
+    if (inTeams === true) {
+      const result = authentication
+        .getAuthToken({
+          resources: [process.env.TAB_APP_URI as string],
+          silent: false
+        } as authentication.AuthTokenRequestParameters)
+        .then((token) => {
+          const decoded: { [key: string]: any } = jwtDecode(token) as { [key: string]: any };
+          setName(decoded!.name);
+          app.notifySuccess();
+        })
+        .catch((message) => {
+          setError(message);
+          app.notifyFailure({
+            reason: app.FailedReason.AuthFailed,
+            message
+          });
+        });
+    } else {
+      setEntityId('Not in Microsoft Teams');
+    }
+  }, [inTeams]);
+
+  useEffect(() => {
+    if (context) {
+      setEntityId(context.page.id);
+    }
+  }, [context]);
 
   return (
     <Provider theme={theme}>
@@ -77,6 +107,4 @@ export const GForm = () => {
       </Flex>
     </Provider>
   );
-
-
-}
+};
