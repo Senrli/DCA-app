@@ -28,8 +28,8 @@ require('dotenv').config();
 import * as allComponents from './TeamsAppsComponents';
 
 const credentialsFactory = new ConfigurationServiceClientCredentialFactory({
-  MicrosoftAppId: process.env.MicrosoftAppId,
-  MicrosoftAppPassword: process.env.MicrosoftAppPassword,
+  MicrosoftAppId: process.env.MICROSOFT_APP_ID,
+  MicrosoftAppPassword: process.env.MICROSOFT_APP_PASSWORD,
   MicrosoftAppType: process.env.MicrosoftAppType,
   MicrosoftAppTenantId: process.env.MicrosoftAppTenantId
 });
@@ -93,22 +93,26 @@ express.use(
 express.set('port', port);
 
 express.post('/api/notify', async(req, res) => {
+
 const discountClaimRequestCard = CardFactory.adaptiveCard(DiscountClaimRequestCard);
 
 var user = req.body["user"]
+
 for (const conversationReference of Object.values(conversationReferences)) {
+    console.log("awaiting adapter")
     if (conversationReference["user"]["name"] == user){
-      await adapter.continueConversationAsync(process.env.MicrosoftAppId, conversationReference, async turnContext => {
+      
+      await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, conversationReference, async turnContext => {
       await turnContext.sendActivity({ attachments: [discountClaimRequestCard] });
     }
     );
-
+  }
 }
+
 res.setHeader('Content-Type', 'text/html');
 res.writeHead(200);
 res.write('Notification has been sent.');
 res.end();
-}
 });
 
 
