@@ -21,8 +21,8 @@ const log = debug('msteams');
   process.env.MICROSOFT_APP_PASSWORD
 )
 export class TeamsBotPocYeomanBot extends MessageBot {
-  constructor(conversationState: ConversationState, userState: UserState) {
-    super(conversationState, userState, new MainDialog());
+  constructor(conversationReferences) {
+    super(conversationReferences);
 
     this.onMembersAdded(async (context, next) => {
       const membersAdded = context.activity.membersAdded;

@@ -5,12 +5,14 @@ import * as morgan from 'morgan';
 import { MsTeamsApiRouter, MsTeamsPageRouter } from 'express-msteams-host';
 import * as debug from 'debug';
 import * as compression from 'compression';
+
 import {
   CardFactory,
   CloudAdapter,
   ConfigurationServiceClientCredentialFactory,
   createBotFrameworkAuthenticationFromConfiguration
 } from 'botbuilder';
+
 import DiscountClaimRequestCard from './teamsBotPocYeomanBot/cards/discountClaimRequestCard';
 import { MessageBot } from './teamsBotPocYeomanBot/messageBot';
 // Initialize debug logging module
@@ -31,6 +33,7 @@ const credentialsFactory = new ConfigurationServiceClientCredentialFactory({
   MicrosoftAppType: process.env.MicrosoftAppType,
   MicrosoftAppTenantId: process.env.MicrosoftAppTenantId
 });
+
 
 const botFrameworkAuthentication = createBotFrameworkAuthenticationFromConfiguration(null, credentialsFactory);
 
