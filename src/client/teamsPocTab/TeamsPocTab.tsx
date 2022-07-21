@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Provider, Text, Button, Header, Divider, MoreIcon, Table, Flex, MenuButton } from '@fluentui/react-northstar';
+import { Provider, Text, Button, Header, Divider, MoreIcon, Table, Flex, MenuButton, FlexItem, Checkbox, getParent } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication, dialog } from '@microsoft/teams-js';
@@ -17,7 +17,7 @@ export const TeamsPocTab = () => {
 
   useEffect(() => {
     if (inTeams === true) {
-      const result = authentication
+      authentication
         .getAuthToken({
           resources: [process.env.TAB_APP_URI as string],
           silent: false
@@ -50,31 +50,10 @@ export const TeamsPocTab = () => {
   function generateClaimForm() {
     const generateFormURLDialogInfo = {
       url: `https://${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
-      size: { height: 510, width: 424 },
+      size: { height: 768, width: 1024 },
       // fallbackURL: `${process.env.PUBLIC_HOSTNAME.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
-      title: `/teamsPocTab/gform.html`
+      title: `Generate Forms`
     };
-    // const generateFormCard = {
-    //   title: "Generate Claim Form",
-    //   url: `${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
-    //   width: 1024,
-    //   height: 768,
-    //   card:{
-    //     "type": "AdaptiveCard",
-    //     "body": [
-    //         {
-    //             "type": "TextBlock",
-    //             "text": "Here is a ninja cat:"
-    //         },
-    //         {
-    //             "type": "Image",
-    //             "url": "http://adaptivecards.io/content/cats/1.png",
-    //             "size": "Medium"
-    //         }
-    //     ],
-    //     "version": "1.0"
-    //   }
-    // };
 
     dialog.open(generateFormURLDialogInfo);
     dialog.submit();
@@ -84,16 +63,13 @@ export const TeamsPocTab = () => {
     alert(`OnClick on the row ${index} executed.`);
   }
 
-  const header = {
-    key: 'header',
-    items: [
-      { content: 'id', key: 'id' },
-      { content: 'Name', key: 'name' },
-      { content: 'Picture', key: 'pic' },
-      { content: 'Age', key: 'action' },
-      { content: 'Tags', key: 'tags' },
-      { key: 'more options', 'aria-label': 'options' }
-    ]
+  const checkBoxCell = {
+    content: <Checkbox></Checkbox>,
+    onClick: (e) => {
+      
+      alert('check box button clicked');
+      e.stopPropagation();
+    }
   };
 
   const moreOptionCell = {
@@ -118,12 +94,26 @@ export const TeamsPocTab = () => {
     accessibility: gridCellMultipleFocusableBehavior
   };
 
+  const header = {
+    key: 'header',
+    items: [
+      { key: 'select', ...checkBoxCell },
+      { content: 'id', key: 'id' },
+      { content: 'Name', key: 'name' },
+      { content: 'Picture', key: 'pic' },
+      { content: 'Age', key: 'action' },
+      { content: 'Tags', key: 'tags' },
+      { key: 'more options', 'aria-label': 'options' }
+    ]
+  };
+
   const contextMenuItems = ['Add to selection', 'Remove', 'Download'];
 
   const rowsPlain = [
     {
       key: 1,
       items: [
+        { key: '1-0', ...checkBoxCell },
         { content: '1', key: '1-1' },
         { content: 'Roman van von der Longername', key: '1-2', id: 'name-1' },
         { content: 'None', key: '1-3' },
@@ -140,6 +130,7 @@ export const TeamsPocTab = () => {
     {
       key: 2,
       items: [
+        { key: '2-0', ...checkBoxCell },
         { content: '2', key: '2-1' },
         { content: 'Alex', key: '2-2' },
         { content: 'None', key: '2-3' },
@@ -155,6 +146,7 @@ export const TeamsPocTab = () => {
     {
       key: 3,
       items: [
+        { key: '3-0', ...checkBoxCell },
         { content: '3', key: '3-1' },
         { content: 'Ali', key: '3-2' },
         { content: 'None', key: '3-3' },
@@ -181,24 +173,32 @@ export const TeamsPocTab = () => {
           padding: '.8rem 0 .8rem .5rem'
         }}
       >
-        <Flex.Item>
+        <Flex
+          fill={true}
+          hAlign="start"
+          vAlign="center"
+          column={false}
+          styles={{
+            padding: '.8rem .8rem .8rem .5rem'
+          }}
+        >
           <Header content="Discount Claims" />
-        </Flex.Item>
-        <Flex.Item>
+          <FlexItem push>
+            <Button content="+ Request Discount" primary onClick={generateClaimForm}></Button>
+          </FlexItem>
+        </Flex>
+
+        <div>
           <div>
-            <div>
-              <Text content={`Hello ${name}`} />
-            </div>
-            <div>
-              <Button content="Generate Discount Form" primary onClick={generateClaimForm}></Button>
-            </div>
-            {error && (
-              <div>
-                <Text content={`An SSO error occurred ${error}`} />
-              </div>
-            )}
+            <Text content={`Hello ${name}, here are all claims made so far`} />
           </div>
-        </Flex.Item>
+          {error && (
+            <div>
+              <Text content={`An SSO error occurred ${error}`} />
+            </div>
+          )}
+        </div>
+
         <Flex.Item>
           <Table
             variables={{ cellContentOverflow: 'none' }}
@@ -215,37 +215,6 @@ export const TeamsPocTab = () => {
         >
           <Text size="smaller" content="(C) Copyright Beep|SUTD" />
         </Flex.Item>
-        <Flex
-          fill={true}
-          column={false}
-          styles={{
-            padding: '.8rem 0 .8rem .5rem'
-          }}
-        >
-          <Flex.Item
-            styles={{
-              padding: '.8rem 0 .8rem .5rem'
-            }}
-          >
-            <Text size="smaller" content="Stupid sia" />
-          </Flex.Item>
-
-          <Flex.Item
-            styles={{
-              padding: '.8rem 0 .8rem .5rem'
-            }}
-          >
-            <Text size="smaller" content="Walao eh" />
-          </Flex.Item>
-
-          <Flex.Item
-            styles={{
-              padding: '.8rem 0 .8rem .5rem'
-            }}
-          >
-            <Text size="smaller" content="wtf" />
-          </Flex.Item>
-        </Flex>
       </Flex>
     </Provider>
   );
