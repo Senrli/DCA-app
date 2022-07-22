@@ -2,7 +2,7 @@ import * as Express from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import * as morgan from 'morgan';
-import { MsTeamsApiRouter, MsTeamsPageRouter } from 'express-msteams-host';
+import { MsTeamsApiRouter, MsTeamsPageRouter } from   ';
 import * as debug from 'debug';
 import * as compression from 'compression';
 
