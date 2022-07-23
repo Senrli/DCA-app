@@ -68,7 +68,7 @@ adapter.onTurnError = onTurnErrorHandler;
 // Define a state store for your bot. See https://aka.ms/about-bot-state to learn more about using MemoryStorage.
 // A bot requires a state store to persist the dialog and user state between messages.
 // eslint-disable-next-line prefer-const
-let conversationState: ConversationState = {};
+let conversationState: ConversationState;
 let userState: UserState;
 
 // For local development, in-memory storage is used.
