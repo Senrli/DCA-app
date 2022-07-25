@@ -4,6 +4,8 @@ services:
     container_name: app-repo
     image: fjcvtcs/esc-teams-pub:latest
     restart: unless-stopped
+    depends_on:
+      - mongodb
     ports:
       - "3007:3007"
     env_file:
@@ -14,7 +16,7 @@ services:
     container_name: nginx
     restart: unless-stopped
     depends_on:
-      - "app-repo"
+      - app-repo
     ports:
         - 80:80
         - 443:443
@@ -25,6 +27,7 @@ services:
 
   mongodb:
     image: mongo
+    restart: always
     ports:
       - 27017:27017
     volumes:
@@ -42,9 +45,9 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: beep
       ME_CONFIG_MONGODB_ADMINPASSWORD: beepbeep123
-      ME_CONFIG_MONGODB_URL: mongodb://beep:beepbeep123@mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://beep:beepbeep123@mongodb:27017/
     depends_on:
-      - mongo
+      - mongodb
 
 
   certbot:
