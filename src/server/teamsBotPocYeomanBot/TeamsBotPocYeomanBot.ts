@@ -40,7 +40,6 @@ const credentialsFactory = new ConfigurationServiceClientCredentialFactory({
 });
 
 const botFrameworkAuthentication = createBotFrameworkAuthenticationFromConfiguration(null, credentialsFactory);
-
 // Create adapter.
 // See https://aka.ms/about-bot-adapter to learn more about adapters.
 const adapter = new CloudAdapter(botFrameworkAuthentication);
@@ -87,7 +86,6 @@ const router = express.Router();
 
 router.post('/api/notify', async (req, res) => {
   const discountClaimRequestCard = CardFactory.adaptiveCard(DiscountClaimRequestCard);
-
   const userId = req.body.userId;
   log(userId);
   log('state:::::::');
@@ -98,9 +96,9 @@ router.post('/api/notify', async (req, res) => {
   log(JSON.stringify(conversationState));
   // Loop through the list of users
   for (const conversationReference of Object.values(conversationStateStripped)) {
-    if (conversationReference.user.aadObjectId === userId) {
+    if (conversationReference['user'].aadObjectId === userId) {
       await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, conversationReference, async (context) => {
-        await context.sendActivity('proactive hello');
+        await context.sendActivity({ attachments: [discountClaimRequestCard] });;
       });
     }
   }
@@ -119,6 +117,7 @@ router.post('/api/messages', async (req, res) => {
 // Listen for incoming notifications and send proactive messages to users.
 router.get('/api/notify', async (req, res) => {
   // Strip the keys 'namespace' and 'storage' from the output
+  
   const conversationStateStripped = JSON.parse(JSON.stringify(conversationState));
   ['namespace', 'storage'].forEach((e) => delete conversationStateStripped[e]);
   log(JSON.stringify(conversationState));
