@@ -92,13 +92,17 @@ router.post('/api/notify', async (req, res) => {
   log(userId);
   log('state:::::::');
   log(JSON.stringify(conversationState));
-  for (const conversationReference of Object.values(conversationState)) {
-    // log('awaiting adapter');
-    // log(JSON.stringify(conversationReference));
-    // if (userId === 'e7694f5f-3b25-40fe-b3fe-3d5b74f08a4a') {
-    await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, conversationReference, async (turnContext) => {
-      await turnContext.sendActivity('hello');
-    });
+  // Strip the keys 'namespace' and 'storage' from the output
+  const conversationStateStripped = JSON.parse(JSON.stringify(conversationState));
+  ['namespace', 'storage'].forEach((e) => delete conversationStateStripped[e]);
+  log(JSON.stringify(conversationState));
+  // Loop through the list of users
+  for (const conversationReference of Object.values(conversationStateStripped)) {
+    if (conversationReference.user.aadObjectId === userId) {
+      await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, conversationReference, async (context) => {
+        await context.sendActivity('proactive hello');
+      });
+    }
   }
 
   res.setHeader('Content-Type', 'text/html');
@@ -110,6 +114,26 @@ router.post('/api/notify', async (req, res) => {
 router.post('/api/messages', async (req, res) => {
   // Route received a request to adapter for processing
   await adapter.process(req, res, (context) => myBot.run(context));
+});
+
+// Listen for incoming notifications and send proactive messages to users.
+router.get('/api/notify', async (req, res) => {
+  // Strip the keys 'namespace' and 'storage' from the output
+  const conversationStateStripped = JSON.parse(JSON.stringify(conversationState));
+  ['namespace', 'storage'].forEach((e) => delete conversationStateStripped[e]);
+  log(JSON.stringify(conversationState));
+  // Loop through the list of users
+  for (const conversationReference of Object.values(conversationStateStripped)) {
+    await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, conversationReference, async (context) => {
+      log('context::::::');
+      log(JSON.stringify(context));
+      await context.sendActivity('proactive hello');
+    });
+  }
+  res.setHeader('Content-Type', 'text/html');
+  res.writeHead(200);
+  res.write('<html><body><h1>Proactive messages have been sent.</h1></body></html>');
+  res.end();
 });
 
 // export class TeamsBotPocYeomanBot extends MessageBot {

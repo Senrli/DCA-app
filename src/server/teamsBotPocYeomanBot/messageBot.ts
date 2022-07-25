@@ -38,12 +38,9 @@ export class MessageBot extends TeamsActivityHandler {
     // this.dialog = dialog;
     // this.dialogState = this.conversationState.createProperty<DialogState>('DialogState');
 
-    function addConversationReference(activity): void {
-      const conversationReference = TurnContext.getConversationReference(activity);
-      conversationState[conversationReference.conversation.id] = conversationReference;
-    }
-
     this.onConversationUpdate(async (context, next) => {
+      log('onConversationUpdate:::');
+      log(context);
       addConversationReference(context.activity);
 
       await next();
@@ -51,7 +48,7 @@ export class MessageBot extends TeamsActivityHandler {
 
     // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
     this.onMessage(async (context, next) => {
-      //   addConversationReference(context.activity);
+      addConversationReference(context.activity);
       // Echo back what the user said
       log(context);
       await context.sendActivity(`You sent '${context.activity.text}'  \nCommand Not Recognized`); // Use Markdown Syntax with two spaces before newline
@@ -65,17 +62,25 @@ export class MessageBot extends TeamsActivityHandler {
         if (member.id !== context.activity.recipient.id) {
           const welcomeMessage = 'Welcome to the Discount Claim Bot!';
           await context.sendActivity(welcomeMessage);
+          log('context, onMembersAdded:::');
+          log(JSON.stringify(context));
+          // await (dialog as MainDialog).run(context, conversationState.createProperty<DialogState>('DialogState'));
         }
       }
       // By calling next() you ensure that the next BotHandler is run.
       await next();
     });
+
+    function addConversationReference(activity): void {
+      const conversationReference = TurnContext.getConversationReference(activity);
+      conversationState[conversationReference.conversation.id] = conversationReference;
+    }
   }
 
   /**
    * Override the ActivityHandler.run() method to save state changes after the bot logic completes.
    */
-  public async run(context): Promise<void> {
+  public async run(context: TurnContext): Promise<void> {
     await super.run(context);
 
     // Save any state changes. The load happened during the execution of the Dialog.
