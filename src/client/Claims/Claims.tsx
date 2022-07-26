@@ -27,6 +27,7 @@ export const Claims = () => {
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
+  var discountClaimAmount;
 
   useEffect(() => {
     if (inTeams === true) {
@@ -58,18 +59,56 @@ export const Claims = () => {
     }
   }, [context]);
 
+  function getDiscountClaimAmount(){
+    return discountClaimAmount;
+  }
+
+  function setDiscountClaimAmount(newAmount){
+    discountClaimAmount = newAmount;
+  }
+
   dialog.initialize();
 
   function generateClaimForm() {
     const generateFormURLDialogInfo = {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/generate.html`,
       size: { height: 768, width: 1024 },
-      // fallbackURL: `${process.env.PUBLIC_HOSTNAME.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
       title: `Generate Forms`
     };
 
-    dialog.open(generateFormURLDialogInfo);
-    dialog.submit();
+    const redirectVeriformTypeA = {
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
+      size: { height: 768, width: 1024 },
+      title: `VeriformTypeA`
+    }
+
+    const redirectVeriformTypeB = {
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
+      size: { height: 768, width: 1024 },
+      title: `VeriformTypeB`
+    }
+
+    const redirectVeriformTypeC = {
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
+      size: { height: 768, width: 1024 },
+      title: `VeriformTypeC`
+    }
+
+    const submitHandler = (response) => {
+      setDiscountClaimAmount(response.result.amount);
+      if (discountClaimAmount <= 5000){
+        dialog.open(redirectVeriformTypeA);
+      } else if (discountClaimAmount <= 10000){
+        dialog.open(redirectVeriformTypeB);
+      } else {
+        dialog.open(redirectVeriformTypeC);
+      }
+      
+    };  
+  
+
+    dialog.open(generateFormURLDialogInfo, submitHandler);
+    // dialog.submit();
   }
 
   function handleRowClick(index) {
