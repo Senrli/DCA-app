@@ -7,7 +7,7 @@ export const render = (type: any, element: HTMLElement) => {
   ReactDOM.render(React.createElement(type, {}), element);
 };
 // Automatically added for the teamsPocTab tab
-export * from './teamsPocTab/TeamsPocTab';
+export * from './Claims/Claims';
 
 // add the gform page
-export * from './teamsPocTab/GForm';
+export * from './Claims/Generate';

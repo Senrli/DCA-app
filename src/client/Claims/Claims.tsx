@@ -22,7 +22,7 @@ import { gridNestedBehavior, gridCellWithFocusableElementBehavior, gridCellMulti
 /**
  * Implementation of the teams poc Tab content page
  */
-export const TeamsPocTab = () => {
+export const Claims = () => {
   const [{ inTeams, theme, context }] = useTeams();
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
@@ -62,7 +62,7 @@ export const TeamsPocTab = () => {
 
   function generateClaimForm() {
     const generateFormURLDialogInfo = {
-      url: `https://${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/generate.html`,
       size: { height: 768, width: 1024 },
       // fallbackURL: `${process.env.PUBLIC_HOSTNAME.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
       title: `Generate Forms`

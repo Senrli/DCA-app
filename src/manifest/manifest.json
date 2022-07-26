@@ -28,7 +28,7 @@
     {
       "entityId": "45003861-1dd6-4cdc-b123-556001aade47",
       "name": "Claims",
-      "contentUrl": "https://{{PUBLIC_HOSTNAME}}/teamsPocTab/?name={loginHint}&tenant={tid}&theme={theme}",
+      "contentUrl": "https://{{PUBLIC_HOSTNAME}}/Claims/?name={loginHint}&tenant={tid}&theme={theme}",
       "scopes": [
         "personal"
       ]
