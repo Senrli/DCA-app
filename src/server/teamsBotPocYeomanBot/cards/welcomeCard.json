@@ -28,14 +28,14 @@
                           "spacing": "Medium",
                           "size": "Large",
                           "weight": "Bolder",
-                          "text": "Welcome to teams bot poc yeoman",
+                          "text": "Welcome to Discount Claim Manager ",
                           "wrap": true,
                           "maxLines": 0
                       },
                       {
                           "type": "TextBlock",
                           "size": "default",
-                          "text": "Hello, nice to meet you! I'm teams bot poc yeoman created using #yoTeams and happy to assist you 😀",
+                          "text": "Hello, nice to meet you! I'm Discount Claim Manager  created using #yoTeams and happy to assist you 😀",
                           "wrap": true,
                           "maxLines": 0
                       }
