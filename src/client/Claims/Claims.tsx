@@ -94,14 +94,22 @@ export const Claims = () => {
       title: `VeriformTypeC`
     }
 
+    const redirectVeriformTypeD = {
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
+      size: { height: 768, width: 1024 },
+      title: `VeriformTypeC`
+    }
+
     const submitHandler = (response) => {
       setDiscountClaimAmount(response.result.amount);
-      if (discountClaimAmount <= 5000){
+      if (discountClaimAmount <= 1500){
         dialog.open(redirectVeriformTypeA);
-      } else if (discountClaimAmount <= 10000){
+      } else if (discountClaimAmount <= 5000){
         dialog.open(redirectVeriformTypeB);
-      } else {
+      } else if (discountClaimAmount <= 15000){
         dialog.open(redirectVeriformTypeC);
+      } else {
+        dialog.open(redirectVeriformTypeD);
       }
       
     };  
