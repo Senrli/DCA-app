@@ -34,7 +34,7 @@ import jwtDecode from 'jwt-decode';
 
 // TODO: Dynamically get the iframe part and then render
 
-export const GForm = () => {
+export const Generate = () => {
   const [{ inTeams, theme, context }] = useTeams();
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
