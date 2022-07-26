@@ -11,7 +11,8 @@ import {
   MenuButton,
   FlexItem,
   Checkbox,
-  getParent
+  getParent,
+  Label
 } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
@@ -84,6 +85,36 @@ export const TeamsPocTab = () => {
     }
   };
 
+  const pendingCell = {
+    content: <Label color={'yellow'} content={'Pending'} />,
+    truncateContent: true,
+    accessibility: gridCellWithFocusableElementBehavior,
+    onClick: (e) => {
+      alert('pendingCell clicked');
+      e.stopPropagation();
+    }
+  };
+
+  const approvedCell = {
+    content: <Label color={'green'} content={'Approved'} />,
+    truncateContent: true,
+    accessibility: gridCellWithFocusableElementBehavior,
+    onClick: (e) => {
+      alert('approvedCell clicked');
+      e.stopPropagation();
+    }
+  };
+
+  const rejectedCell = {
+    content: <Label color={'red'} content={'Rejected'} />,
+    truncateContent: true,
+    accessibility: gridCellWithFocusableElementBehavior,
+    onClick: (e) => {
+      alert('rejectedCell clicked');
+      e.stopPropagation();
+    }
+  };
+
   const moreOptionCell = {
     content: <Button tabIndex={-1} icon={<MoreIcon />} circular text iconOnly title="More options" />,
     truncateContent: true,
@@ -110,11 +141,12 @@ export const TeamsPocTab = () => {
     key: 'header',
     items: [
       { key: 'select', ...checkBoxCell },
-      { content: 'id', key: 'id' },
-      { content: 'Name', key: 'name' },
-      { content: 'Picture', key: 'pic' },
-      { content: 'Age', key: 'action' },
-      { content: 'Tags', key: 'tags' },
+      { content: 'Case ID', key: 'id' },
+      { content: 'Patient Name', key: 'name' },
+      { content: 'Requestor', key: 'requestor' },
+      { content: 'Creator', key: 'creator' },
+      { content: 'Current Approver', key: 'approver' },
+      { content: 'Status', key: 'status' },
       { key: 'more options', 'aria-label': 'options' }
     ]
   };
@@ -126,12 +158,13 @@ export const TeamsPocTab = () => {
       key: 1,
       items: [
         { key: '1-0', ...checkBoxCell },
-        { content: '1', key: '1-1' },
-        { content: 'Roman van von der Longername', key: '1-2', id: 'name-1' },
-        { content: 'None', key: '1-3' },
-        { content: '30 years', key: '1-4', id: 'age-1' },
-        { key: '1-5', ...moreActionCell },
-        { key: '1-6', ...moreOptionCell }
+        { content: '73891123', key: '1-1' },
+        { content: 'Carina Collins', key: '1-2' },
+        { content: 'Jamie Lim', key: '1-3' },
+        { content: 'Robert Tan, BO Novena', key: '1-4' },
+        { content: 'Dr John Low, Novena', key: '1-5' },
+        { key: '1-6', ...pendingCell },
+        { key: '1-7', ...moreOptionCell }
       ],
       onClick: () => handleRowClick(1),
       'aria-labelledby': 'name-1 age-1',
@@ -177,7 +210,12 @@ export const TeamsPocTab = () => {
    * The render() method to create the UI of the tab
    */
   return (
-    <Provider theme={theme}>
+    <Provider
+      theme={theme}
+      style={{
+        backgroundColor: '#f2f2f2'
+      }}
+    >
       <Flex
         fill={true}
         column
@@ -218,6 +256,9 @@ export const TeamsPocTab = () => {
             rows={rowsPlain}
             aria-label="Nested navigation"
             accessibility={gridNestedBehavior}
+            style={{
+              backgroundColor: '#f2f2f2'
+            }}
           />
         </Flex.Item>
         <Flex.Item
