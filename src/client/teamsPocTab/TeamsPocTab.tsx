@@ -1,5 +1,18 @@
 import * as React from 'react';
-import { Provider, Text, Button, Header, Divider, MoreIcon, Table, Flex, MenuButton, FlexItem, Checkbox, getParent } from '@fluentui/react-northstar';
+import {
+  Provider,
+  Text,
+  Button,
+  Header,
+  Divider,
+  MoreIcon,
+  Table,
+  Flex,
+  MenuButton,
+  FlexItem,
+  Checkbox,
+  getParent
+} from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication, dialog } from '@microsoft/teams-js';
@@ -66,7 +79,6 @@ export const TeamsPocTab = () => {
   const checkBoxCell = {
     content: <Checkbox></Checkbox>,
     onClick: (e) => {
-      
       alert('check box button clicked');
       e.stopPropagation();
     }
@@ -182,7 +194,7 @@ export const TeamsPocTab = () => {
             padding: '.8rem .8rem .8rem .5rem'
           }}
         >
-          <Header content="Discount Claims" />
+          <Header content="Submitted Discount Claims" />
           <FlexItem push>
             <Button content="+ Request Discount" primary onClick={generateClaimForm}></Button>
           </FlexItem>
