@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Provider, Flex, Text, Button, Header, Divider } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
-import { app, authentication, dialog, tasks } from '@microsoft/teams-js';
+import { app, authentication, dialog } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 
 /**

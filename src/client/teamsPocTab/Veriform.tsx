@@ -53,7 +53,7 @@ export const Veriform = () => {
         <Flex.Item>
           <div>
             <div>
-              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScZD6XMlLvg1f7ts5vuX1C0JTM-2_3CIhw0zHUDLWaZTV4uTQ/viewform?embedded=true" width="640" height="947">Loading…</iframe>            
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScZD6XMlLvg1f7ts5vuX1C0JTM-2_3CIhw0zHUDLWaZTV4uTQ/viewform?embedded=true" width="640" height="947" frameBorder="0">Loading…</iframe>            
             </div>
             {error && (
               <div>

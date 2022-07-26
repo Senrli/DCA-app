@@ -41,6 +41,8 @@ export const Generate = () => {
     }
   }, [context]);
 
+  }
+
   return (
     <Provider theme={theme}>
       <Flex
@@ -50,27 +52,32 @@ export const Generate = () => {
           padding: '.8rem 0 .8rem .5rem'
         }}
       >
+
         <Flex.Item>
-          <Header content="HELLOWORLD" />
-        </Flex.Item>
-        <Flex.Item>
-          <div>
-            <div>
-              <Text content={`Hello ${name}`} />
-            </div>
-            <div>
-              <input>Discount Amount</input>
-            </div> 
-            <div>
-              <Button content="Generate" primary></Button>
-            </div>
-            {error && (
+
+        <div><Header>Enter new customer information:</Header></div>
+
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Name:
+              <input type="text" value={this.state.value} onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+        
+          {/* <form>
               <div>
-                <Text content={`An SSO error occurred ${error}`} />
+                  <div class="form-group form-field-input" style="margin-bottom: 10px; margin-top: 10px"></div><label for="name">Name: </label><input class="form-control input-field" id="name" type="text" placeholder="first and last" name="name" tabindex="1" autofocus>
+                  <div class="form-group form-field-input" style="margin-bottom: 10px;"></div><label for="email">Email: </label><input class="form-control input-field" id="email" type="email" placeholder="name@email.com" name="email" tabindex="2">
+                  <div class="form-group form-field-input" style="margin-bottom: 10px;"></div><label for="favoriteBook">Favorite book: </label><input class="form-control input-field" id="favoriteBook" type="text" placeholder="title of book" name="favoriteBook" tabindex="3">
+                  <div class="form-group form-field-input" style="margin-bottom: 10px;"></div><label for="pw">Password: </label><input class="form-control input-field" id="pw" type="password" name="password" tabindex="4">
+                  <div class="form-group form-field-input" style="margin-bottom: 10px;"></div><label for="pw2">Confirm password: </label><input class="form-control input-field" id="pw2" type="password" name="confirmPassword" style="margin-bottom: 10px;" tabindex="4"><button class="btn button-primary" type="submit" tabindex="5">Sign up</button>
               </div>
-            )}
-          </div>
+          </form> */}
+
         </Flex.Item>
+
+
         <Flex.Item
           styles={{
             padding: '.8rem 0 .8rem .5rem'
