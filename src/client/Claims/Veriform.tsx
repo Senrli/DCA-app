@@ -1,18 +1,11 @@
 import * as React from 'react';
-import { 
-  Provider, 
-  Flex, 
-  Text, 
-  Form,
-  FormInput,
-  FormButton
-} from '@fluentui/react-northstar';
+import { Provider, Flex, Text, Button, Header, Divider } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication, dialog } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 
-export const Generate = () => {
+export const Veriform = () => {
   const [{ inTeams, theme, context }] = useTeams();
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
@@ -46,44 +39,29 @@ export const Generate = () => {
     if (context) {
       setEntityId(context.page.id);
     }
-  }, [context]);  
-
-  dialog.initialize();
-
-  const handleSubmit = event => {
-    event.preventDefault(); 
-    var dialogOutput = {
-      amount: event.target.discountClaimAmount.value
-    };
-    dialog.submit(dialogOutput);
-  };
+  }, [context]);
 
   return (
     <Provider theme={theme}>
       <Flex
-        fill={true}  
+        fill={true}
         column
         styles={{
           padding: '.8rem 0 .8rem .5rem'
         }}
       >
-
-      <Form onSubmit={handleSubmit} >
-        <Text weight="bold" content="Discount Claim Amount"/>
-        <FormInput 
-          label="SGD S$" 
-          name="discountClaimAmount" 
-          id="discountClaimAmount" 
-          type="number" 
-          min="0" 
-          showSuccessIndicator={false}
-          inline 
-          required 
-        />
-        <FormButton type="submit" content="Submit" primary />
-      </Form>
-
-
+        <Flex.Item>
+          <div>
+            <div>
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScZD6XMlLvg1f7ts5vuX1C0JTM-2_3CIhw0zHUDLWaZTV4uTQ/viewform?embedded=true" width="640" height="947" frameBorder="0">Loading…</iframe>            
+            </div>
+            {error && (
+              <div>
+                <Text content={`An SSO error occurred ${error}`} />
+              </div>
+            )}
+          </div>
+        </Flex.Item>
         <Flex.Item
           styles={{
             padding: '.8rem 0 .8rem .5rem'
