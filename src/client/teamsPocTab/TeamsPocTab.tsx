@@ -1,19 +1,5 @@
 import * as React from 'react';
-import {
-  Provider,
-  Text,
-  Button,
-  Header,
-  Divider,
-  MoreIcon,
-  Table,
-  Flex,
-  MenuButton,
-  FlexItem,
-  Checkbox,
-  getParent,
-  Label
-} from '@fluentui/react-northstar';
+import { Provider, Text, Button, Header, MoreIcon, Table, Flex, MenuButton, FlexItem, Checkbox, Label } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication, dialog } from '@microsoft/teams-js';
@@ -176,12 +162,13 @@ export const TeamsPocTab = () => {
       key: 2,
       items: [
         { key: '2-0', ...checkBoxCell },
-        { content: '2', key: '2-1' },
+        { content: '73891124', key: '2-1' },
         { content: 'Alex', key: '2-2' },
-        { content: 'None', key: '2-3' },
-        { content: '1 year', key: '2-4' },
-        { key: '2-5', ...moreActionCell },
-        { key: '2-6', ...moreOptionCell }
+        { content: 'Jamie Lim', key: '2-3' },
+        { content: 'Robert Tan, BO Novena', key: '2-4' },
+        { content: 'Dr John Low, Novena', key: '1-5' },
+        { key: '2-6', ...rejectedCell },
+        { key: '2-7', ...moreOptionCell }
       ],
       onClick: () => handleRowClick(2),
       children: (Component, { key, ...rest }) => (
@@ -192,16 +179,51 @@ export const TeamsPocTab = () => {
       key: 3,
       items: [
         { key: '3-0', ...checkBoxCell },
-        { content: '3', key: '3-1' },
-        { content: 'Ali', key: '3-2' },
-        { content: 'None', key: '3-3' },
-        { content: '30000000000000 years', truncateContent: true, key: '3-4' },
-        { key: '3-5' },
-        { key: '3-6', ...moreOptionCell }
+        { content: '73891125', key: '3-1' },
+        { content: 'Alex', key: '3-2' },
+        { content: 'Jamie Lim', key: '3-3' },
+        { content: 'Robert Tan, BO Novena', key: '3-4' },
+        { content: 'Dr John Low, Novena', key: '3-5' },
+        { key: '3-6', ...approvedCell },
+        { key: '3-7', ...moreOptionCell }
       ],
       onClick: () => handleRowClick(3),
       children: (Component, { key, ...rest }) => (
         <MenuButton menu={contextMenuItems} key={key} contextMenu trigger={<Component {...rest} />} />
+      )
+    },
+    {
+      key: 4,
+      items: [
+        { key: '4-0', ...checkBoxCell },
+        { content: '73891126', key: '4-1' },
+        { content: 'Alex', key: '4-2' },
+        { content: 'Jamie Lim', key: '4-3' },
+        { content: 'Robert Tan, BO Novena', key: '4-4' },
+        { content: 'Dr John Low, Novena', key: '4-5' },
+        { key: '4-6', ...approvedCell },
+        { key: '4-7', ...moreOptionCell }
+      ],
+      onClick: () => handleRowClick(3),
+      children: (Component, { key, ...rest }) => (
+        <MenuButton menu={contextMenuItems} key={key} contextMenu trigger={<Component {...rest} />} />
+      )
+    },
+    {
+      key: 5,
+      items: [
+        { key: '5-0', ...checkBoxCell },
+        { content: '73891127', key: '5-1' },
+        { content: 'Alex', key: '5-2' },
+        { content: 'Jamie Lim', key: '5-3' },
+        { content: 'Robert Tan, BO Novena', key: '5-4' },
+        { content: 'Dr John Low, Novena', key: '5-5' },
+        { key: '5-6', ...approvedCell },
+        { key: '5-7', ...moreOptionCell }
+      ],
+      onClick: () => handleRowClick(3),
+      children: (Component, { key, ...rest }) => (
+        <MenuButton menu={contextMenuIstems} key={key} contextMenu trigger={<Component {...rest} />} />
       )
     }
   ];
@@ -213,7 +235,7 @@ export const TeamsPocTab = () => {
     <Provider
       theme={theme}
       style={{
-        backgroundColor: '#f2f2f2'
+        backgroundColor: '#f5f5f5'
       }}
     >
       <Flex
@@ -232,16 +254,13 @@ export const TeamsPocTab = () => {
             padding: '.8rem .8rem .8rem .5rem'
           }}
         >
-          <Header content="Submitted Discount Claims" />
+          <Header as="h2" content="Submitted Discount Claims" description={`Hello ${name}, here are all claims made so far`} />
           <FlexItem push>
             <Button content="+ Request Discount" primary onClick={generateClaimForm}></Button>
           </FlexItem>
         </Flex>
 
         <div>
-          <div>
-            <Text content={`Hello ${name}, here are all claims made so far`} />
-          </div>
           {error && (
             <div>
               <Text content={`An SSO error occurred ${error}`} />
@@ -257,7 +276,7 @@ export const TeamsPocTab = () => {
             aria-label="Nested navigation"
             accessibility={gridNestedBehavior}
             style={{
-              backgroundColor: '#f2f2f2'
+              backgroundColor: '#f5f5f5'
             }}
           />
         </Flex.Item>
