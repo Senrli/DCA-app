@@ -6,6 +6,20 @@ import { MsTeamsApiRouter, MsTeamsPageRouter } from 'express-msteams-host';
 import * as debug from 'debug';
 import * as compression from 'compression';
 
+// import {
+//   CardFactory,
+//   CloudAdapter,
+//   ConfigurationServiceClientCredentialFactory,
+//   createBotFrameworkAuthenticationFromConfiguration
+// } from 'botbuilder';
+
+// import DiscountClaimRequestCard from './teamsBotPocYeomanBot/cards/discountClaimRequestCard';
+// import { MessageBot } from './teamsBotPocYeomanBot/messageBot';
+
+// The import of components has to be done AFTER the dotenv config
+// eslint-disable-next-line import/first
+import * as allComponents from './TeamsAppsComponents';
+import TeamsBotPocYeomanBot from './teamsBotPocYeomanBot/TeamsBotPocYeomanBot';
 // Initialize debug logging module
 const log = debug('msteams');
 
@@ -14,13 +28,12 @@ log('Initializing Microsoft Teams Express hosted App...');
 // Initialize dotenv, to use .env file settings if existing
 require('dotenv').config();
 
-// The import of components has to be done AFTER the dotenv config
-// eslint-disable-next-line import/first
-import * as allComponents from './TeamsAppsComponents';
-
 // Create the Express webserver
 const express = Express();
 const port = process.env.port || process.env.PORT || 3007;
+
+// Create router for the bot services
+const router = Express.Router();
 
 // Inject the raw request body onto the request object
 express.use(
@@ -66,8 +79,13 @@ express.use(
   })
 );
 
+express.use('/', router);
+
 // Set the port
 express.set('port', port);
+
+// Set the endpoints for the bot
+router.use('/', TeamsBotPocYeomanBot.router);
 
 // Start the webserver
 http.createServer(express).listen(port, () => {
