@@ -22,7 +22,7 @@
     "express-msteams-host": "1.9.1",
     "express-session": "~1.17.2",
     "jwt-decode": "^3.1.2",
-    "mongoose": "^6.4.6",
+    "mongoose": "^6.5.0",
     "morgan": "~1.10.0",
     "msteams-react-base-component": "^4.0.1",
     "react": "^16.8.6",

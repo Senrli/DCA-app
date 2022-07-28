@@ -5,6 +5,7 @@ import * as morgan from 'morgan';
 import { MsTeamsApiRouter, MsTeamsPageRouter } from 'express-msteams-host';
 import * as debug from 'debug';
 import * as compression from 'compression';
+import * as mongoose from 'mongoose';
 
 // import {
 //   CardFactory,
@@ -31,7 +32,9 @@ require('dotenv').config();
 // Create the Express webserver
 const express = Express();
 const port = process.env.port || process.env.PORT || 3007;
-
+mongoose.connect(
+  "mongodb://127.0.0.1:27017/teamsDb",
+);
 // Create router for the bot services
 const router = Express.Router();
 
