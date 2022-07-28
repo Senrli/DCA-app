@@ -1,18 +1,5 @@
 import * as React from 'react';
-import {
-  Provider,
-  Text,
-  Button,
-  Header,
-  Divider,
-  MoreIcon,
-  Table,
-  Flex,
-  MenuButton,
-  FlexItem,
-  Checkbox,
-  getParent
-} from '@fluentui/react-northstar';
+import { Provider, Text, Button, Header, MoreIcon, Table, Flex, MenuButton, FlexItem, Checkbox, Label } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication, dialog } from '@microsoft/teams-js';
@@ -27,7 +14,7 @@ export const Claims = () => {
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
-  var discountClaimAmount;
+  let discountClaimAmount;
 
   useEffect(() => {
     if (inTeams === true) {
@@ -59,11 +46,11 @@ export const Claims = () => {
     }
   }, [context]);
 
-  function getDiscountClaimAmount(){
+  function getDiscountClaimAmount() {
     return discountClaimAmount;
   }
 
-  function setDiscountClaimAmount(newAmount){
+  function setDiscountClaimAmount(newAmount) {
     discountClaimAmount = newAmount;
   }
 
@@ -80,40 +67,38 @@ export const Claims = () => {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeA`
-    }
+    };
 
     const redirectVeriformTypeB = {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeB`
-    }
+    };
 
     const redirectVeriformTypeC = {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeC`
-    }
+    };
 
     const redirectVeriformTypeD = {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeC`
-    }
+    };
 
     const submitHandler = (response) => {
       setDiscountClaimAmount(response.result.amount);
-      if (discountClaimAmount <= 1500){
+      if (discountClaimAmount <= 1500) {
         dialog.open(redirectVeriformTypeA);
-      } else if (discountClaimAmount <= 5000){
+      } else if (discountClaimAmount <= 5000) {
         dialog.open(redirectVeriformTypeB);
-      } else if (discountClaimAmount <= 15000){
+      } else if (discountClaimAmount <= 15000) {
         dialog.open(redirectVeriformTypeC);
       } else {
         dialog.open(redirectVeriformTypeD);
       }
-      
-    };  
-  
+    };
 
     dialog.open(generateFormURLDialogInfo, submitHandler);
     // dialog.submit();
@@ -127,6 +112,36 @@ export const Claims = () => {
     content: <Checkbox></Checkbox>,
     onClick: (e) => {
       alert('check box button clicked');
+      e.stopPropagation();
+    }
+  };
+
+  const pendingCell = {
+    content: <Label color={'yellow'} content={'Pending'} />,
+    truncateContent: true,
+    accessibility: gridCellWithFocusableElementBehavior,
+    onClick: (e) => {
+      alert('pendingCell clicked');
+      e.stopPropagation();
+    }
+  };
+
+  const approvedCell = {
+    content: <Label color={'green'} content={'Approved'} />,
+    truncateContent: true,
+    accessibility: gridCellWithFocusableElementBehavior,
+    onClick: (e) => {
+      alert('approvedCell clicked');
+      e.stopPropagation();
+    }
+  };
+
+  const rejectedCell = {
+    content: <Label color={'red'} content={'Rejected'} />,
+    truncateContent: true,
+    accessibility: gridCellWithFocusableElementBehavior,
+    onClick: (e) => {
+      alert('rejectedCell clicked');
       e.stopPropagation();
     }
   };
@@ -157,11 +172,12 @@ export const Claims = () => {
     key: 'header',
     items: [
       { key: 'select', ...checkBoxCell },
-      { content: 'id', key: 'id' },
-      { content: 'Name', key: 'name' },
-      { content: 'Picture', key: 'pic' },
-      { content: 'Age', key: 'action' },
-      { content: 'Tags', key: 'tags' },
+      { content: 'Case ID', key: 'id' },
+      { content: 'Patient Name', key: 'name' },
+      { content: 'Requestor', key: 'requestor' },
+      { content: 'Creator', key: 'creator' },
+      { content: 'Current Approver', key: 'approver' },
+      { content: 'Status', key: 'status' },
       { key: 'more options', 'aria-label': 'options' }
     ]
   };
@@ -173,12 +189,13 @@ export const Claims = () => {
       key: 1,
       items: [
         { key: '1-0', ...checkBoxCell },
-        { content: '1', key: '1-1' },
-        { content: 'Roman van von der Longername', key: '1-2', id: 'name-1' },
-        { content: 'None', key: '1-3' },
-        { content: '30 years', key: '1-4', id: 'age-1' },
-        { key: '1-5', ...moreActionCell },
-        { key: '1-6', ...moreOptionCell }
+        { content: '73891123', key: '1-1' },
+        { content: 'Carina Collins', key: '1-2' },
+        { content: 'Jamie Lim', key: '1-3' },
+        { content: 'Robert Tan, BO Novena', key: '1-4' },
+        { content: 'Dr John Low, Novena', key: '1-5' },
+        { key: '1-6', ...pendingCell },
+        { key: '1-7', ...moreOptionCell }
       ],
       onClick: () => handleRowClick(1),
       'aria-labelledby': 'name-1 age-1',
@@ -190,12 +207,13 @@ export const Claims = () => {
       key: 2,
       items: [
         { key: '2-0', ...checkBoxCell },
-        { content: '2', key: '2-1' },
+        { content: '73891124', key: '2-1' },
         { content: 'Alex', key: '2-2' },
-        { content: 'None', key: '2-3' },
-        { content: '1 year', key: '2-4' },
-        { key: '2-5', ...moreActionCell },
-        { key: '2-6', ...moreOptionCell }
+        { content: 'Jamie Lim', key: '2-3' },
+        { content: 'Robert Tan, BO Novena', key: '2-4' },
+        { content: 'Dr John Low, Novena', key: '1-5' },
+        { key: '2-6', ...rejectedCell },
+        { key: '2-7', ...moreOptionCell }
       ],
       onClick: () => handleRowClick(2),
       children: (Component, { key, ...rest }) => (
@@ -206,12 +224,47 @@ export const Claims = () => {
       key: 3,
       items: [
         { key: '3-0', ...checkBoxCell },
-        { content: '3', key: '3-1' },
-        { content: 'Ali', key: '3-2' },
-        { content: 'None', key: '3-3' },
-        { content: '30000000000000 years', truncateContent: true, key: '3-4' },
-        { key: '3-5' },
-        { key: '3-6', ...moreOptionCell }
+        { content: '73891125', key: '3-1' },
+        { content: 'Alex', key: '3-2' },
+        { content: 'Jamie Lim', key: '3-3' },
+        { content: 'Robert Tan, BO Novena', key: '3-4' },
+        { content: 'Dr John Low, Novena', key: '3-5' },
+        { key: '3-6', ...approvedCell },
+        { key: '3-7', ...moreOptionCell }
+      ],
+      onClick: () => handleRowClick(3),
+      children: (Component, { key, ...rest }) => (
+        <MenuButton menu={contextMenuItems} key={key} contextMenu trigger={<Component {...rest} />} />
+      )
+    },
+    {
+      key: 4,
+      items: [
+        { key: '4-0', ...checkBoxCell },
+        { content: '73891126', key: '4-1' },
+        { content: 'Alex', key: '4-2' },
+        { content: 'Jamie Lim', key: '4-3' },
+        { content: 'Robert Tan, BO Novena', key: '4-4' },
+        { content: 'Dr John Low, Novena', key: '4-5' },
+        { key: '4-6', ...approvedCell },
+        { key: '4-7', ...moreOptionCell }
+      ],
+      onClick: () => handleRowClick(3),
+      children: (Component, { key, ...rest }) => (
+        <MenuButton menu={contextMenuItems} key={key} contextMenu trigger={<Component {...rest} />} />
+      )
+    },
+    {
+      key: 5,
+      items: [
+        { key: '5-0', ...checkBoxCell },
+        { content: '73891127', key: '5-1' },
+        { content: 'Alex', key: '5-2' },
+        { content: 'Jamie Lim', key: '5-3' },
+        { content: 'Robert Tan, BO Novena', key: '5-4' },
+        { content: 'Dr John Low, Novena', key: '5-5' },
+        { key: '5-6', ...approvedCell },
+        { key: '5-7', ...moreOptionCell }
       ],
       onClick: () => handleRowClick(3),
       children: (Component, { key, ...rest }) => (
@@ -224,7 +277,12 @@ export const Claims = () => {
    * The render() method to create the UI of the tab
    */
   return (
-    <Provider theme={theme}>
+    <Provider
+      theme={theme}
+      style={{
+        backgroundColor: '#f5f5f5'
+      }}
+    >
       <Flex
         fill={true}
         column
@@ -241,16 +299,13 @@ export const Claims = () => {
             padding: '.8rem .8rem .8rem .5rem'
           }}
         >
-          <Header content="Submitted Discount Claims" />
+          <Header as="h2" content="Submitted Discount Claims" description={`Hello ${name}, here are all claims made so far`} />
           <FlexItem push>
             <Button content="+ Request Discount" primary onClick={generateClaimForm}></Button>
           </FlexItem>
         </Flex>
 
         <div>
-          <div>
-            <Text content={`Hello ${name}, here are all claims made so far`} />
-          </div>
           {error && (
             <div>
               <Text content={`An SSO error occurred ${error}`} />
@@ -265,6 +320,9 @@ export const Claims = () => {
             rows={rowsPlain}
             aria-label="Nested navigation"
             accessibility={gridNestedBehavior}
+            style={{
+              backgroundColor: '#f5f5f5'
+            }}
           />
         </Flex.Item>
         <Flex.Item

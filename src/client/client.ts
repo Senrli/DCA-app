@@ -9,9 +9,8 @@ export const render = (type: any, element: HTMLElement) => {
 // Automatically added for the Claims Tab
 export * from './Claims/Claims';
 
-//Added for Generate Dialog
+// Added for Generate Dialog
 export * from './Claims/Generate';
 
-//Added for Generate Dialog
+// Added for Generate Dialog
 export * from './Claims/Veriform';
-
