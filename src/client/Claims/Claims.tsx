@@ -14,7 +14,7 @@ export const Claims = () => {
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
-  var discountClaimAmount;
+  let discountClaimAmount;
 
   useEffect(() => {
     if (inTeams === true) {
@@ -46,11 +46,11 @@ export const Claims = () => {
     }
   }, [context]);
 
-  function getDiscountClaimAmount(){
+  function getDiscountClaimAmount() {
     return discountClaimAmount;
   }
 
-  function setDiscountClaimAmount(newAmount){
+  function setDiscountClaimAmount(newAmount) {
     discountClaimAmount = newAmount;
   }
 
@@ -67,40 +67,38 @@ export const Claims = () => {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeA`
-    }
+    };
 
     const redirectVeriformTypeB = {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeB`
-    }
+    };
 
     const redirectVeriformTypeC = {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeC`
-    }
+    };
 
     const redirectVeriformTypeD = {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeC`
-    }
+    };
 
     const submitHandler = (response) => {
       setDiscountClaimAmount(response.result.amount);
-      if (discountClaimAmount <= 1500){
+      if (discountClaimAmount <= 1500) {
         dialog.open(redirectVeriformTypeA);
-      } else if (discountClaimAmount <= 5000){
+      } else if (discountClaimAmount <= 5000) {
         dialog.open(redirectVeriformTypeB);
-      } else if (discountClaimAmount <= 15000){
+      } else if (discountClaimAmount <= 15000) {
         dialog.open(redirectVeriformTypeC);
       } else {
         dialog.open(redirectVeriformTypeD);
       }
-      
-    };  
-  
+    };
 
     dialog.open(generateFormURLDialogInfo, submitHandler);
     // dialog.submit();
@@ -270,7 +268,7 @@ export const Claims = () => {
       ],
       onClick: () => handleRowClick(3),
       children: (Component, { key, ...rest }) => (
-        <MenuButton menu={contextMenuIstems} key={key} contextMenu trigger={<Component {...rest} />} />
+        <MenuButton menu={contextMenuItems} key={key} contextMenu trigger={<Component {...rest} />} />
       )
     }
   ];

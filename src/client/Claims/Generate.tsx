@@ -1,12 +1,5 @@
 import * as React from 'react';
-import { 
-  Provider, 
-  Flex, 
-  Text, 
-  Form,
-  FormInput,
-  FormButton
-} from '@fluentui/react-northstar';
+import { Provider, Flex, Text, Form, FormInput, FormButton } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication, dialog } from '@microsoft/teams-js';
@@ -46,13 +39,13 @@ export const Generate = () => {
     if (context) {
       setEntityId(context.page.id);
     }
-  }, [context]);  
+  }, [context]);
 
   dialog.initialize();
 
-  const handleSubmit = event => {
-    event.preventDefault(); 
-    var dialogOutput = {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const dialogOutput = {
       amount: event.target.discountClaimAmount.value
     };
     dialog.submit(dialogOutput);
@@ -61,28 +54,26 @@ export const Generate = () => {
   return (
     <Provider theme={theme}>
       <Flex
-        fill={true}  
+        fill={true}
         column
         styles={{
           padding: '.8rem 0 .8rem .5rem'
         }}
       >
-
-      <Form onSubmit={handleSubmit} >
-        <Text weight="bold" content="Discount Claim Amount"/>
-        <FormInput 
-          label="SGD S$" 
-          name="discountClaimAmount" 
-          id="discountClaimAmount" 
-          type="number" 
-          min="0" 
-          showSuccessIndicator={false}
-          inline 
-          required 
-        />
-        <FormButton type="submit" content="Submit" primary />
-      </Form>
-
+        <Form onSubmit={handleSubmit}>
+          <Text weight="bold" content="Discount Claim Amount" />
+          <FormInput
+            label="SGD S$"
+            name="discountClaimAmount"
+            id="discountClaimAmount"
+            type="number"
+            min="0"
+            showSuccessIndicator={false}
+            inline
+            required
+          />
+          <FormButton type="submit" content="Submit" primary />
+        </Form>
 
         <Flex.Item
           styles={{
