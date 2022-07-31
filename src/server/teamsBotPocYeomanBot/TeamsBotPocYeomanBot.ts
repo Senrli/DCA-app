@@ -98,7 +98,7 @@ router.post('/api/notify', async (req, res) => {
   for (const conversationReference of Object.values(conversationStateStripped)) {
     if (conversationReference['user'].aadObjectId === userId) {
       await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, conversationReference, async (context) => {
-        await context.sendActivity({ attachments: [discountClaimRequestCard] });;
+        await context.sendActivity({ attachments: [discountClaimRequestCard] });
       });
     }
   }
@@ -117,7 +117,7 @@ router.post('/api/messages', async (req, res) => {
 // Listen for incoming notifications and send proactive messages to users.
 router.get('/api/notify', async (req, res) => {
   // Strip the keys 'namespace' and 'storage' from the output
-  
+
   const conversationStateStripped = JSON.parse(JSON.stringify(conversationState));
   ['namespace', 'storage'].forEach((e) => delete conversationStateStripped[e]);
   log(JSON.stringify(conversationState));

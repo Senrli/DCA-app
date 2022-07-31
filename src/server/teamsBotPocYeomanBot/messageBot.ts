@@ -20,7 +20,6 @@ export class MessageBot extends TeamsActivityHandler {
 
   constructor(conversationState: ConversationState, userState: UserState) {
     super();
-    ('bot')
     // Dependency injected dictionary for storing ConversationReference objects used in NotifyController to proactively message users
     this.conversationReferences1 = conversationState;
 
@@ -49,13 +48,10 @@ export class MessageBot extends TeamsActivityHandler {
 
     // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
     this.onMessage(async (context, next) => {
-      ('yes')
       addConversationReference(context.activity);
       // Echo back what the user said
-      ('sending')
       log(context);
       await context.sendActivity(`You sent '${context.activity.text}'  \nCommand Not Recognized`); // Use Markdown Syntax with two spaces before newline
-      ('sent')
       await next();
     });
 

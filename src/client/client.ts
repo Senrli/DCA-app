@@ -6,8 +6,11 @@ import * as React from 'react';
 export const render = (type: any, element: HTMLElement) => {
   ReactDOM.render(React.createElement(type, {}), element);
 };
-// Automatically added for the teamsPocTab tab
-export * from './teamsPocTab/TeamsPocTab';
+// Automatically added for the Claims Tab
+export * from './Claims/Claims';
 
-// add the gform page
-export * from './teamsPocTab/GForm';
+// Added for Generate Dialog
+export * from './Claims/Generate';
+
+// Added for Generate Dialog
+export * from './Claims/Veriform';

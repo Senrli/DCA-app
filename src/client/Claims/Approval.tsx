@@ -2,13 +2,10 @@ import * as React from 'react';
 import { Provider, Flex, Text, Button, Header, Divider } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
-import { app, authentication, dialog, tasks } from '@microsoft/teams-js';
+import { app, authentication, dialog } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 
-/**
- * Implementation of the teams poc Tab content page
- */
-export const TeamsPocTab = () => {
+export const Approval = () => {
   const [{ inTeams, theme, context }] = useTeams();
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
@@ -44,44 +41,6 @@ export const TeamsPocTab = () => {
     }
   }, [context]);
 
-  dialog.initialize();
-
-  function generateClaimForm() {
-    const generateFormURLDialogInfo = {
-      url: `https://${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
-      size: { height: 510, width: 424 },
-      // fallbackURL: `${process.env.PUBLIC_HOSTNAME.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
-      title: `/teamsPocTab/gform.html`
-    };
-    // const generateFormCard = {
-    //   title: "Generate Claim Form",
-    //   url: `${process.env.PUBLIC_HOSTNAME}/teamsPocTab/gform.html`,
-    //   width: 1024,
-    //   height: 768,
-    //   card:{
-    //     "type": "AdaptiveCard",
-    //     "body": [
-    //         {
-    //             "type": "TextBlock",
-    //             "text": "Here is a ninja cat:"
-    //         },
-    //         {
-    //             "type": "Image",
-    //             "url": "http://adaptivecards.io/content/cats/1.png",
-    //             "size": "Medium"
-    //         }
-    //     ],
-    //     "version": "1.0"
-    //   }
-    // };
-
-    dialog.open(generateFormURLDialogInfo);
-    dialog.submit();
-  }
-
-  /**
-   * The render() method to create the UI of the tab
-   */
   return (
     <Provider theme={theme}>
       <Flex
@@ -92,15 +51,9 @@ export const TeamsPocTab = () => {
         }}
       >
         <Flex.Item>
-          <Header content="Discount Claims" />
-        </Flex.Item>
-        <Flex.Item>
           <div>
             <div>
-              <Text content={`Hello ${name}`} />
-            </div>
-            <div>
-              <Button content="Generate Discount Form" primary onClick={generateClaimForm}></Button>
+              <Header content="Approval Page" />
             </div>
             {error && (
               <div>
