@@ -67,7 +67,8 @@ export const Generate = () => {
             name="discountClaimAmount"
             id="discountClaimAmount"
             type="number"
-            min="0"
+            min="0.01"
+            step="0.01"
             showSuccessIndicator={false}
             inline
             required
