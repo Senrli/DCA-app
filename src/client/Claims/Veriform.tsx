@@ -47,16 +47,20 @@ export const Veriform = () => {
         fill={true}
         column
         styles={{
-          padding: '.8rem 0 .8rem .5rem'
+          padding: '.8rem 0 .5rem .5rem'
         }}
       >
-        <Flex.Item>
+        <Flex.Item
+          styles={{
+            padding: '.8rem 0 .5rem .5rem'
+          }}
+        >
           <div>
             <div>
               <iframe
                 src="https://docs.google.com/forms/d/e/1FAIpQLScZD6XMlLvg1f7ts5vuX1C0JTM-2_3CIhw0zHUDLWaZTV4uTQ/viewform?embedded=true"
                 width="640"
-                height="947"
+                height="1050"
                 frameBorder="0"
               >
                 Loading…

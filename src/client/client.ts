@@ -14,3 +14,6 @@ export * from './Claims/Generate';
 
 // Added for Generate Dialog
 export * from './Claims/Veriform';
+
+// Added for Approval Dialog
+export * from './Claims/Approval';
