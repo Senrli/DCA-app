@@ -57,25 +57,39 @@ export const Generate = () => {
         fill={true}
         column
         styles={{
-          padding: '.8rem 0 .8rem .5rem'
+          padding: '.8rem 0 .5rem .5rem'
         }}
       >
-        <Form onSubmit={handleSubmit}>
-          <Text weight="bold" content="Discount Claim Amount" />
-          <FormInput
-            label="SGD S$"
-            name="discountClaimAmount"
-            id="discountClaimAmount"
-            type="number"
-            min="0.01"
-            step="0.01"
-            showSuccessIndicator={false}
-            inline
-            required
-          />
-          <FormButton type="submit" content="Submit" primary />
-        </Form>
+        <Flex.Item
+          styles={{
+            padding: '.8rem 0 .5rem .5rem'
+          }}
+        >
+          <Form onSubmit={handleSubmit}>
+            <Text weight="bold" content="Discount Claim Amount" />
+            <FormInput
+              label="SGD S$"
+              name="discountClaimAmount"
+              id="discountClaimAmount"
+              type="number"
+              min="0.01"
+              step="0.01"
+              showSuccessIndicator={false}
+              inline
+              required
+            />
+            <FormButton type="submit" content="Submit" primary />
+          </Form>
+        </Flex.Item>
+      </Flex>
 
+      <Flex
+        fill={true}
+        column
+        styles={{
+          padding: '0 0 .8rem .5rem'
+        }}
+      >
         <Flex.Item
           styles={{
             padding: '.8rem 0 .8rem .5rem'
