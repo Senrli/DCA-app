@@ -9,7 +9,7 @@ import {
 import { people, mru } from '@fluentui/example-data';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
-import { app, authentication } from '@microsoft/teams-js';
+import { app, authentication, dialog } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 
 const suggestionProps: IBasePickerSuggestionsProps = {
@@ -27,12 +27,10 @@ export const Approval = () => {
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
-  const [returnVal, setReturnVal] = useState<string>();
-  const [jsonData, setJsonData] = useState<string>();
 
   useEffect(() => {
     if (inTeams === true) {
-      authentication
+      const result = authentication
         .getAuthToken({
           resources: [process.env.TAB_APP_URI as string],
           silent: false
@@ -40,8 +38,6 @@ export const Approval = () => {
         .then((token) => {
           const decoded: { [key: string]: any } = jwtDecode(token) as { [key: string]: any };
           setName(decoded!.name);
-          setReturnVal(token.toString()); // write return values
-          console.log(token.toString());
           app.notifySuccess();
         })
         .catch((message) => {
@@ -62,12 +58,6 @@ export const Approval = () => {
     }
   }, [context]);
 
-  const getUsers = async () => {
-    fetch('/app/token?token=' + returnVal)
-      .then((json) => json.json())
-      .then((json) => {
-        setJsonData(JSON.stringify(json, undefined, 2));
-      });
   const [delayResults, setDelayResults] = React.useState(false);
   const [mostRecentlyUsed, setMostRecentlyUsed] = React.useState<IPersonaProps[]>(mru);
   const [peopleList, setPeopleList] = React.useState<IPersonaProps[]>(people);
@@ -155,8 +145,6 @@ export const Approval = () => {
         >
           <div>
             <div>
-              <Header content="Approval Page" />
-              <Text content={`RESULT: ${returnVal}`} />
               <Text content="Please select approvers for this case." />
               <NormalPeoplePicker
                 onResolveSuggestions={onFilterChanged}
@@ -186,10 +174,6 @@ export const Approval = () => {
             )}
           </div>
         </Flex.Item>
-        <Button content="Get all members" primary onClick={getUsers}></Button>
-        <div>
-          <Text content={jsonData}></Text>
-        </div>
 
         <Flex.Item
           styles={{
