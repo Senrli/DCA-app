@@ -84,7 +84,7 @@ const myBot = new MessageBot(conversationState, userState);
 // Initialize router for express
 const router = express.Router();
 
-router.post('/api/notify', async (req, res) => {
+router.post('/notify', async (req, res) => {
   const discountClaimRequestCard = CardFactory.adaptiveCard(DiscountClaimRequestCard);
   const userId = req.body.userId;
   log(userId);
@@ -96,6 +96,7 @@ router.post('/api/notify', async (req, res) => {
   log(JSON.stringify(conversationState));
   // Loop through the list of users
   for (const conversationReference of Object.values(conversationStateStripped)) {
+    // eslint-disable-next-line dot-notation
     if (conversationReference['user'].aadObjectId === userId) {
       await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, conversationReference, async (context) => {
         await context.sendActivity({ attachments: [discountClaimRequestCard] });
@@ -109,13 +110,13 @@ router.post('/api/notify', async (req, res) => {
   res.end();
 });
 
-router.post('/api/messages', async (req, res) => {
+router.post('/messages', async (req, res) => {
   // Route received a request to adapter for processing
   await adapter.process(req, res, (context) => myBot.run(context));
 });
 
 // Listen for incoming notifications and send proactive messages to users.
-router.get('/api/notify', async (req, res) => {
+router.get('/notify', async (req, res) => {
   // Strip the keys 'namespace' and 'storage' from the output
 
   const conversationStateStripped = JSON.parse(JSON.stringify(conversationState));

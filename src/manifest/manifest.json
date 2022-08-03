@@ -32,6 +32,14 @@
       "scopes": [
         "personal"
       ]
+    },
+    {
+      "entityId": "0323935e-e884-445f-a997-c2ca9dde453b",
+      "name": "Approval",
+      "contentUrl": "https://{{PUBLIC_HOSTNAME}}/Claims/approval.html?name={loginHint}&tenant={tid}&theme={theme}",
+      "scopes": [
+        "personal"
+      ]
     }
   ],
   "bots": [

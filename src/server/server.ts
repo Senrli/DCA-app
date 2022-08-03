@@ -20,6 +20,8 @@ import * as compression from 'compression';
 // eslint-disable-next-line import/first
 import * as allComponents from './TeamsAppsComponents';
 import TeamsBotPocYeomanBot from './teamsBotPocYeomanBot/TeamsBotPocYeomanBot';
+import app from './app/app';
+
 // Initialize debug logging module
 const log = debug('msteams');
 
@@ -85,7 +87,10 @@ express.use('/', router);
 express.set('port', port);
 
 // Set the endpoints for the bot
-router.use('/', TeamsBotPocYeomanBot.router);
+router.use('/bot', TeamsBotPocYeomanBot.router);
+
+// Set the endpoints for the app backend
+router.use('/app', app.router);
 
 // Start the webserver
 http.createServer(express).listen(port, () => {
