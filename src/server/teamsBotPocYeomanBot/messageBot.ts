@@ -1,4 +1,4 @@
-import { ConversationState, UserState, TeamsActivityHandler, TurnContext, StatePropertyAccessor } from 'botbuilder';
+import { ConversationState, UserState, TeamsActivityHandler, TurnContext } from 'botbuilder';
 // import { Dialog, DialogState } from 'botbuilder-dialogs';
 import * as debug from 'debug';
 // Initialize debug logging module

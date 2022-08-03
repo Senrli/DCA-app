@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { Provider, Flex, Text, Form, FormButton } from '@fluentui/react-northstar';
+import { Provider, Flex, Text, Form, FormButton, Button, Header } from '@fluentui/react-northstar';
 import { IPersonaProps } from '@fluentui/react/lib/Persona';
-import {
-  IBasePickerSuggestionsProps,
-  NormalPeoplePicker,
-  ValidationState
-} from '@fluentui/react/lib/Pickers';
+import { IBasePickerSuggestionsProps, NormalPeoplePicker, ValidationState } from '@fluentui/react/lib/Pickers';
 import { people, mru } from '@fluentui/example-data';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
-import { app, authentication, dialog } from '@microsoft/teams-js';
+import { app, authentication } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 
 const suggestionProps: IBasePickerSuggestionsProps = {
@@ -27,10 +23,18 @@ export const Approval = () => {
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
+  const [returnVal, setReturnVal] = useState<string>();
+  const [jsonData, setJsonData] = useState<string>();
+
+  const [delayResults, setDelayResults] = React.useState(false);
+  const [mostRecentlyUsed, setMostRecentlyUsed] = React.useState<IPersonaProps[]>(mru);
+  const [peopleList, setPeopleList] = React.useState<IPersonaProps[]>(people);
+
+  const picker = React.useRef(null);
 
   useEffect(() => {
     if (inTeams === true) {
-      const result = authentication
+      authentication
         .getAuthToken({
           resources: [process.env.TAB_APP_URI as string],
           silent: false
@@ -38,6 +42,8 @@ export const Approval = () => {
         .then((token) => {
           const decoded: { [key: string]: any } = jwtDecode(token) as { [key: string]: any };
           setName(decoded!.name);
+          setReturnVal(token.toString()); // write return values
+          console.log(token.toString());
           app.notifySuccess();
         })
         .catch((message) => {
@@ -58,27 +64,46 @@ export const Approval = () => {
     }
   }, [context]);
 
-  const [delayResults, setDelayResults] = React.useState(false);
-  const [mostRecentlyUsed, setMostRecentlyUsed] = React.useState<IPersonaProps[]>(mru);
-  const [peopleList, setPeopleList] = React.useState<IPersonaProps[]>(people);
-
-  const picker = React.useRef(null);
-
-  const onFilterChanged = (
-    filterText: string,
-    currentPersonas: IPersonaProps[],
-    limitResults?: number
-  ): IPersonaProps[] | Promise<IPersonaProps[]> => {
-    if (filterText) {
-      let filteredPersonas: IPersonaProps[] = filterPersonasByText(filterText);
-
-      filteredPersonas = removeDuplicates(filteredPersonas, currentPersonas);
-      filteredPersonas = limitResults ? filteredPersonas.slice(0, limitResults) : filteredPersonas;
-      return filterPromise(filteredPersonas);
-    } else {
-      return [];
-    }
+  const getUsers = async () => {
+    fetch('/app/token?token=' + returnVal)
+      .then((json) => json.json())
+      .then((json) => {
+        setJsonData(JSON.stringify(json, undefined, 2));
+      });
   };
+
+  function doesTextStartWith(text: string, filterText: string): boolean {
+    return text.toLowerCase().indexOf(filterText.toLowerCase()) === 0;
+  }
+
+  function listContainsPersona(persona: IPersonaProps, personas: IPersonaProps[]) {
+    if (!personas || !personas.length || personas.length === 0) {
+      return false;
+    }
+    return personas.filter((item) => item.text === persona.text).length > 0;
+  }
+
+  function removeDuplicates(personas: IPersonaProps[], possibleDupes: IPersonaProps[]) {
+    return personas.filter((persona) => !listContainsPersona(persona, possibleDupes));
+  }
+
+  function convertResultsToPromise(results: IPersonaProps[]): Promise<IPersonaProps[]> {
+    return new Promise<IPersonaProps[]>((resolve, reject) => setTimeout(() => resolve(results), 2000));
+  }
+
+  function getTextFromItem(persona: IPersonaProps): string {
+    return persona.text as string;
+  }
+
+  function validateInput(input: string): ValidationState {
+    if (input.indexOf('@') !== -1) {
+      return ValidationState.valid;
+    } else if (input.length > 1) {
+      return ValidationState.warning;
+    } else {
+      return ValidationState.invalid;
+    }
+  }
 
   const filterPersonasByText = (filterText: string): IPersonaProps[] => {
     return peopleList.filter((item) => doesTextStartWith(item.text as string, filterText));
@@ -94,6 +119,22 @@ export const Approval = () => {
 
   const returnMostRecentlyUsed = (currentPersonas: IPersonaProps[]): IPersonaProps[] | Promise<IPersonaProps[]> => {
     return filterPromise(removeDuplicates(mostRecentlyUsed, currentPersonas));
+  };
+
+  const onFilterChanged = (
+    filterText: string,
+    currentPersonas: IPersonaProps[],
+    limitResults?: number
+  ): IPersonaProps[] | Promise<IPersonaProps[]> => {
+    if (filterText) {
+      let filteredPersonas: IPersonaProps[] = filterPersonasByText(filterText);
+
+      filteredPersonas = removeDuplicates(filteredPersonas, currentPersonas);
+      filteredPersonas = limitResults ? filteredPersonas.slice(0, limitResults) : filteredPersonas;
+      return filterPromise(filteredPersonas);
+    } else {
+      return [];
+    }
   };
 
   const onRemoveSuggestion = (item: IPersonaProps): void => {
@@ -112,6 +153,24 @@ export const Approval = () => {
       setMostRecentlyUsed(newSuggestedPeople);
     }
   };
+
+  /**
+   * Takes in the picker input and modifies it in whichever way
+   * the caller wants, i.e. parsing entries copied from Outlook (sample
+   * input: "Aaron Reid <aaron>").
+   *
+   * @param input The text entered into the picker.
+   */
+  function onInputChange(input: string): string {
+    const outlookRegEx = /<.*>/g;
+    const emailAddress = outlookRegEx.exec(input);
+
+    if (emailAddress && emailAddress[0]) {
+      return emailAddress[0].substring(1, emailAddress[0].length - 1);
+    }
+
+    return input;
+  }
 
   const handleSubmit = (event) => {
     // event.preventDefault();
@@ -145,6 +204,8 @@ export const Approval = () => {
         >
           <div>
             <div>
+              <Header content="Approval Page" />
+              <Text content={`RESULT: ${returnVal}`} />
               <Text content="Please select approvers for this case." />
               <NormalPeoplePicker
                 onResolveSuggestions={onFilterChanged}
@@ -174,15 +235,19 @@ export const Approval = () => {
             )}
           </div>
         </Flex.Item>
+        <Button content="Get all members" primary onClick={getUsers}></Button>
+        <div>
+          <Text content={jsonData}></Text>
+        </div>
 
         <Flex.Item
           styles={{
             padding: '.5rem 0 0 .5rem'
           }}
         >
-            <Form onSubmit={handleSubmit}>
-              <FormButton type="submit" content="Submit For Approval" primary /> 
-            </Form>
+          <Form onSubmit={handleSubmit}>
+            <FormButton type="submit" content="Submit For Approval" primary />
+          </Form>
         </Flex.Item>
 
         <Flex.Item
@@ -195,55 +260,4 @@ export const Approval = () => {
       </Flex>
     </Provider>
   );
-
-  function doesTextStartWith(text: string, filterText: string): boolean {
-    return text.toLowerCase().indexOf(filterText.toLowerCase()) === 0;
-  }
-
-  function removeDuplicates(personas: IPersonaProps[], possibleDupes: IPersonaProps[]) {
-    return personas.filter((persona) => !listContainsPersona(persona, possibleDupes));
-  }
-
-  function listContainsPersona(persona: IPersonaProps, personas: IPersonaProps[]) {
-    if (!personas || !personas.length || personas.length === 0) {
-      return false;
-    }
-    return personas.filter((item) => item.text === persona.text).length > 0;
-  }
-
-  function convertResultsToPromise(results: IPersonaProps[]): Promise<IPersonaProps[]> {
-    return new Promise<IPersonaProps[]>((resolve, reject) => setTimeout(() => resolve(results), 2000));
-  }
-
-  function getTextFromItem(persona: IPersonaProps): string {
-    return persona.text as string;
-  }
-
-  function validateInput(input: string): ValidationState {
-    if (input.indexOf('@') !== -1) {
-      return ValidationState.valid;
-    } else if (input.length > 1) {
-      return ValidationState.warning;
-    } else {
-      return ValidationState.invalid;
-    }
-  }
-
-  /**
-   * Takes in the picker input and modifies it in whichever way
-   * the caller wants, i.e. parsing entries copied from Outlook (sample
-   * input: "Aaron Reid <aaron>").
-   *
-   * @param input The text entered into the picker.
-   */
-  function onInputChange(input: string): string {
-    const outlookRegEx = /<.*>/g;
-    const emailAddress = outlookRegEx.exec(input);
-
-    if (emailAddress && emailAddress[0]) {
-      return emailAddress[0].substring(1, emailAddress[0].length - 1);
-    }
-
-    return input;
-  }
 };
