@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { Provider, Flex, Text, Form, FormButton } from '@fluentui/react-northstar';
 import { IPersonaProps } from '@fluentui/react/lib/Persona';
-import {
-  IBasePickerSuggestionsProps,
-  NormalPeoplePicker,
-  ValidationState
-} from '@fluentui/react/lib/Pickers';
+import { IBasePickerSuggestionsProps, NormalPeoplePicker, ValidationState } from '@fluentui/react/lib/Pickers';
 import { people, mru } from '@fluentui/example-data';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
@@ -180,9 +176,9 @@ export const Approval = () => {
             padding: '.5rem 0 0 .5rem'
           }}
         >
-            <Form onSubmit={handleSubmit}>
-              <FormButton type="submit" content="Submit For Approval" primary /> 
-            </Form>
+          <Form onSubmit={handleSubmit}>
+            <FormButton type="submit" content="Submit For Approval" primary />
+          </Form>
         </Flex.Item>
 
         <Flex.Item

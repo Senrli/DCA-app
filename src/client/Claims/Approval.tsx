@@ -43,7 +43,6 @@ export const Approval = () => {
           const decoded: { [key: string]: any } = jwtDecode(token) as { [key: string]: any };
           setName(decoded!.name);
           setReturnVal(token.toString()); // write return values
-          console.log(token.toString());
           app.notifySuccess();
         })
         .catch((message) => {
