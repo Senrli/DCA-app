@@ -5,7 +5,7 @@
   "version": "{{VERSION}}",
   "packageName": "{{PACKAGE_NAME}}",
   "developer": {
-    "name": "Senrli",
+    "name": "ESC C5G11",
     "websiteUrl": "https://{{PUBLIC_HOSTNAME}}",
     "privacyUrl": "https://{{PUBLIC_HOSTNAME}}/privacy.html",
     "termsOfUseUrl": "https://{{PUBLIC_HOSTNAME}}/tou.html"
