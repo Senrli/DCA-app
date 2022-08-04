@@ -21,6 +21,7 @@ const config = [
     output: {
       path: path.join(__dirname, '/dist'),
       filename: '[name].js',
+      globalObject: 'this',
       devtoolModuleFilenameTemplate: debug ? '[absolute-resource-path]' : '[]'
     },
     externals: [nodeExternals()],
@@ -71,7 +72,8 @@ const config = [
       filename: '[name].js',
       libraryTarget: 'umd',
       library: 'teamsBotPocYeoman',
-      publicPath: '/scripts/'
+      publicPath: '/scripts/',
+      globalObject: 'this'
     },
     externals: {},
     devtool: debug ? 'source-map' : 'source-map',
@@ -102,7 +104,7 @@ const config = [
       }),
       new ForkTsCheckerWebpackPlugin({
         typescript: {
-          configFile: './src/client/tsconfig.json'
+          configFile: './src/client/Claims/tsconfig.json'
         }
       })
     ],

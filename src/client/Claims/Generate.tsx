@@ -60,7 +60,7 @@ export const Generate = () => {
           padding: '.8rem 0 .8rem .5rem'
         }}
       >
-        <Form onSubmit={handleSubmit}>
+        <Form data-testid="generate-form" onSubmit={handleSubmit}>
           <Text weight="bold" content="Discount Claim Amount" />
           <FormInput
             label="SGD S$"
