@@ -13,6 +13,7 @@
     "@fluentui/example-data": "^8.4.1",
     "@fluentui/react": "^8.86.3",
     "@fluentui/react-northstar": "~0.62.0",
+    "@microsoft/mgt-react": "^2.6.0",
     "@microsoft/teams-js": "^2.0.0",
     "axios": "^0.27.2",
     "botbuilder": "~4.16.0",
