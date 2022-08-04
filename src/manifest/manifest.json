@@ -43,8 +43,16 @@
     },
     {
       "entityId": "a0a0ccde-13a7-11ed-861d-0242ac120002",
-      "name": "Approval",
+      "name": "Upload",
       "contentUrl": "https://{{PUBLIC_HOSTNAME}}/claims/uploadfile.html?name={loginHint}&tenant={tid}&theme={theme}",
+      "scopes": [
+        "personal"
+      ]
+    },
+    {
+      "entityId": "4c1cc78c-1431-11ed-861d-0242ac120002",
+      "name": "Demo Tab",
+      "contentUrl": "https://{{PUBLIC_HOSTNAME}}/demotab.html?name={loginHint}&tenant={tid}&theme={theme}",
       "scopes": [
         "personal"
       ]

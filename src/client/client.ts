@@ -20,3 +20,9 @@ export * from './Claims/Approval';
 
 // Added for Upload File
 export * from './Claims/UploadFile';
+
+// Added for Tab Authentication
+export * from './Claims/TabAuth';
+
+// Added for GraphToolkitDemoTab
+export * from './Claims/GraphToolkitDemoTab';

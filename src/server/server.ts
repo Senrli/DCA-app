@@ -1,10 +1,11 @@
-import * as Express from 'express';
+import Express from 'express';
 import * as http from 'http';
 import * as path from 'path';
-import * as morgan from 'morgan';
+import morgan from 'morgan';
 import { MsTeamsApiRouter, MsTeamsPageRouter } from 'express-msteams-host';
-import * as debug from 'debug';
-import * as compression from 'compression';
+import debug from 'debug';
+import dotenv from 'dotenv';
+import compression from 'compression';
 
 // import {
 //   CardFactory,
@@ -28,7 +29,7 @@ const log = debug('msteams');
 log('Initializing Microsoft Teams Express hosted App...');
 
 // Initialize dotenv, to use .env file settings if existing
-require('dotenv').config();
+dotenv.config();
 
 // Create the Express webserver
 const express = Express();

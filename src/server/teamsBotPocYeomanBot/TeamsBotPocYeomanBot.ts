@@ -1,5 +1,5 @@
 // import { BotDeclaration } from 'express-msteams-host';
-import * as debug from 'debug';
+import debug from 'debug';
 import * as express from 'express';
 import {
   CardFactory,
