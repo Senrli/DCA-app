@@ -1,5 +1,7 @@
 import * as debug from 'debug';
 import * as express from 'express';
+import * as MicrosoftGraph from '@microsoft/microsoft-graph-types';
+
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { oboRequest, oboSuccessRespnse, oboFailResponse } from '../../lib/accessToken';
@@ -73,7 +75,8 @@ router.get('/token', async (req, res) => {
       };
 
       // graph call using the access token
-      axios.get('https://graph.microsoft.com/v1.0/me/', config).then((result) => {
+      axios.get<MicrosoftGraph.User>('https://graph.microsoft.com/v1.0/me/', config).then((result) => {
+        log(result.data);
         res.send(result.data);
       });
     },

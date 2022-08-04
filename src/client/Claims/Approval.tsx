@@ -41,7 +41,7 @@ export const Approval = () => {
         } as authentication.AuthTokenRequestParameters)
         .then((token) => {
           const decoded: { [key: string]: any } = jwtDecode(token) as { [key: string]: any };
-          setName(decoded!.name);
+          setName(decoded.name);
           setReturnVal(token.toString()); // write return values
           app.notifySuccess();
         })
@@ -203,8 +203,6 @@ export const Approval = () => {
         >
           <div>
             <div>
-              <Header content="Approval Page" />
-              <Text content={`RESULT: ${returnVal}`} />
               <Text content="Please select approvers for this case." />
               <NormalPeoplePicker
                 onResolveSuggestions={onFilterChanged}

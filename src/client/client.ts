@@ -17,3 +17,6 @@ export * from './Claims/Veriform';
 
 // Added for Approval Dialog
 export * from './Claims/Approval';
+
+// Added for Upload File
+export * from './Claims/UploadFile';

@@ -11,9 +11,12 @@ export const UploadFile = () => {
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
 
+  const [selectedFile, setSelectedFile] = useState<File>();
+  const [isFilePicked, setIsFilePicked] = useState(false);
+
   useEffect(() => {
     if (inTeams === true) {
-      const result = authentication
+      authentication
         .getAuthToken({
           resources: [process.env.TAB_APP_URI as string],
           silent: false
@@ -43,12 +46,32 @@ export const UploadFile = () => {
 
   dialog.initialize();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const dialogOutput = {
-      amount: event.target.discountClaimAmount.value
-    };
-    dialog.submit(dialogOutput);
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = event.target.files;
+
+    if (!fileList) return;
+    setSelectedFile(fileList[0]);
+    setIsFilePicked(true);
+  };
+
+  const handleSubmission = () => {
+    if (selectedFile) {
+      const formData = new FormData();
+
+      formData.append('File', selectedFile, selectedFile.name);
+
+      fetch('https://freeimage.host/api/1/upload?key=<YOUR_API_KEY>', {
+        method: 'POST',
+        body: formData
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log('Success:', result);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
   };
 
   return (
@@ -67,8 +90,26 @@ export const UploadFile = () => {
         >
           <div>
             <Input label="Upload a file to SharePoint" type="file" onChange={changeHandler} />
+            {selectedFile ? (
+              <div>
+                <p>Filename: {selectedFile.name}</p>
+                <p>Filetype: {selectedFile.type}</p>
+                <p>Size in bytes: {selectedFile.size}</p>
+                <p>
+                  Last Modified Date:{' '}
+                  {new Date(selectedFile.lastModified).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </p>
+              </div>
+            ) : (
+              <p>Select a file to show details</p>
+            )}
             <div>
-              <Button content="Upload" primary onClick={handleSubmission} />
+              <Button content="Upload" primary disabled={isFilePicked} onClick={handleSubmission} />
             </div>
           </div>
         </Flex.Item>

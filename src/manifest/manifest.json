@@ -28,7 +28,7 @@
     {
       "entityId": "45003861-1dd6-4cdc-b123-556001aade47",
       "name": "Claims",
-      "contentUrl": "https://{{PUBLIC_HOSTNAME}}/Claims/?name={loginHint}&tenant={tid}&theme={theme}",
+      "contentUrl": "https://{{PUBLIC_HOSTNAME}}/claims/?name={loginHint}&tenant={tid}&theme={theme}",
       "scopes": [
         "personal"
       ]
@@ -36,7 +36,15 @@
     {
       "entityId": "0323935e-e884-445f-a997-c2ca9dde453b",
       "name": "Approval",
-      "contentUrl": "https://{{PUBLIC_HOSTNAME}}/Claims/approval.html?name={loginHint}&tenant={tid}&theme={theme}",
+      "contentUrl": "https://{{PUBLIC_HOSTNAME}}/claims/approval.html?name={loginHint}&tenant={tid}&theme={theme}",
+      "scopes": [
+        "personal"
+      ]
+    },
+    {
+      "entityId": "a0a0ccde-13a7-11ed-861d-0242ac120002",
+      "name": "Approval",
+      "contentUrl": "https://{{PUBLIC_HOSTNAME}}/claims/uploadfile.html?name={loginHint}&tenant={tid}&theme={theme}",
       "scopes": [
         "personal"
       ]
