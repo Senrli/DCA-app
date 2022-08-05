@@ -7,6 +7,10 @@ import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
+import { Providers } from '@microsoft/mgt-element';
+import { TeamsMsal2Provider, HttpMethod } from '@microsoft/mgt-teams-msal2-provider';
+import { PeoplePicker } from '@microsoft/mgt-react';
+import * as MicrosoftTeams from '@microsoft/teams-js';
 
 const suggestionProps: IBasePickerSuggestionsProps = {
   suggestionsHeaderText: 'Suggested People',
@@ -29,6 +33,31 @@ export const Approval = () => {
   const [delayResults, setDelayResults] = React.useState(false);
   const [mostRecentlyUsed, setMostRecentlyUsed] = React.useState<IPersonaProps[]>(mru);
   const [peopleList, setPeopleList] = React.useState<IPersonaProps[]>(people);
+
+  TeamsMsal2Provider.microsoftTeamsLib = MicrosoftTeams;
+
+  Providers.globalProvider = new TeamsMsal2Provider({
+    clientId: process.env.TAB_APP_ID as string,
+    authPopupUrl: `https://${process.env.PUBLIC_HOSTNAME as string}/tabauth.html`,
+    scopes: [
+      'user.read',
+      'user.read.all',
+      'mail.readBasic',
+      'people.read',
+      'people.read.all',
+      'sites.read.all',
+      'user.readbasic.all',
+      'contacts.read',
+      'presence.read',
+      'presence.read.all',
+      'tasks.readwrite',
+      'tasks.read',
+      'calendars.read',
+      'group.read.all'
+    ],
+    ssoUrl: `https://${process.env.PUBLIC_HOSTNAME as string}/app/token`,
+    httpMethod: HttpMethod.POST
+  });
 
   const picker = React.useRef(null);
 
@@ -204,7 +233,7 @@ export const Approval = () => {
           <div>
             <div>
               <Text content="Please select approvers for this case." />
-              <NormalPeoplePicker
+              {/* <NormalPeoplePicker
                 onResolveSuggestions={onFilterChanged}
                 onEmptyInputFocus={returnMostRecentlyUsed}
                 getTextFromItem={getTextFromItem}
@@ -223,7 +252,8 @@ export const Approval = () => {
                 componentRef={picker}
                 onInputChange={onInputChange}
                 resolveDelay={300}
-              />
+              /> */}
+              <PeoplePicker></PeoplePicker>
             </div>
             {error && (
               <div>
@@ -232,7 +262,7 @@ export const Approval = () => {
             )}
           </div>
         </Flex.Item>
-        <Button content="Get all members" primary onClick={getUsers}></Button>
+        {/* <Button content="Get all members" primary onClick={getUsers}></Button> */}
         <div>
           <Text content={jsonData}></Text>
         </div>
