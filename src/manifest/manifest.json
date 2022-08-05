@@ -19,8 +19,8 @@
     "full": "TODO: THIS IS A LONG DESCRIPTION"
   },
   "icons": {
-    "outline": "icon-outline.png",
-    "color": "icon-color-bkgd.png"
+    "outline": "icon-32x32.png",
+    "color": "icon-192x192.png"
   },
   "accentColor": "#008181",
   "configurableTabs": [],

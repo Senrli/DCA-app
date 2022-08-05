@@ -20,22 +20,7 @@ export const GraphToolkitDemoTab = () => {
   Providers.globalProvider = new TeamsMsal2Provider({
     clientId: process.env.TAB_APP_ID as string,
     authPopupUrl: `https://${process.env.PUBLIC_HOSTNAME as string}/tabauth.html`,
-    scopes: [
-      'user.read',
-      'user.read.all',
-      'mail.readBasic',
-      'people.read',
-      'people.read.all',
-      'sites.read.all',
-      'user.readbasic.all',
-      'contacts.read',
-      'presence.read',
-      'presence.read.all',
-      'tasks.readwrite',
-      'tasks.read',
-      'calendars.read',
-      'group.read.all'
-    ],
+    scopes: ['.default'],
     ssoUrl: `https://${process.env.PUBLIC_HOSTNAME as string}/app/token`,
     httpMethod: HttpMethod.POST
   });
