@@ -2,17 +2,23 @@
 In collaboration with Beep and Mount Elizabeth Hospital
 
 ## Problem Statement
-<"insert text here">
+According to the discount quantum at Mount Elizabeth Hospital (MEH), a Discount Claim request will be raised by Business Office (BO) staff to corresponding levels of authority for verification and approval. Currently, the request submission sequence up the hierarchy is manual, requiring BO staff to manually route the discount claim request to the next level of authority. Messenger applications such as WhatsApp are used to remind BO staff to fill in their portion of the discount claim form throughout the approval process. The approval process is also not mobile-friendly as the existing platform is limited to a desktop-accessible browser which is also a factor that causes the delay in approvals. Typically, the actual request for approval is first handled informally to completion, before it is entered into the platform for audit records.
+
 
 ## Requirements
-<"insert text here">
+- Indicate the discount claim amount and generate the relevant discount claim form.
+- Render iframe in Teams App to be able to show the discount claim form and fill in relevant details.
+- Notify the next level of authority in the hierarchy that is required to fill in the form.
+- Ability to upload files on Teams App which will be attached to that particular form.
+- Dashboard to be able to see the state of all ongoing discount claim requests.
+
 <"insert usecase diagram">
 
 ## Discount Claim Flow
 <"insert text here">
 
 ## Proposed Solution
-<"insert text here">
+Mount Elizabeth Hospital often struggle to have an efficient and smooth discount claim approval process causing them to take a significantly longer time to complete the process. Therefore, our group has decided to deliver a tool that can automate the submission of discount requests to streamline BO's operations and allow approvals to be viewed and given on the go via the Microsoft Teams mobile app, with the ability to synchronize records on the existing platform.
 <"insert sequential diagram">
 
 ## Set Up
