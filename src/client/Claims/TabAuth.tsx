@@ -16,7 +16,7 @@ export const TabAuth = () => {
   TeamsMsal2Provider.microsoftTeamsLib = MicrosoftTeams;
   TeamsMsal2Provider.handleAuth();
 
-  useEffect(() => {
+  useEffect(() => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
     if (inTeams === true) {
       authentication
         .getAuthToken({
