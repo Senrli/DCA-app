@@ -28,7 +28,7 @@ const config = [
       hints: false,
       maxEntrypointSize: 512000,
       maxAssetSize: 512000
-  },
+    },
     devtool: debug ? 'source-map' : 'source-map',
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],

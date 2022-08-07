@@ -1,2 +1,2 @@
-const DiscountClaimRequestCard = require('./discountClaimRequest.json');
+import DiscountClaimRequestCard from './discountClaimRequest.json';
 export default DiscountClaimRequestCard;

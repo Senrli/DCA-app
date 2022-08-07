@@ -4,7 +4,9 @@
         "prettier",
         "eslint:recommended", 
         "plugin:react/recommended", 
-        "plugin:prettier/recommended"
+        "plugin:react/jsx-runtime",
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -39,5 +41,10 @@
         // "no-unused-vars": "off",
         "no-console": 1,       // Means warning
         "prettier/prettier": 2 // Means error
+    },
+    "settings": {
+        "react": {
+          "version": "detect"
+        }
     }
 }

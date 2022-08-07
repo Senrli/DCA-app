@@ -1,26 +1,29 @@
+import { Providers } from '@microsoft/mgt-element';
+import { TeamsMsal2Provider, HttpMethod } from '@microsoft/mgt-teams-msal2-provider';
+import * as MicrosoftTeams from '@microsoft/teams-js';
 import * as React from 'react';
-import { Provider, Flex, Text, Form, FormButton, Button, Header } from '@fluentui/react-northstar';
+import { Provider, Flex, Text } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
-import { PeoplePicker  } from '@microsoft/mgt-react';
+import { Person, PeoplePicker, TeamsChannelPicker, Tasks, ViewType, Todo, People, Agenda, File } from '@microsoft/mgt-react';
 
-export const Approval = () => {
+export const GraphToolkitDemoTab = () => {
   const [{ inTeams, theme, context }] = useTeams();
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
 
-  const [returnVal, setReturnVal] = useState<string>();
-  const [jsonData, setJsonData] = useState<string>();
+  TeamsMsal2Provider.microsoftTeamsLib = MicrosoftTeams;
 
-  const [people, setPeople] = useState([]);
-
-  const handleSelectionChanged = (e) => {
-    setPeople(e.target.selectedPeople);
-  };
-
+  Providers.globalProvider = new TeamsMsal2Provider({
+    clientId: process.env.TAB_APP_ID as string,
+    authPopupUrl: `https://${process.env.PUBLIC_HOSTNAME as string}/tabauth.html`,
+    scopes: ['.default'],
+    ssoUrl: `https://${process.env.PUBLIC_HOSTNAME as string}/app/token`,
+    httpMethod: HttpMethod.POST
+  });
 
   useEffect(() => {
     if (inTeams === true) {
@@ -32,7 +35,6 @@ export const Approval = () => {
         .then((token) => {
           const decoded: { [key: string]: any } = jwtDecode(token) as { [key: string]: any };
           setName(decoded.name);
-          setReturnVal(token.toString()); // write return values
           app.notifySuccess();
         })
         .catch((message) => {
@@ -53,14 +55,6 @@ export const Approval = () => {
     }
   }, [context]);
 
-  const handleSubmit = (event) => {
-    // event.preventDefault();
-    // const dialogOutput = {
-    //   amount: event.target.discountClaimAmount.value
-    // };
-    // dialog.submit(dialogOutput);
-  };
-
   return (
     <Provider theme={theme}>
       <Flex
@@ -75,38 +69,17 @@ export const Approval = () => {
             padding: '.8rem 0 .5rem .5rem'
           }}
         >
-          <Text weight="bold" content="Discount Claim Created!" />
-        </Flex.Item>
-
-        <Flex.Item
-          styles={{
-            padding: '.8rem 0 .5rem .5rem'
-          }}
-        >
           <div>
-            <div>
-
-              <Text content="Please select approvers for this case." />
-              <PeoplePicker selectionChanged={handleSelectionChanged} />
-
-            </div>
-            {error && (
-              <div>
-                <Text content={`An SSO error occurred ${error}`} />
-              </div>
-            )}
+            <Person person-query="me" view={ViewType.twolines} person-card="click" show-presence></Person>
+            <PeoplePicker></PeoplePicker>
+            <TeamsChannelPicker></TeamsChannelPicker>
+            <Tasks></Tasks>
+            <Agenda group-by-day></Agenda>
+            <People show-presence></People>
+            <Todo></Todo>
+            <File></File>
           </div>
         </Flex.Item>
-        <Flex.Item
-          styles={{
-            padding: '.5rem 0 0 .5rem'
-          }}
-        >
-          <Form onSubmit={handleSubmit}>
-            <FormButton type="submit" content="Submit For Approval" primary />
-          </Form>
-        </Flex.Item>
-
         <Flex.Item
           styles={{
             padding: '.8rem 0 .8rem .5rem'
