@@ -65,8 +65,6 @@ npm i -g ngrok
 ```
 Sign up at ngrok.com and obtain the authtoken. Fill up the token in the .env file under NGROK_AUTH
 
-Run 
-
 Duplicate <code>.env.example</code> file as <code>.env</code> at root folder
 
 Populate <code>NGROK_AUTH</code> field with your NGROK_AUTH code
