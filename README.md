@@ -23,7 +23,7 @@ According to the discount quantum at Mount Elizabeth Hospital (MEH), a Discount 
 - Ability to upload files on Teams App which will be attached to that particular form.
 - Dashboard to be able to see the state of all ongoing discount claim requests.
 
-![Use Case Diagram](https://github.com/Senrli/DCA-app/blob/main/img/Teams%20Bot%20Use%20Case%20Diagram%20.svg)
+![Use Case Diagram](https://github.com/Senrli/DCA-app/blob/main/img/Teams%20Bot%20Use%20Case%20Diagram.svg)
 
 ## Discount Claim Flow
 Requestor:
