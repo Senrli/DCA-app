@@ -6,10 +6,13 @@ According to the discount quantum at Mount Elizabeth Hospital (MEH), a Discount 
 
 
 ## Project Structure
-client: contains clients side TypeScript code
-manifest: contains the Microsoft Teams App manifest and icons
-public: contains static web site files
-server: contains server side code
+```client:``` contains clients side TypeScript code
+
+```manifest:``` contains the Microsoft Teams App manifest and icons
+
+```public:``` contains static web site files
+
+```server: ```contains server side code
 
 ## 
 
@@ -136,8 +139,6 @@ For local debugging of mongodb, deploy the docker container:
 docker -d compose up mongodb
 ```
 
-
-
 ## Useful Links and Documentation
 * [Debugging with Visual Studio Code](https://github.com/pnp/generator-teams/blob/master/docs/docs/user-guide/vscode.md)
 * [Developing with ngrok](https://github.com/pnp/generator-teams/blob/master/docs/docs/concepts/ngrok.md)
@@ -145,5 +146,3 @@ docker -d compose up mongodb
 * [FluentUI React](https://developer.microsoft.com/en-us/fluentui#/controls/web)
 * [FluentUI Northstar](https://fluentsite.z22.web.core.windows.net/)
 
-
-Generated Using Yo Teams Yeoman Microsoft Teams Apps generator
