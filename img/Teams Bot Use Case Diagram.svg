@@ -1,187 +1,199 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="742px" preserveAspectRatio="none" style="width:1008px;height:742px;background:#FFFFFF;" version="1.1" viewBox="0 0 1008 742" width="1008px" zoomAndPan="magnify">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="708px" preserveAspectRatio="none" style="width:1518px;height:708px;background:#FFFFFF;" version="1.1" viewBox="0 0 1518 708" width="1518px" zoomAndPan="magnify">
     <defs />
     <g>
         <!--MD5=[2bc226f05bcccf3e95a8e27b186c617c]
 cluster Discount App-->
         <g id="cluster_Discount App">
-            <rect height="523" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;fill:none;" width="891" x="111" y="7" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="93" x="510" y="23.5332">Discount App</text>
+            <rect height="302" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;fill:none;" width="1401" x="111" y="99.5" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="93" x="765" y="116.0332">Discount App</text>
         </g>
         <g id="elem_UC1">
-            <ellipse cx="226.5785" cy="128.2157" fill="#F1F1F1" rx="79.0785" ry="18.2157" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="169.1751" y="132.3395">Request Discount</text>
+            <ellipse cx="1137.0785" cy="298.7157" fill="#F1F1F1" rx="79.0785" ry="18.2157" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="1079.6751" y="302.8395">Request Discount</text>
         </g>
         <g id="elem_UC2">
-            <ellipse cx="226.613" cy="420.8226" fill="#F1F1F1" rx="99.613" ry="22.3226" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="160" x="146.613" y="424.5511">View Requests/Approvals</text>
+            <ellipse cx="226.613" cy="296.3226" fill="#F1F1F1" rx="99.613" ry="22.3226" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="160" x="146.613" y="300.0511">View Requests/Approvals</text>
         </g>
         <g id="elem_UC3">
-            <ellipse cx="226.7256" cy="495.9451" fill="#F1F1F1" rx="75.2256" ry="17.4451" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="172.7256" y="500.4617">Update Request</text>
+            <ellipse cx="226.7256" cy="153.4451" fill="#F1F1F1" rx="75.2256" ry="17.4451" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="172.7256" y="157.9617">Update Request</text>
         </g>
         <g id="elem_UC4">
-            <ellipse cx="226.4525" cy="340.7905" fill="#F1F1F1" rx="96.9525" ry="21.7905" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="149.4525" y="344.519">Approve/Reject Request</text>
+            <ellipse cx="1136.9525" cy="190.2905" fill="#F1F1F1" rx="96.9525" ry="21.7905" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="1059.9525" y="194.019">Approve/Reject Request</text>
         </g>
         <g id="elem_UC5">
-            <ellipse cx="226.6476" cy="197.9295" fill="#F1F1F1" rx="72.6476" ry="16.9295" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="95" x="176.1476" y="202.4461">Route Request</text>
+            <ellipse cx="1137.1476" cy="368.4295" fill="#F1F1F1" rx="72.6476" ry="16.9295" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="95" x="1086.6476" y="372.9461">Route Request</text>
         </g>
         <g id="elem_UC6">
-            <ellipse cx="514.4763" cy="198.0953" fill="#F1F1F1" rx="75.9763" ry="17.5953" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104" x="459.5467" y="202.5957">Notify Approvers</text>
+            <ellipse cx="1419.9763" cy="321.5953" fill="#F1F1F1" rx="75.9763" ry="17.5953" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104" x="1365.0467" y="326.0957">Notify Approvers</text>
         </g>
         <g id="elem_UC7">
-            <ellipse cx="514.6685" cy="341.0838" fill="#F1F1F1" rx="60.1685" ry="15.5838" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="68" x="477.6685" y="345.6004">Notify Staff</text>
+            <ellipse cx="1420.1685" cy="190.5838" fill="#F1F1F1" rx="60.1685" ry="15.5838" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="68" x="1383.1685" y="195.1004">Notify Staff</text>
         </g>
         <g id="elem_UC9">
-            <ellipse cx="226.457" cy="266.7914" fill="#F1F1F1" rx="69.457" ry="16.2914" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="180.457" y="271.308">Register User</text>
+            <ellipse cx="226.457" cy="222.2914" fill="#F1F1F1" rx="69.457" ry="16.2914" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="180.457" y="226.808">Register User</text>
         </g>
         <g id="elem_UC10">
-            <ellipse cx="514.2877" cy="270.0575" fill="#F1F1F1" rx="78.2877" ry="18.0575" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="110" x="457.5149" y="274.2774">Update Database</text>
+            <ellipse cx="514.2877" cy="208.5575" fill="#F1F1F1" rx="78.2877" ry="18.0575" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="110" x="457.5149" y="212.7774">Update Database</text>
         </g>
         <g id="elem_UC11">
-            <ellipse cx="514.4074" cy="130.0891" fill="#F1F1F1" rx="60.9074" ry="15.5891" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="476.9074" y="134.6057">Verify User</text>
+            <ellipse cx="514.4074" cy="350.5891" fill="#F1F1F1" rx="60.9074" ry="15.5891" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="476.9074" y="355.1057">Verify User</text>
         </g>
         <g id="elem_UC12">
-            <ellipse cx="875.3297" cy="354.0659" fill="#FF0000" rx="90.8297" ry="20.5659" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="805.3297" y="357.7945">Unauthorized Request</text>
+            <ellipse cx="813.3297" cy="361.5659" fill="#FF0000" rx="90.8297" ry="20.5659" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="743.3297" y="365.2945">Unauthorized Request</text>
         </g>
         <g id="elem_UC13">
-            <ellipse cx="875.434" cy="234.9868" fill="#FF0000" rx="110.434" ry="24.4868" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="184" x="783.434" y="238.7153">Unauthorized Approve/Reject</text>
+            <ellipse cx="813.434" cy="281.4868" fill="#FF0000" rx="110.434" ry="24.4868" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="184" x="721.434" y="285.2153">Unauthorized Approve/Reject</text>
         </g>
         <g id="elem_UC14">
-            <ellipse cx="226.6685" cy="59.0838" fill="#F1F1F1" rx="60.1685" ry="15.5838" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="68" x="189.6685" y="63.6004">Login User</text>
+            <ellipse cx="226.6685" cy="369.5838" fill="#F1F1F1" rx="60.1685" ry="15.5838" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="68" x="189.6685" y="374.1004">Login User</text>
         </g>
         <!--MD5=[d8322213e5f4465576b8bf70cd9bce59]
 entity s-->
         <g id="elem_s">
-            <ellipse cx="35" cy="140.5" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;" />
-            <path d="M35,148.5 L35,175.5 M22,156.5 L48,156.5 M35,175.5 L22,190.5 M35,175.5 L48,190.5 " fill="none" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29" x="20.5" y="206.5332">Staff</text>
+            <ellipse cx="35" cy="548" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;" />
+            <path d="M35,556 L35,583 M22,564 L48,564 M35,583 L22,598 M35,583 L48,598 " fill="none" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29" x="20.5" y="614.0332">Staff</text>
         </g>
         <!--MD5=[f83ae91a690dfc657e1c5fbbd818f13d]
 entity a-->
         <g id="elem_a">
-            <ellipse cx="35" cy="345.5" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;" />
-            <path d="M35,353.5 L35,380.5 M22,361.5 L48,361.5 M35,380.5 L22,395.5 M35,380.5 L48,395.5 " fill="none" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="6" y="411.5332">Approver</text>
+            <ellipse cx="35" cy="192" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;" />
+            <path d="M35,200 L35,227 M22,208 L48,208 M35,227 L22,242 M35,227 L48,242 " fill="none" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="6" y="258.0332">Approver</text>
         </g>
         <!--MD5=[5d12e840fb55afd9ed7b3559a638e8f7]
 entity b-->
         <g id="elem_b">
-            <ellipse cx="875.5" cy="667.5" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;" />
-            <path d="M875.5,675.5 L875.5,702.5 M862.5,683.5 L888.5,683.5 M875.5,702.5 L862.5,717.5 M875.5,702.5 L888.5,717.5 " fill="none" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="55" x="848" y="733.5332">Backend</text>
+            <ellipse cx="1137" cy="14" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;" />
+            <path d="M1137,22 L1137,49 M1124,30 L1150,30 M1137,49 L1124,64 M1137,49 L1150,64 " fill="none" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="55" x="1109.5" y="80.0332">Backend</text>
         </g>
         <!--MD5=[c617d1e94391e02d80a02faf38d11fae]
 entity m-->
         <g id="elem_m">
-            <ellipse cx="875.5" cy="554.5" fill="#FF0000" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;" />
-            <path d="M875.5,562.5 L875.5,589.5 M862.5,570.5 L888.5,570.5 M875.5,589.5 L862.5,604.5 M875.5,589.5 L888.5,604.5 " fill="none" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="91" x="830" y="620.5332">Malicious User</text>
+            <ellipse cx="813.5" cy="426" fill="#FF0000" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;" />
+            <path d="M813.5,434 L813.5,461 M800.5,442 L826.5,442 M813.5,461 L800.5,476 M813.5,461 L826.5,476 " fill="none" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="91" x="768" y="492.0332">Malicious User</text>
         </g>
         <!--MD5=[aa9d2cfd37f9b85e856ad6a1e4475780]
 link UC1 to UC6-->
         <g id="link_UC1_UC6">
-            <path d="M280.96,141.08 C331.08,153.35 405.75,171.63 456.88,184.14 " fill="none" id="UC1-to-UC6" style="stroke:#181818;stroke-width:1.0;" />
-            <polygon fill="#181818" points="461.75,185.33,453.9595,179.3044,456.8934,184.1409,452.0569,187.0749,461.75,185.33" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="357" y="157.4951">includes</text>
+            <path d="M1211.46,304.51 C1251.77,307.81 1301.69,311.9 1342.47,315.24 " fill="none" id="UC1-to-UC6" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="1347.91,315.68,1339.2721,310.9485,1342.9272,315.266,1338.6097,318.921,1347.91,315.68" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="1265" y="305.9951">includes</text>
         </g>
         <!--MD5=[3ab3c4f0aa88f122bda36575115a204e]
 link UC5 to UC6-->
         <g id="link_UC5_UC6">
-            <path d="M299.3,198 C340.08,198 391.24,198 433.33,198 " fill="none" id="UC5-to-UC6" style="stroke:#181818;stroke-width:1.0;" />
-            <polygon fill="#181818" points="438.42,198,429.42,194,433.42,198,429.42,202,438.42,198" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="357" y="194.4951">includes</text>
+            <path d="M1197.08,358.86 C1231.25,353.26 1275.06,346.04 1314,339.5 C1326.8,337.35 1340.47,335.02 1353.58,332.78 " fill="none" id="UC5-to-UC6" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="1358.77,331.89,1349.2245,329.4643,1353.8415,332.7328,1350.5731,337.3499,1358.77,331.89" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="1265" y="335.9951">includes</text>
         </g>
         <!--MD5=[5de79bcd4d0d9c382e7637adece796ee]
 link UC4 to UC7-->
         <g id="link_UC4_UC7">
-            <path d="M323.53,341 C364.83,341 412,341 449.01,341 " fill="none" id="UC4-to-UC7" style="stroke:#181818;stroke-width:1.0;" />
-            <polygon fill="#181818" points="454.4,341,445.4,337,449.4,341,445.4,345,454.4,341" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="357" y="337.4951">includes</text>
+            <path d="M1234.31,190.5 C1273.99,190.5 1318.89,190.5 1354.49,190.5 " fill="none" id="UC4-to-UC7" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="1359.67,190.5,1350.67,186.5,1354.67,190.5,1350.67,194.5,1359.67,190.5" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="1265" y="186.9951">includes</text>
         </g>
         <!--MD5=[901165f40959f6aff952005c627ca22d]
 link UC14 to UC11-->
         <g id="link_UC14_UC11">
-            <path d="M270.32,69.63 C322.4,82.56 410.11,104.33 464.74,117.9 " fill="none" id="UC14-to-UC11" style="stroke:#181818;stroke-width:1.0;" />
-            <polygon fill="#181818" points="469.92,119.18,462.1421,113.1381,465.0659,117.9808,460.2233,120.9046,469.92,119.18" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="357" y="89.4951">includes</text>
+            <path d="M284.69,365.7 C332.44,362.53 400.45,358.01 449.91,354.72 " fill="none" id="UC14-to-UC11" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="454.94,354.39,445.6964,350.9905,449.9508,354.7188,446.2225,358.9732,454.94,354.39" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="357" y="354.9951">includes</text>
         </g>
         <!--MD5=[09d7d8cb12d9fa4251882f1ab45300ac]
 link UC11 to UC12-->
         <g id="link_UC11_UC12">
-            <path d="M550.83,142.66 C564.42,148.14 579.83,155.11 593,163 C622.83,180.87 625.79,191.67 654,212 C716.86,257.3 793.57,305.11 837.95,332.09 " fill="none" id="UC11-to-UC12" style="stroke:#181818;stroke-width:1.0;" />
-            <polygon fill="#181818" points="842.41,334.79,836.802,326.6937,838.139,332.1903,832.6424,333.5273,842.41,334.79" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="655" y="208.4951">prevents</text>
+            <path d="M574.89,352.7 C615.97,354.22 671.48,356.28 718.52,358.02 " fill="none" id="UC11-to-UC12" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="723.63,358.21,714.7847,353.8787,718.6334,358.0244,714.4877,361.8732,723.63,358.21" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="624" y="351.9951">prevents</text>
         </g>
         <!--MD5=[ba66c1e12e800784ecc5435f6c36de73]
 link UC11 to UC13-->
         <g id="link_UC11_UC13">
-            <path d="M555.29,141.64 C615.04,159.11 728.86,192.4 803.19,214.14 " fill="none" id="UC11-to-UC13" style="stroke:#181818;stroke-width:1.0;" />
-            <polygon fill="#181818" points="808.02,215.56,800.5175,209.1794,803.2239,214.1469,798.2564,216.8532,808.02,215.56" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="655" y="167.4951">prevents</text>
+            <path d="M560.29,340.09 C605.51,329.59 676.37,313.13 731.48,300.32 " fill="none" id="UC11-to-UC13" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="736.42,299.17,726.7494,297.3045,731.549,300.2985,728.555,305.098,736.42,299.17" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="624" y="310.9951">prevents</text>
+        </g>
+        <!--MD5=[80170e22d2174e345eea3df141057c21]
+link UC13 to UC4-->
+        <g id="link_UC13_UC4">
+            <path d="M910.6,269.74 C942.63,264.51 978.23,257.28 1010,247.5 C1038.72,238.66 1069.47,224.84 1093.41,213.02 " fill="none" id="UC13-to-UC4" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="1098.1,210.69,1088.2597,211.0994,1093.6193,212.9089,1091.8099,218.2685,1098.1,210.69" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="955" y="243.9951">threatens</text>
+        </g>
+        <!--MD5=[31e9e3723efb5d57e4fd7ca50f9c3ea6]
+link UC12 to UC1-->
+        <g id="link_UC12_UC1">
+            <path d="M884.22,348.59 C921.56,341.61 968.32,332.74 1010,324.5 C1030.6,320.42 1053.07,315.83 1073.25,311.66 " fill="none" id="UC12-to-UC1" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="1078.33,310.61,1068.7048,308.5229,1073.4344,311.6263,1070.331,316.3559,1078.33,310.61" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="955" y="320.9951">threatens</text>
         </g>
         <!--MD5=[766679404c4c999e4cf4dcfe94687ae6]
 link UC9 to UC10-->
         <g id="link_UC9_UC10">
-            <path d="M296,267.72 C336.5,268.14 388.05,268.68 430.8,269.13 " fill="none" id="UC9-to-UC10" style="stroke:#181818;stroke-width:1.0;" />
-            <polygon fill="#181818" points="435.97,269.19,427.0163,265.0874,430.9703,269.1329,426.9249,273.0869,435.97,269.19" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M294.92,219.2 C336.02,217.19 388.81,214.6 432.22,212.48 " fill="none" id="UC9-to-UC10" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="437.46,212.22,428.276,208.6626,432.4659,212.4633,428.6653,216.6531,437.46,212.22" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[8a4b5f0fd3939fac8f36ece58abd065a]
 link m to UC12-->
         <g id="link_m_UC12">
-            <path d="M875.5,545.75 C875.5,488.7 875.5,431.65 875.5,374.6 " fill="none" id="m-UC12" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M813.5,417.16 C813.5,405.57 813.5,393.97 813.5,382.37 " fill="none" id="m-UC12" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[3e14623d7d2c0b2e0504b0e727a19ef9]
 link m to UC13-->
         <g id="link_m_UC13">
-            <path d="M829.9,575.31 C796.79,565.58 754.43,546.92 734.5,512.5 C694.63,443.66 697.73,404.05 734.5,333.5 C753,298.02 790.76,272.69 822.56,256.61 " fill="none" id="m-UC13" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M767.8,445.36 C707.21,428.33 611.93,392.3 648,341 C664.68,317.27 691.78,302.96 719.25,294.34 " fill="none" id="m-UC13" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[0c1f5b2aba23facd9e2aeb333553c598]
 link s to UC9-->
         <g id="link_s_UC9">
-            <path d="M49.6,186.99 C62.15,200.78 81.98,220.28 103,232 C123.77,243.57 148.7,251.6 170.63,257.02 " fill="none" id="s-UC9" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M39.12,539.29 C45.99,462.69 64.95,297.14 103,256.5 C117.78,240.71 139.2,232.03 160.01,227.32 " fill="none" id="s-UC9" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[1d5e614dd8463a8829c087e6e23322a4]
 link a to UC9-->
         <g id="link_a_UC9">
-            <path d="M63.8,336.66 C74.71,323.68 88.17,310.22 103,301 C122.49,288.88 146.37,281 167.84,275.91 " fill="none" id="a-UC9" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M64.37,222.5 C88.74,222.5 124.88,222.5 156.76,222.5 " fill="none" id="a-UC9" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[ced53a2e1ee50106e9ee477c87b6a0fe]
 link a to UC4-->
         <g id="link_a_UC4">
-            <path d="M64.37,370.76 C87.19,366.55 120.33,360.42 150.63,354.83 " fill="none" id="a-UC4" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M54.37,183.29 C65.92,161.96 82.52,136.35 103,118.5 C148.26,79.04 165.45,61.5 225.5,61.5 C225.5,61.5 225.5,61.5 814.5,61.5 C929.07,61.5 1051.16,132.93 1106.13,169.49 " fill="none" id="a-UC4" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[9a225dd836e694e75e64a328ea686656]
 link s to UC1-->
         <g id="link_s_UC1">
-            <path d="M49.73,166.6 C61.43,162.94 78.71,157.74 94,154 C116.6,148.46 141.61,143.29 163.7,139.03 " fill="none" id="s-UC1" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M49.57,583.53 C80.39,594.47 158.18,619.5 225.5,619.5 C225.5,619.5 225.5,619.5 814.5,619.5 C976.37,619.5 913.52,434.52 1040,333.5 C1052.06,323.87 1067.01,316.74 1081.49,311.53 " fill="none" id="s-UC1" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[ab1c5db9e7ea4db265d3484f4f97f7b8]
 link s to UC2-->
         <g id="link_s_UC2">
-            <path d="M47.6,210.3 C65.1,269.09 96.86,373.78 103,380 C115.29,392.45 131.46,401.12 148.01,407.15 " fill="none" id="s-UC2" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M49.69,568.71 C63.93,557.63 85.46,538.15 95,515.5 C102.73,497.15 90.95,352.35 103,336.5 C112.88,323.5 127.09,314.66 142.35,308.66 " fill="none" id="s-UC2" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[46a88b67fe0fb697a9d600a230bce57d]
 link a to UC2-->
         <g id="link_a_UC2">
-            <path d="M64.37,382.74 C88.84,388.55 125.18,397.18 157.16,404.77 " fill="none" id="a-UC2" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M64.24,238.05 C76.03,244.22 89.98,251.11 103,256.5 C122.84,264.72 145.03,272.4 165.01,278.79 " fill="none" id="a-UC2" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[edf70f88007b3901b64f31ed49bfd97b]
 link a to UC3-->
         <g id="link_a_UC3">
-            <path d="M59.16,415.3 C70.51,431.54 85.52,449.28 103,461 C121,473.07 143.17,481.03 163.68,486.26 " fill="none" id="a-UC3" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M64.14,206.71 C75.91,200.5 89.89,193.65 103,188.5 C125.65,179.61 151.45,171.9 173.52,165.99 " fill="none" id="a-UC3" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[d8b25096fcbeb02087ad5859d3b192a9]
 link s to UC14-->
         <g id="link_s_UC14">
-            <path d="M49.71,148.29 C61.64,130.43 80.52,106.26 103,92 C123.92,78.73 150.12,70.75 172.9,65.97 " fill="none" id="s-UC14" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M49.8,575.83 C62.56,572.83 81.52,566.94 95,556.5 C157.9,507.76 202.48,420.28 218.73,384.94 " fill="none" id="s-UC14" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[6db5176ff125ae436d96dc8994641ca6]
 link a to UC5-->
         <g id="link_a_UC5">
-            <path d="M44.75,336.79 C53.95,304.47 71.59,259.75 103,233 C119.33,219.09 140.88,210.69 161.34,205.63 " fill="none" id="a-UC5" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M39.46,261.52 C45.31,302.96 61,367.22 103,402.5 C310.65,576.94 432.94,488.73 703,513.5 C800.81,522.47 830.16,542.52 924,513.5 C1006.86,487.87 1086.19,417.49 1119.52,385.15 " fill="none" id="a-UC5" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[a4bd54dd3866fe9ff11ffd1ad53a712f]
 link s to UC5-->
         <g id="link_s_UC5">
-            <path d="M49.63,172.94 C73.31,176.32 123.4,183.45 164.09,189.25 " fill="none" id="s-UC5" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M49.71,599.57 C60.25,614.27 76.02,633.37 94,645.5 C145.21,680.05 163.73,690.5 225.5,690.5 C225.5,690.5 225.5,690.5 814.5,690.5 C903.66,690.5 940.96,701.91 1010,645.5 C1095.71,575.47 1125.52,434.55 1133.52,385.66 " fill="none" id="s-UC5" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[f56e13cbbe666032724f9d00648d8760]
 link UC10 to b-->
         <g id="link_UC10_b">
-            <path d="M558.45,285.11 C570.66,290.89 583.26,298.45 593,308 C712.22,424.9 646.77,524.1 765,642 C788.44,665.37 823.63,680.97 847.76,689.64 " fill="none" id="UC10-b" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M582.41,217.66 C682.32,227.99 873.35,234.57 1010,158.5 C1029.11,147.86 1024.59,135.02 1040,119.5 C1061.45,97.88 1089.15,76.85 1109.27,62.59 " fill="none" id="UC10-b" style="stroke:#181818;stroke-width:1.0;" />
         </g>
         <!--MD5=[08e8bc04e3972ea7529190e08a446c65]
 link UC2 to b-->
         <g id="link_UC2_b">
-            <path d="M276.19,440.52 C292.09,446.97 309.83,454.22 326,461 C527.4,545.39 768.44,651.24 847.76,686.2 " fill="none" id="UC2-b" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M281.37,277.63 C296.21,271.63 312.06,264.46 326,256.5 C379.41,225.99 379.75,197.39 436,172.5 C681.17,64.04 1013.66,47.48 1109.28,44.95 " fill="none" id="UC2-b" style="stroke:#181818;stroke-width:1.0;" />
         </g>
-        <!--MD5=[eeeca849239607aac686faf30d1ab09c]
+        <!--MD5=[14d1fd80572a38323a484f296122163d]
 @startuml
 left to right direction
 actor Staff as s
@@ -209,8 +221,10 @@ UC1 - -> UC6: includes
 UC5 - -> UC6: includes
 UC4 - -> UC7: includes
 UC14 - -> UC11: includes
-UC11 - - -> UC12: prevents
-UC11 - - -> UC13: prevents
+UC11 - -> UC12: prevents
+UC11 - -> UC13: prevents
+UC13 - -> UC4: threatens
+UC12 - -> UC1: threatens
 
 UC9 - -> UC10
 
