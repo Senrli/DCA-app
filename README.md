@@ -5,6 +5,14 @@ In collaboration with Beep and Mount Elizabeth Hospital
 According to the discount quantum at Mount Elizabeth Hospital (MEH), a Discount Claim request will be raised by Business Office (BO) staff to corresponding levels of authority for verification and approval. Currently, the request submission sequence up the hierarchy is manual, requiring BO staff to manually route the discount claim request to the next level of authority. Messenger applications such as WhatsApp are used to remind BO staff to fill in their portion of the discount claim form throughout the approval process. The approval process is also not mobile-friendly as the existing platform is limited to a desktop-accessible browser which is also a factor that causes the delay in approvals. Typically, the actual request for approval is first handled informally to completion, before it is entered into the platform for audit records.
 
 
+## Project Structure
+client: contains clients side TypeScript code
+manifest: contains the Microsoft Teams App manifest and icons
+public: contains static web site files
+server: contains server side code
+
+## 
+
 ## Requirements
 - Indicate the discount claim amount and generate the relevant discount claim form.
 - Render iframe in Teams App to be able to show the discount claim form and fill in relevant details.
@@ -15,7 +23,11 @@ According to the discount quantum at Mount Elizabeth Hospital (MEH), a Discount 
 <"insert usecase diagram">
 
 ## Discount Claim Flow
-<"insert text here">
+Requestor:
+To make a discount claim, navigate to the Claims tab in the Discount Claim App and create a claim. Key in claimed amount, and then fill up the details in the respective form. Afterwards, send the form to the respective approver.
+
+Approver:
+Upon receiving a claim for approval, open the form, fill up any necessary details, and approve, reject or forward to the next approver.
 
 ## Proposed Solution
 Mount Elizabeth Hospital often struggle to have an efficient and smooth discount claim approval process causing them to take a significantly longer time to complete the process. Therefore, our group has decided to deliver a tool that can automate the submission of discount requests to streamline BO's operations and allow approvals to be viewed and given on the go via the Microsoft Teams mobile app, with the ability to synchronize records on the existing platform.
@@ -26,7 +38,7 @@ Mount Elizabeth Hospital often struggle to have an efficient and smooth discount
 ### First Installation 
 # teams bot poc yeoman - Microsoft Teams App
 
-## Set-up 
+### Requirements
 Please install the following packages:
 
 Dependencies
@@ -48,6 +60,12 @@ MS Teams Generator for Yeoman
 ``` bash
 npm i -g generator-teams
 ```
+
+Ngrok
+``` bash
+npm i -g ngrok
+```
+Sign up at ngrok.com and obtain the authtoken. Fill up the token in the .env file under NGROK_AUTH
 
 Run 
 
@@ -71,7 +89,10 @@ To deploy bot:
     - Bot handle is any random string identifiable as a handle, between 1 and 35 chars
     - Copy Application (client) ID and paste to “App id” inside Botframework
     - Copy Directory (tenant) ID and paste to “App Tenant ID” inside Botframework
+    - In Azure portal, go to app -> Certificates & secrets. Create new client secret, and paste to "MICROSOFT_APP_PASSWORD" inside Botframework
 - Add a Featured Channel → Microsoft Teams
+
+
 
 To deploy teams:
 - Go to [https://portal.azure.com](http://portal.azure.com) and login using ur E5 credentials. All 4 guest users have been added as owners
@@ -110,15 +131,12 @@ In your browser, login to your Office/Teams account and navigate to your ngrok u
 3) Proceed to add the app
 
 ### Docker Deployment
-<"insert text here">
+For local debugging of mongodb, deploy the docker container:
+``` bash
+docker -d compose up mongodb
+```
 
-### Requirements
-<"insert list of NPM packages and node modules">
 
-## Code Architecture
-<"insert text maybe diagram here">
-
-## 
 
 ## Useful Links and Documentation
 * [Debugging with Visual Studio Code](https://github.com/pnp/generator-teams/blob/master/docs/docs/user-guide/vscode.md)
