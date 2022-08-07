@@ -212,12 +212,12 @@ export const Approval = () => {
         fill={true}
         column
         styles={{
-          padding: '.8rem 0 .5rem .5rem'
+          padding: '.8rem 0 .5rem 1rem'
         }}
       >
         <Flex.Item
           styles={{
-            padding: '.8rem 0 .5rem .5rem'
+            padding: '.8rem 0 .5rem 1rem'
           }}
         >
           <Text weight="bold" content="Discount Claim Created!" />
@@ -225,7 +225,7 @@ export const Approval = () => {
 
         <Flex.Item
           styles={{
-            padding: '.8rem 0 .5rem .5rem'
+            padding: '.8rem 0 .5rem 1rem'
           }}
         >
           <div>
@@ -247,7 +247,7 @@ export const Approval = () => {
 
         <Flex.Item
           styles={{
-            padding: '.5rem 0 0 .5rem'
+            padding: '.5rem 0 0 1rem'
           }}
         >
           <Form onSubmit={handleSubmit}>
@@ -257,7 +257,7 @@ export const Approval = () => {
 
         <Flex.Item
           styles={{
-            padding: '.8rem 0 .8rem .5rem'
+            padding: '.8rem 0 .8rem 1rem'
           }}
         >
           <Text size="smaller" content="(C) Copyright Beep|SUTD" />

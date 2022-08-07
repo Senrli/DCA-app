@@ -333,6 +333,7 @@ export const Claims = () => {
         </Flex.Item>
         <Flex.Item
           styles={{
+            // top right bottom left
             padding: '.8rem 0 .8rem .5rem'
           }}
         >
