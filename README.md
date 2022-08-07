@@ -34,6 +34,7 @@ Upon receiving a claim for approval, open the form, fill up any necessary detail
 
 ## Proposed Solution
 Mount Elizabeth Hospital often struggle to have an efficient and smooth discount claim approval process causing them to take a significantly longer time to complete the process. Therefore, our group has decided to deliver a tool that can automate the submission of discount requests to streamline BO's operations and allow approvals to be viewed and given on the go via the Microsoft Teams mobile app, with the ability to synchronize records on the existing platform.
+
 ![Sequence Diagram](https://github.com/Senrli/DCA-app/blob/main/img/Teams%20Bot%20Sequence%20Diagram.svg)
 
 ## Set Up and Requirements
