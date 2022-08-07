@@ -21,6 +21,8 @@ import * as mongoose from 'mongoose';
 // eslint-disable-next-line import/first
 import * as allComponents from './TeamsAppsComponents';
 import TeamsBotPocYeomanBot from './teamsBotPocYeomanBot/TeamsBotPocYeomanBot';
+import userRoutes from './db/routes/userRoutes';
+import conversationRoutes from './db/routes/conversationRoutes';
 // Initialize debug logging module
 const log = debug('msteams');
 
@@ -33,7 +35,7 @@ require('dotenv').config();
 const express = Express();
 const port = process.env.port || process.env.PORT || 3007;
 mongoose.connect(
-  "mongodb://127.0.0.1:27017/teamsDb",
+  "mongodb://beep:beepbeep123@mongodb//127.0.0.1:27017//teamsDb",
 );
 // Create router for the bot services
 const router = Express.Router();
@@ -89,6 +91,8 @@ express.set('port', port);
 
 // Set the endpoints for the bot
 router.use('/', TeamsBotPocYeomanBot.router);
+router.use('/', userRoutes.router);
+router.use('/', conversationRoutes.router);
 
 // Start the webserver
 http.createServer(express).listen(port, () => {

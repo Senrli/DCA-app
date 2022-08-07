@@ -7,5 +7,5 @@ export * from './teamsBotPocYeomanBot/TeamsBotPocYeomanBot';
 // Automatically added for the teamsPocTab gform tab
 export * from './teamsPocTab/GForm';
 
-export * from  './db/routes/conversationRoutes'
-export * from  './db/routes/userRoutes'
+export * from  './db/routes/conversationRoutes';
+export * from  './db/routes/userRoutes';

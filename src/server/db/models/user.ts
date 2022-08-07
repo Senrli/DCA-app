@@ -5,4 +5,5 @@ const Schema = mongoose.Schema;
   userState: { type: Schema.Types.Mixed }
 });
 
-export const User = mongoose.model("User", UserSchema);
+export const User = mongoose.model("User", UserSchema,"users");
+

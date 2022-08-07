@@ -7,7 +7,7 @@ const router = express.Router();
 
 /**Returns conversation reference
  */ 
-router.get("/conversations", async (req, res) => {
+router.get("/api/conversations", async (req, res) => {
   const id = req.params.id;
   console.log("retrieve conv")
   const conversations = await conversationModel.find({"conversationState.user.aadObjectId": id});
@@ -20,7 +20,7 @@ router.get("/conversations", async (req, res) => {
 });
 
 /** Delete conversation entry */
-router.delete("/conversations", async (req, res) => {
+router.delete("/api/conversations", async (req, res) => {
   console.log("delete convo")
   const id = req.params.id;
   try {
@@ -33,7 +33,7 @@ router.delete("/conversations", async (req, res) => {
 });
 
 /** Create conversation entry */
-router.post("/conversations", async (req, res) => {
+router.post("/api/conversations", async (req, res) => {
   
   const conversation = new conversationModel(req.body);
 
@@ -46,7 +46,7 @@ router.post("/conversations", async (req, res) => {
 });
 
 /** Update conversation entry */
-router.patch("/conversations", async (req, res) => {
+router.patch("/api/conversations", async (req, res) => {
   const id = req.params.id;
   const conversations = await conversationModel.find({"conversationState.user.aadObjectId": id});
 
