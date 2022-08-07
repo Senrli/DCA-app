@@ -23,7 +23,7 @@ According to the discount quantum at Mount Elizabeth Hospital (MEH), a Discount 
 - Ability to upload files on Teams App which will be attached to that particular form.
 - Dashboard to be able to see the state of all ongoing discount claim requests.
 
-<"insert usecase diagram">
+![Use Case Diagram](https://github.com/Senrli/DCA-app/blob/main/img/Teams%20Bot%20Use%20Case%20Diagram%20.svg)
 
 ## Discount Claim Flow
 Requestor:
@@ -36,12 +36,7 @@ Upon receiving a claim for approval, open the form, fill up any necessary detail
 Mount Elizabeth Hospital often struggle to have an efficient and smooth discount claim approval process causing them to take a significantly longer time to complete the process. Therefore, our group has decided to deliver a tool that can automate the submission of discount requests to streamline BO's operations and allow approvals to be viewed and given on the go via the Microsoft Teams mobile app, with the ability to synchronize records on the existing platform.
 <"insert sequential diagram">
 
-## Set Up
-
-### First Installation 
-# teams bot poc yeoman - Microsoft Teams App
-
-### Requirements
+## Set Up and Requirements
 Please install the following packages:
 
 Dependencies
