@@ -12,3 +12,6 @@ export * from './Claims/Generate';
 
 // Added for Approval page
 export * from './Claims/Approval';
+
+export * from './db/routes/conversationRoutes';
+export * from './db/routes/userRoutes';

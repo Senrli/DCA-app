@@ -20,6 +20,11 @@ In collaboration with Beep and Mount Elizabeth Hospital
 ### First Installation 
 Please install the following packages:
 
+Dependencies
+``` bash
+npm install
+```
+
 Yeoman Generator 
 ``` bash
 npm i -g yo
@@ -35,6 +40,8 @@ MS Teams Generator for Yeoman
 npm i -g generator-teams
 ```
 
+Run 
+
 Duplicate <code>.env.example</code> file as <code>.env</code> at root folder
 
 Populate <code>NGROK_AUTH</code> field with your NGROK_AUTH code
@@ -44,21 +51,6 @@ Gulp
 *Ensure you are not on SUTD_Wifi
 ``` bash
 gulp start-ngrok
-```
-
-Obtain [NGROK] PUBLIC_HOSTNAME such as: <code>9c08-122-11-212-135.ap.ngrok.io</code>
-
-Copy this into .env file in the following fields:
-``` bash
-PUBLIC_HOSTNAME={PUBLIC_HOSTNAME}
-TAB_APP_URI=api://{PUBLIC_HOSTNAME}/10ffefdd-0fe2-4f6b-8560-0774b80b54d2
-```
-
-for example,
-``` bash
-PUBLIC_HOSTNAME=9c08-122-11-212-135.ap.ngrok.io
-...
-TAB_APP_URI=api://9c08-122-11-212-135.ap.ngrok.io/10ffefdd-0fe2-4f6b-8560-0774b80b54d2
 ```
 
 To deploy bot:
@@ -78,6 +70,23 @@ To deploy teams:
 - From the left side panel select `App registrations`
 - Select the app inside (`teams-bot-poc-yeoman`) followed by `Expose an API`
 - On top of the page, change Application ID URI to the current ngrok URL, format being: `api://<ngrok-address>/<teams-app-UUID(no need to change)>`. Click Save Upon changes:
+
+
+Obtain [NGROK] PUBLIC_HOSTNAME such as: <code>9c08-122-11-212-135.ap.ngrok.io</code>
+
+Copy this into .env file in the following fields:
+``` bash
+PUBLIC_HOSTNAME={PUBLIC_HOSTNAME}
+TAB_APP_URI=api://{PUBLIC_HOSTNAME}/10ffefdd-0fe2-4f6b-8560-0774b80b54d2
+```
+
+for example,
+``` bash
+PUBLIC_HOSTNAME=9c08-122-11-212-135.ap.ngrok.io
+...
+TAB_APP_URI=api://9c08-122-11-212-135.ap.ngrok.io/10ffefdd-0fe2-4f6b-8560-0774b80b54d2
+```
+
 
 Then in a new terminal
 ``` bash

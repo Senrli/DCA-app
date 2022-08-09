@@ -6,6 +6,7 @@ import { MsTeamsApiRouter, MsTeamsPageRouter } from 'express-msteams-host';
 import debug from 'debug';
 import dotenv from 'dotenv';
 import compression from 'compression';
+import mongoose from 'mongoose';
 
 // import {
 //   CardFactory,
@@ -23,6 +24,8 @@ import * as allComponents from './TeamsAppsComponents';
 import TeamsBotPocYeomanBot from './teamsBotPocYeomanBot/TeamsBotPocYeomanBot';
 import app from './app/app';
 
+import userRoutes from './db/routes/userRoutes';
+import conversationRoutes from './db/routes/conversationRoutes';
 // Initialize debug logging module
 const log = debug('msteams');
 
@@ -34,7 +37,7 @@ dotenv.config();
 // Create the Express webserver
 const express = Express();
 const port = process.env.port || process.env.PORT || 3007;
-
+mongoose.connect('mongodb://beep:beepbeep123@mongodb//127.0.0.1:27017//teamsDb');
 // Create router for the bot services
 const router = Express.Router();
 
@@ -89,6 +92,8 @@ express.set('port', port);
 
 // Set the endpoints for the bot
 router.use('/bot', TeamsBotPocYeomanBot.router);
+router.use('/', userRoutes.router);
+router.use('/', conversationRoutes.router);
 
 // Set the endpoints for the app backend
 router.use('/app', app.router);
