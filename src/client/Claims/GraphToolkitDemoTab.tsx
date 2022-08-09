@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
-import { Person, PeoplePicker, TeamsChannelPicker, Tasks, ViewType, Todo, People, Agenda, File } from '@microsoft/mgt-react';
+import { Person, PeoplePicker, TeamsChannelPicker, Tasks, ViewType, Todo, People, Agenda, File, FileList, Login, PersonViewType } from '@microsoft/mgt-react';
 
 export const GraphToolkitDemoTab = () => {
   const [{ inTeams, theme, context }] = useTeams();
@@ -22,7 +22,8 @@ export const GraphToolkitDemoTab = () => {
     authPopupUrl: `https://${process.env.PUBLIC_HOSTNAME as string}/tabauth.html`,
     scopes: ['.default'],
     ssoUrl: `https://${process.env.PUBLIC_HOSTNAME as string}/app/token`,
-    httpMethod: HttpMethod.POST
+    httpMethod: HttpMethod.POST,
+    autoConsent: false
   });
 
   useEffect(() => {
@@ -70,14 +71,15 @@ export const GraphToolkitDemoTab = () => {
           }}
         >
           <div>
-            <Person person-query="me" view={ViewType.twolines} person-card="click" show-presence></Person>
+            <Person person-query="me" view={PersonViewType.twolines} person-card="click" show-presence></Person>
             <PeoplePicker></PeoplePicker>
             <TeamsChannelPicker></TeamsChannelPicker>
             <Tasks></Tasks>
-            <Agenda group-by-day></Agenda>
+            <Agenda />
             <People show-presence></People>
             <Todo></Todo>
             <File></File>
+            <FileList></FileList>
           </div>
         </Flex.Item>
         <Flex.Item

@@ -84,7 +84,7 @@ async function getAccessTokenOnBehalfOf(req: Request, res: Response): Promise<vo
 
   const scopeExtracted = ['.default'];
   log(`SCOPES: ${JSON.stringify(req.body.scopes)}`);
-  log(typeof req.body.scopes);
+  // log(typeof req.body.scopes);
   try {
     const result = await msalClient.acquireTokenOnBehalfOf({
       authority: `https://login.microsoftonline.com/${jwtDecode<any>(ssoToken).tid}`,
