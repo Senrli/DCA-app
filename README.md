@@ -2,22 +2,42 @@
 In collaboration with Beep and Mount Elizabeth Hospital
 
 ## Problem Statement
-<"insert text here">
+According to the discount quantum at Mount Elizabeth Hospital (MEH), a Discount Claim request will be raised by Business Office (BO) staff to corresponding levels of authority for verification and approval. Currently, the request submission sequence up the hierarchy is manual, requiring BO staff to manually route the discount claim request to the next level of authority. Messenger applications such as WhatsApp are used to remind BO staff to fill in their portion of the discount claim form throughout the approval process. The approval process is also not mobile-friendly as the existing platform is limited to a desktop-accessible browser which is also a factor that causes the delay in approvals. Typically, the actual request for approval is first handled informally to completion, before it is entered into the platform for audit records.
+
+
+## Project Structure
+```client:``` contains clients side TypeScript code
+
+```manifest:``` contains the Microsoft Teams App manifest and icons
+
+```public:``` contains static web site files
+
+```server: ```contains server side code
+
+## 
 
 ## Requirements
-<"insert text here">
-<"insert usecase diagram">
+- Indicate the discount claim amount and generate the relevant discount claim form.
+- Render iframe in Teams App to be able to show the discount claim form and fill in relevant details.
+- Notify the next level of authority in the hierarchy that is required to fill in the form.
+- Ability to upload files on Teams App which will be attached to that particular form.
+- Dashboard to be able to see the state of all ongoing discount claim requests.
+
+![Use Case Diagram](https://github.com/Senrli/DCA-app/blob/main/img/Teams%20Bot%20Use%20Case%20Diagram.svg)
 
 ## Discount Claim Flow
-<"insert text here">
+Requestor:
+To make a discount claim, navigate to the Claims tab in the Discount Claim App and create a claim. Key in claimed amount, and then fill up the details in the respective form. Afterwards, send the form to the respective approver.
+
+Approver:
+Upon receiving a claim for approval, open the form, fill up any necessary details, and approve, reject or forward to the next approver.
 
 ## Proposed Solution
-<"insert text here">
-<"insert sequential diagram">
+Mount Elizabeth Hospital often struggle to have an efficient and smooth discount claim approval process causing them to take a significantly longer time to complete the process. Therefore, our group has decided to deliver a tool that can automate the submission of discount requests to streamline BO's operations and allow approvals to be viewed and given on the go via the Microsoft Teams mobile app, with the ability to synchronize records on the existing platform.
 
-## Set Up
+![Sequence Diagram](https://github.com/Senrli/DCA-app/blob/main/img/Teams%20Bot%20Sequence%20Diagram.svg)
 
-### First Installation 
+## Set Up and Requirements
 Please install the following packages:
 
 Dependencies
@@ -40,13 +60,21 @@ MS Teams Generator for Yeoman
 npm i -g generator-teams
 ```
 
+<<<<<<< HEAD
 Run 
+=======
+Ngrok
+``` bash
+npm i -g ngrok
+```
+Sign up at ngrok.com and obtain the authtoken. Fill up the token in the .env file under NGROK_AUTH
+>>>>>>> main
 
 Duplicate <code>.env.example</code> file as <code>.env</code> at root folder
 
 Populate <code>NGROK_AUTH</code> field with your NGROK_AUTH code
 
-### Local Deployment
+## Deployment
 Gulp
 *Ensure you are not on SUTD_Wifi
 ``` bash
@@ -62,7 +90,10 @@ To deploy bot:
     - Bot handle is any random string identifiable as a handle, between 1 and 35 chars
     - Copy Application (client) ID and paste to “App id” inside Botframework
     - Copy Directory (tenant) ID and paste to “App Tenant ID” inside Botframework
+    - In Azure portal, go to app -> Certificates & secrets. Create new client secret, and paste to "MICROSOFT_APP_PASSWORD" inside Botframework
 - Add a Featured Channel → Microsoft Teams
+
+
 
 To deploy teams:
 - Go to [https://portal.azure.com](http://portal.azure.com) and login using ur E5 credentials. All 4 guest users have been added as owners
@@ -95,16 +126,16 @@ gulp manifest
 gulp serve
 ```
 
+In your browser, login to your Office/Teams account and navigate to your ngrok url. Click on the Teams link to be redirected to the Teams Bot. If debugging the app, you can sideload it:
+1) Click on Apps -> Manage Apps -> Upload App
+2) Choose your teamsbotpocyeoman.zip file which can be found under package folder
+3) Proceed to add the app
+
 ### Docker Deployment
-<"insert text here">
-
-### Requirements
-<"insert list of NPM packages and node modules">
-
-## Code Architecture
-<"insert text maybe diagram here">
-
-## 
+For local debugging of mongodb, deploy the docker container:
+``` bash
+docker -d compose up mongodb
+```
 
 ## Useful Links and Documentation
 * [Debugging with Visual Studio Code](https://github.com/pnp/generator-teams/blob/master/docs/docs/user-guide/vscode.md)
@@ -113,5 +144,8 @@ gulp serve
 * [FluentUI React](https://developer.microsoft.com/en-us/fluentui#/controls/web)
 * [FluentUI Northstar](https://fluentsite.z22.web.core.windows.net/)
 
+<<<<<<< HEAD
 
 Generated Using Yo Teams Yeoman Microsoft Teams Apps generator
+=======
+>>>>>>> main
