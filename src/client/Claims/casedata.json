@@ -1,0 +1,47 @@
+{
+    "caseId": "3c77253b-44a2-4349-a963-93d97e991466",
+    "caseNo": 287,
+    "caseTemplateId": "q0y5rdmiml",
+    "entityCode": "B7427675",
+    "created": {
+      "id": "d60a4662-9ceb-49b8-92c5-1644719f7fea",
+      "userId": "f12129be-3233-4eda-bce5-f5121ef2338a",
+      "userName": "B7427675_VERIFORM_API_USER",
+      "userRole": "doctor",
+      "description": "Case instance created",
+      "timestamp": {
+        "$date": {
+          "$numberLong": "1659691774910"
+        }
+      },
+    },
+    "updated": {
+      "id": "d60a4662-9ceb-49b8-92c5-1644719f7fea",
+      "userId": "f12129be-3233-4eda-bce5-f5121ef2338a",
+      "userName": "B7427675_VERIFORM_API_USER",
+      "userRole": "doctor",
+      "description": "Case instance created",
+      "timestamp": {
+        "$date": {
+          "$numberLong": "1659691774910"
+        }
+      },
+    },
+    "forms": [
+      {
+        "formId": "gbdpf8CqUK",
+        "formTemplateId": "h2NFZtSfc-",
+        "title": "Discount Form (Up to $1500)",
+        "status": "PENDING",
+      }
+    ],
+    "responses": [
+      {
+        "responseId": "34m6jEXTKe",
+        "formId": "gbdpf8CqUK",
+      }
+    ],
+    "variables": [],
+    "patientDid": "",
+  }
+   

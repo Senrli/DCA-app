@@ -7,7 +7,18 @@ import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
-import { Person, PeoplePicker, TeamsChannelPicker, Tasks, ViewType, Todo, People, Agenda, File, FileList, Login, PersonViewType } from '@microsoft/mgt-react';
+import {
+  Person,
+  PeoplePicker,
+  TeamsChannelPicker,
+  Tasks,
+  Todo,
+  People,
+  Agenda,
+  File,
+  FileList,
+  PersonViewType
+} from '@microsoft/mgt-react';
 
 export const GraphToolkitDemoTab = () => {
   const [{ inTeams, theme, context }] = useTeams();

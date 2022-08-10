@@ -25,7 +25,7 @@ export const Claims = () => {
         } as authentication.AuthTokenRequestParameters)
         .then((token) => {
           const decoded: { [key: string]: any } = jwtDecode(token) as { [key: string]: any };
-          setName(decoded!.name);
+          setName(decoded.name);
           app.notifySuccess();
         })
         .catch((message) => {
@@ -107,6 +107,24 @@ export const Claims = () => {
   function handleRowClick(index) {
     alert(`OnClick on the row ${index} executed.`);
   }
+
+  const menuCell = {
+    content: (
+      <MenuButton
+        trigger={<Button icon={<MoreIcon />} text iconOnly aria-label="Click button" />}
+        pointing
+        menu={[
+          { content: 'Upload and attach', onClick: () => console.log('1 called!') },
+          { content: 'Attach from repository', onClick: () => console.log('1 called!') },
+          { content: 'View attachments', onClick: () => console.log('1 called!') }
+        ]}
+        on="click"
+      />
+    ),
+    onClick: (e) => {
+      e.stopPropagation();
+    }
+  };
 
   const checkBoxCell = {
     content: <Checkbox></Checkbox>,
@@ -195,7 +213,7 @@ export const Claims = () => {
         { content: 'Robert Tan, BO Novena', key: '1-4' },
         { content: 'Dr John Low, Novena', key: '1-5' },
         { key: '1-6', ...pendingCell },
-        { key: '1-7', ...moreOptionCell }
+        { key: '1-7', ...menuCell }
       ],
       onClick: () => handleRowClick(1),
       'aria-labelledby': 'name-1 age-1',
