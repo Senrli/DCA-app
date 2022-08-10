@@ -6,9 +6,6 @@ import { app, authentication, dialog } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 import { gridNestedBehavior, gridCellWithFocusableElementBehavior, gridCellMultipleFocusableBehavior } from '@fluentui/accessibility';
 
-/**
- * Implementation of the teams poc Tab content page
- */
 export const Claims = () => {
   const [{ inTeams, theme, context }] = useTeams();
   const [entityId, setEntityId] = useState<string | undefined>();
@@ -87,21 +84,30 @@ export const Claims = () => {
       title: `VeriformTypeC`
     };
 
+    const approvalDialog = {
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/approval.html`,
+      size: { height: 768, width: 1024 },
+      title: `Submit Discount Claim for Approval`
+    }
+
+    const seekApproval = (response) => {        
+      dialog.open(approvalDialog);
+    }
+
     const submitHandler = (response) => {
       setDiscountClaimAmount(response.result.amount);
       if (discountClaimAmount <= 1500) {
-        dialog.open(redirectVeriformTypeA);
+        dialog.open(redirectVeriformTypeA, seekApproval);
       } else if (discountClaimAmount <= 5000) {
-        dialog.open(redirectVeriformTypeB);
+        dialog.open(redirectVeriformTypeB, seekApproval);
       } else if (discountClaimAmount <= 15000) {
-        dialog.open(redirectVeriformTypeC);
+        dialog.open(redirectVeriformTypeC, seekApproval);
       } else {
-        dialog.open(redirectVeriformTypeD);
+        dialog.open(redirectVeriformTypeD, seekApproval);
       }
     };
 
     dialog.open(generateFormURLDialogInfo, submitHandler);
-    // dialog.submit();
   }
 
   function handleRowClick(index) {
@@ -345,6 +351,7 @@ export const Claims = () => {
         </Flex.Item>
         <Flex.Item
           styles={{
+            // top right bottom left
             padding: '.8rem 0 .8rem .5rem'
           }}
         >

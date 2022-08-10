@@ -5,7 +5,7 @@ import { IBasePickerSuggestionsProps, NormalPeoplePicker, ValidationState } from
 import { people, mru } from '@fluentui/example-data';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
-import { app, authentication } from '@microsoft/teams-js';
+import { app, authentication, dialog } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 import { Providers } from '@microsoft/mgt-element';
 import { TeamsMsal2Provider, HttpMethod } from '@microsoft/mgt-teams-msal2-provider';
@@ -58,8 +58,6 @@ export const Approval = () => {
     ssoUrl: `https://${process.env.PUBLIC_HOSTNAME as string}/app/token`,
     httpMethod: HttpMethod.POST
   });
-
-  const picker = React.useRef(null);
 
   useEffect(() => {
     if (inTeams === true) {
@@ -201,11 +199,11 @@ export const Approval = () => {
   }
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     // const dialogOutput = {
     //   amount: event.target.discountClaimAmount.value
     // };
-    // dialog.submit(dialogOutput);
+    dialog.submit();
   };
 
   return (
@@ -214,12 +212,12 @@ export const Approval = () => {
         fill={true}
         column
         styles={{
-          padding: '.8rem 0 .5rem .5rem'
+          padding: '.8rem 0 .5rem 1rem'
         }}
       >
         <Flex.Item
           styles={{
-            padding: '.8rem 0 .5rem .5rem'
+            padding: '.8rem 0 .5rem 1rem'
           }}
         >
           <Text weight="bold" content="Discount Claim Created!" />
@@ -227,32 +225,12 @@ export const Approval = () => {
 
         <Flex.Item
           styles={{
-            padding: '.8rem 0 .5rem .5rem'
+            padding: '.8rem 0 .5rem 1rem'
           }}
         >
           <div>
             <div>
               <Text content="Please select approvers for this case." />
-              {/* <NormalPeoplePicker
-                onResolveSuggestions={onFilterChanged}
-                onEmptyInputFocus={returnMostRecentlyUsed}
-                getTextFromItem={getTextFromItem}
-                pickerSuggestionsProps={suggestionProps}
-                className={'ms-PeoplePicker'}
-                key={'normal'}
-                onRemoveSuggestion={onRemoveSuggestion}
-                onValidateInput={validateInput}
-                selectionAriaLabel={'Selected contacts'}
-                removeButtonAriaLabel={'Remove'}
-                inputProps={{
-                  onBlur: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onBlur called'),
-                  onFocus: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onFocus called'),
-                  'aria-label': 'People Picker'
-                }}
-                componentRef={picker}
-                onInputChange={onInputChange}
-                resolveDelay={300}
-              /> */}
               <PeoplePicker></PeoplePicker>
             </div>
             {error && (
@@ -269,7 +247,7 @@ export const Approval = () => {
 
         <Flex.Item
           styles={{
-            padding: '.5rem 0 0 .5rem'
+            padding: '.5rem 0 0 1rem'
           }}
         >
           <Form onSubmit={handleSubmit}>
@@ -279,7 +257,7 @@ export const Approval = () => {
 
         <Flex.Item
           styles={{
-            padding: '.8rem 0 .8rem .5rem'
+            padding: '.8rem 0 .8rem 1rem'
           }}
         >
           <Text size="smaller" content="(C) Copyright Beep|SUTD" />

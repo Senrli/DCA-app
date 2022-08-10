@@ -161,12 +161,12 @@ export const Veriform = () => {
         fill={true}
         column
         styles={{
-          padding: '.8rem 0 .5rem .5rem'
+          padding: '.8rem 0 .5rem 1rem'
         }}
       >
         <Flex.Item
           styles={{
-            padding: '.8rem 0 .5rem .5rem'
+            padding: '.8rem 0 .5rem 1rem'
           }}
         >
           <div>
@@ -194,7 +194,7 @@ export const Veriform = () => {
         </Flex.Item>
         <Flex.Item
           styles={{
-            padding: '.8rem 0 .8rem .5rem'
+            padding: '.8rem 0 .8rem 1rem'
           }}
         >
           <Text size="smaller" content="(C) Copyright Beep|SUTD" />
