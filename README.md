@@ -60,15 +60,11 @@ MS Teams Generator for Yeoman
 npm i -g generator-teams
 ```
 
-<<<<<<< HEAD
-Run 
-=======
 Ngrok
 ``` bash
 npm i -g ngrok
 ```
 Sign up at ngrok.com and obtain the authtoken. Fill up the token in the .env file under NGROK_AUTH
->>>>>>> main
 
 Duplicate <code>.env.example</code> file as <code>.env</code> at root folder
 
@@ -144,8 +140,3 @@ docker -d compose up mongodb
 * [FluentUI React](https://developer.microsoft.com/en-us/fluentui#/controls/web)
 * [FluentUI Northstar](https://fluentsite.z22.web.core.windows.net/)
 
-<<<<<<< HEAD
-
-Generated Using Yo Teams Yeoman Microsoft Teams Apps generator
-=======
->>>>>>> main
