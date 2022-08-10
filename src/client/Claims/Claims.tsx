@@ -61,25 +61,25 @@ export const Claims = () => {
     };
 
     const redirectVeriformTypeA = {
-      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriforma.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeA`
     };
 
     const redirectVeriformTypeB = {
-      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriformb.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeB`
     };
 
     const redirectVeriformTypeC = {
-      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriformc.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeC`
     };
 
     const redirectVeriformTypeD = {
-      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriform.html`,
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriformd.html`,
       size: { height: 768, width: 1024 },
       title: `VeriformTypeC`
     };

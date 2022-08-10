@@ -5,7 +5,7 @@ import { useTeams } from 'msteams-react-base-component';
 import { app, authentication, dialog } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 
-export const Veriform = () => {
+export const VeriformB = () => {
   const [{ inTeams, theme, context }] = useTeams();
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
@@ -175,7 +175,7 @@ export const Veriform = () => {
               <iframe
                 width="960px"
                 height="768px"
-                src="https://forms.office.com/Pages/ResponsePage.aspx?id=KTd0xeeDiU-SqN8X4R2MC5_IrrSpBBdPjHngAWsYFchUMjlHOTZYWUJMT0NaNFJTSkpMTzcxWEFaRi4u&embed=true"
+                src="https://forms.office.com/Pages/ResponsePage.aspx?id=KTd0xeeDiU-SqN8X4R2MC5_IrrSpBBdPjHngAWsYFchUQVpHUDgzV040VU5aTTBFVTlCWDdOTjJLTS4u&embed=true"
                 frameBorder="0"
                 style={{
                   border: 'none'

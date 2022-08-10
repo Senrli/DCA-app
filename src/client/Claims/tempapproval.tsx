@@ -33,7 +33,7 @@ export const Approval = () => {
         } as authentication.AuthTokenRequestParameters)
         .then((token) => {
           const decoded: { [key: string]: any } = jwtDecode(token) as { [key: string]: any };
-          setName(decoded!.name);
+          setName(decoded.name);
           app.notifySuccess();
         })
         .catch((message) => {
@@ -196,15 +196,15 @@ export const Approval = () => {
     return text.toLowerCase().indexOf(filterText.toLowerCase()) === 0;
   }
 
-  function removeDuplicates(personas: IPersonaProps[], possibleDupes: IPersonaProps[]) {
-    return personas.filter((persona) => !listContainsPersona(persona, possibleDupes));
-  }
-
   function listContainsPersona(persona: IPersonaProps, personas: IPersonaProps[]) {
     if (!personas || !personas.length || personas.length === 0) {
       return false;
     }
     return personas.filter((item) => item.text === persona.text).length > 0;
+  }
+
+  function removeDuplicates(personas: IPersonaProps[], possibleDupes: IPersonaProps[]) {
+    return personas.filter((persona) => listContainsPersona(persona, possibleDupes));
   }
 
   function convertResultsToPromise(results: IPersonaProps[]): Promise<IPersonaProps[]> {

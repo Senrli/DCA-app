@@ -12,8 +12,17 @@ export * from './Claims/Claims';
 // Added for Generate Dialog
 export * from './Claims/Generate';
 
-// Added for Generate Dialog
-export * from './Claims/Veriform';
+// Added for Veriform Tier A
+export * from './Claims/VeriformA';
+
+// Added for Veriform Tier B
+export * from './Claims/VeriformB';
+
+// Added for Veriform Tier C
+export * from './Claims/VeriformC';
+
+// Added for Veriform Tier D
+export * from './Claims/VeriformD';
 
 // Added for Approval Dialog
 export * from './Claims/Approval';
