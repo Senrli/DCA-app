@@ -8,28 +8,23 @@ import {
   UserState,
   ConfigurationServiceClientCredentialFactory,
   createBotFrameworkAuthenticationFromConfiguration,
-  CloudAdapter
+  CloudAdapter,
+  Attachment
 } from 'botbuilder';
 import { MessageBot } from './messageBot';
 // import { MainDialog } from './dialogs/mainDialog';
 // import WelcomeCard from './cards/welcomeCard';
 
 import DiscountClaimRequestCard from './cards/discountClaimRequestCard';
-
+import { MongoDBStorage } from './repo/mongoDBStorage';
+import { queryUserbyId } from '../repo/endpoints/user';
 // Initialize debug logging module
 const log = debug('msteams');
 
-/**
- * Implementation for teams bot poc yeoman Bot
- */
-// @BotDeclaration(
-//   '/api/messages',
-//   new MemoryStorage(),
-//   // eslint-disable-next-line no-undef
-//   process.env.MICROSOFT_APP_ID,
-//   // eslint-disable-next-line no-undef
-//   process.env.MICROSOFT_APP_PASSWORD
-// )
+const dbName = 'teamsDB';
+const collectionName = 'bot';
+log('Bot: Connecting to mongoDB...');
+const botStorage = new MongoDBStorage(process.env.MONGODB_URL, dbName, collectionName);
 
 // Initialize the credentials
 const credentialsFactory = new ConfigurationServiceClientCredentialFactory({
@@ -67,47 +62,69 @@ adapter.onTurnError = onTurnErrorHandler;
 // Define a state store for your bot. See https://aka.ms/about-bot-state to learn more about using MemoryStorage.
 // A bot requires a state store to persist the dialog and user state between messages.
 // eslint-disable-next-line prefer-const
-let conversationState: ConversationState;
-let userState: UserState;
+// let conversationState: ConversationState;
+// let userState: UserState;
 
 // For local development, in-memory storage is used.
 // CAUTION: The Memory Storage used here is for local bot debugging only. When the bot
 // is restarted, anything stored in memory will be gone.
 // TODO: Add server endpoints
-const memoryStorage = new MemoryStorage();
-conversationState = new ConversationState(memoryStorage);
-// eslint-disable-next-line prefer-const
-userState = new UserState(memoryStorage);
+// const memoryStorage = new MemoryStorage();
+const conversationState = new ConversationState(botStorage);
+const userState = new UserState(botStorage);
 
 const myBot = new MessageBot(conversationState, userState);
 
 // Initialize router for express
 const router = express.Router();
 
+const sendProactiveMessage = async (userId: string, attachments: [Attachment]) => {
+  const userData = await queryUserbyId(userId);
+
+  // const activityId = conversationState[userData.conversationReference.conversation.id];
+
+  // userData.conversationReference.activityId = activityId;
+
+  const reference = JSON.parse(JSON.stringify(userData.conversationReference));
+  log(`conversationPreference::: ${reference}`);
+  log(`type `);
+  try {
+    await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, reference, async (context) => {
+      log('context::::::');
+      log(JSON.stringify(context));
+      await context.sendActivity({ attachments });
+    });
+  } catch (err) {
+    log('sendProactivemessage failed', err.stack);
+  }
+};
+
 router.post('/notify', async (req, res) => {
   const discountClaimRequestCard = CardFactory.adaptiveCard(DiscountClaimRequestCard);
-  const userId = req.body.userId;
-  log(userId);
-  log('state:::::::');
-  log(JSON.stringify(conversationState));
+  // log(req.body);
+  // const userId = req.body.userId;
+  // log(userId);
+  // log('state:::::::');
+  // log(JSON.stringify(conversationState));
   // Strip the keys 'namespace' and 'storage' from the output
-  const conversationStateStripped = JSON.parse(JSON.stringify(conversationState));
-  ['namespace', 'storage'].forEach((e) => delete conversationStateStripped[e]);
-  log(JSON.stringify(conversationState));
-  // Loop through the list of users
-  for (const conversationReference of Object.values(conversationStateStripped)) {
-    // eslint-disable-next-line dot-notation
-    if (conversationReference['user'].aadObjectId === userId) {
-      await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, conversationReference, async (context) => {
-        await context.sendActivity({ attachments: [discountClaimRequestCard] });
-      });
-    }
-  }
+  // const conversationStateStripped = JSON.parse(JSON.stringify(conversationState));
+  // ['namespace', 'storage'].forEach((e) => delete conversationStateStripped[e]);
+  // log(JSON.stringify(conversationState));
 
-  res.setHeader('Content-Type', 'text/html');
-  res.writeHead(200);
-  res.write('Notification has been sent.');
-  res.end();
+  try {
+    sendProactiveMessage(req.body.userId, [discountClaimRequestCard]).then(() => {
+      res.setHeader('Content-Type', 'text/html');
+      res.writeHead(200);
+      res.write('<html><body><h1>Proactive messages have been sent.</h1></body></html>');
+      res.end();
+    });
+  } catch (err) {
+    log(`POST /notify error ${err.stack}`);
+    res.setHeader('Content-Type', 'text/html');
+    res.writeHead(500);
+    res.write(`<html><body><h1>ERROR: ${err.stack}</h1></body></html>`);
+    res.end();
+  }
 });
 
 router.post('/messages', async (req, res) => {
@@ -115,50 +132,27 @@ router.post('/messages', async (req, res) => {
   await adapter.process(req, res, (context) => myBot.run(context));
 });
 
-// Listen for incoming notifications and send proactive messages to users.
-router.get('/notify', async (req, res) => {
-  // Strip the keys 'namespace' and 'storage' from the output
+// // Listen for incoming notifications and send proactive messages to users.
+// router.get('/notify', async (req, res) => {
+//   // Strip the keys 'namespace' and 'storage' from the output
 
-  const conversationStateStripped = JSON.parse(JSON.stringify(conversationState));
-  ['namespace', 'storage'].forEach((e) => delete conversationStateStripped[e]);
-  log(JSON.stringify(conversationState));
-  // Loop through the list of users
-  for (const conversationReference of Object.values(conversationStateStripped)) {
-    await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, conversationReference, async (context) => {
-      log('context::::::');
-      log(JSON.stringify(context));
-      await context.sendActivity('proactive hello');
-    });
-  }
-  res.setHeader('Content-Type', 'text/html');
-  res.writeHead(200);
-  res.write('<html><body><h1>Proactive messages have been sent.</h1></body></html>');
-  res.end();
-});
-
-// export class TeamsBotPocYeomanBot extends MessageBot {
-//   constructor(conversationState: ConversationState, userState: UserState) {
-//     super(conversationState, userState);
-
-//     this.onMembersAdded(async (context, next) => {
-//       const membersAdded = context.activity.membersAdded;
-//       if (membersAdded && membersAdded.length > 0) {
-//         for (let cnt = 0; cnt < membersAdded.length; cnt++) {
-//           if (membersAdded[cnt].id !== context.activity.recipient.id) {
-//             await this.sendWelcomeCard(context);
-//             log('sent a message');
-//           }
-//         }
-//       }
-//       await next();
+//   const conversationStateStripped = JSON.parse(JSON.stringify(conversationState));
+//   ['namespace', 'storage'].forEach((e) => delete conversationStateStripped[e]);
+//   log(JSON.stringify(conversationState));
+//   // Loop through the list of users
+//   for (const conversationReference of Object.values(conversationStateStripped)) {
+//     log(`get reference: ${JSON.stringify(conversationReference)}`);
+//     await adapter.continueConversationAsync(process.env.MICROSOFT_APP_ID, conversationReference, async (context) => {
+//       log('context::::::');
+//       log(JSON.stringify(context));
+//       await context.sendActivity('proactive hello');
 //     });
 //   }
-
-//   public async sendWelcomeCard(context: TurnContext): Promise<void> {
-//     const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
-//     await context.sendActivity({ attachments: [welcomeCard] });
-//   }
-// }
+//   res.setHeader('Content-Type', 'text/html');
+//   res.writeHead(200);
+//   res.write('<html><body><h1>Proactive messages have been sent.</h1></body></html>');
+//   res.end();
+// });
 
 export default {
   router

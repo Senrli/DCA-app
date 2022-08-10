@@ -18,8 +18,8 @@
     "actions": [
       {
         "type": "Action.OpenUrl",
-        "title": "Discount Claim Form",
-        "url": "https://www.google.com.sg/"
+        "title": "Discount Claim Portal",
+        "url": "https://teams.microsoft.com/l/entity/80869f1a-5a35-4454-8f0d-f5f8d361766b/45003861-1dd6-4cdc-b123-556001aade47/?webUrl=https://9398-18-139-20-216.ap.ngrok.io/claims/?name=%7BloginHint%7D&tenant=%7Btid%7D&theme=%7Btheme%7D"
       }
     ]
   }
