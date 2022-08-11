@@ -20,6 +20,7 @@ import app from './app/app';
 import UserEndpoints from './repo/endpoints/user';
 import ConversationEndpoints from './repo/endpoints/conversation';
 import GraphApiEndpoints from './repo/endpoints/graphapi';
+import ClaimEndpoints from './repo/endpoints/claims';
 
 // Initialize debug logging module
 const log = debug('msteams');
@@ -100,6 +101,7 @@ router.use('/bot', TeamsBotPocYeomanBot.router);
 router.use('/api', UserEndpoints.router);
 router.use('/api', ConversationEndpoints.router);
 router.use('/api', GraphApiEndpoints.router);
+router.use('/api', ClaimEndpoints.router);
 
 // Set the endpoints for the app backend
 router.use('/app', app.router);

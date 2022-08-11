@@ -11,6 +11,13 @@ export interface DocumentData {
   downloadLink: string;
 }
 
+export enum StatusType {
+  PENDING = 'PENDING',
+  REJECTED = 'REJECTED',
+  APPROVED = 'APPROVED',
+  UNKNOWN = 'UNKNOWN'
+}
+
 export interface Claim {
   caseId: string;
   patientName: string;
@@ -18,6 +25,7 @@ export interface Claim {
   creator: ClaimMemberData;
   approver: ClaimMemberData;
   documents: [DocumentData];
+  status: StatusType;
 }
 
 const ClaimMemberDataSchema = new mongoose.Schema(
@@ -43,7 +51,8 @@ const ClaimSchema = new mongoose.Schema({
   requestor: ClaimMemberDataSchema,
   creator: ClaimMemberDataSchema,
   approver: ClaimMemberDataSchema,
-  documents: [DocumentDataSchema]
+  documents: [DocumentDataSchema],
+  status: { type: String, enum: Object.values(StatusType) }
 });
 
 export const ClaimModel = mongoose.model<Claim>('claim', ClaimSchema);

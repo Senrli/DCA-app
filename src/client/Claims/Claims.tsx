@@ -88,11 +88,11 @@ export const Claims = () => {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/approval.html`,
       size: { height: 768, width: 1024 },
       title: `Submit Discount Claim for Approval`
-    }
+    };
 
-    const seekApproval = (response) => {        
+    const seekApproval = (response) => {
       dialog.open(approvalDialog);
-    }
+    };
 
     const submitHandler = (response) => {
       setDiscountClaimAmount(response.result.amount);
@@ -114,15 +114,45 @@ export const Claims = () => {
     alert(`OnClick on the row ${index} executed.`);
   }
 
-  const menuCell = {
+  function handleUpload(caseId: string) {
+    const approvalDialog = {
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/uploadfile.html?caseId=${caseId}`,
+      size: { height: 768, width: 1024 },
+      title: `Upload and attach`
+    };
+
+    dialog.open(approvalDialog);
+  }
+
+  function handleAttach(caseId: string) {
+    const Dialog = {
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/uploadfile.html?caseId=${caseId}`,
+      size: { height: 768, width: 1024 },
+      title: `Attach from repository`
+    };
+
+    dialog.open(Dialog);
+  }
+
+  function handleView(caseId: string) {
+    const Dialog = {
+      url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/uploadfile.html?caseId=${caseId}`,
+      size: { height: 768, width: 1024 },
+      title: `View attachments`
+    };
+
+    dialog.open(Dialog);
+  }
+
+  const menuCell = (caseId: string) => ({
     content: (
       <MenuButton
         trigger={<Button icon={<MoreIcon />} text iconOnly aria-label="Click button" />}
         pointing
         menu={[
-          { content: 'Upload and attach', onClick: () => console.log('1 called!') },
-          { content: 'Attach from repository', onClick: () => console.log('1 called!') },
-          { content: 'View attachments', onClick: () => console.log('1 called!') }
+          { content: 'Upload and attach', onClick: () => handleUpload(caseId) },
+          { content: 'Attach from repository', onClick: () => handleAttach(caseId) },
+          { content: 'View attachments', onClick: () => handleView(caseId) }
         ]}
         on="click"
       />
@@ -130,7 +160,7 @@ export const Claims = () => {
     onClick: (e) => {
       e.stopPropagation();
     }
-  };
+  });
 
   const checkBoxCell = {
     content: <Checkbox></Checkbox>,
@@ -139,6 +169,16 @@ export const Claims = () => {
       e.stopPropagation();
     }
   };
+
+  const statusCell = (StatusType: string, color: string) => ({
+    content: <Label color={`${color}`} content={`${StatusType}`} />,
+    truncateContent: true,
+    accessibility: gridCellWithFocusableElementBehavior,
+    onClick: (e) => {
+      alert('pendingCell clicked');
+      e.stopPropagation();
+    }
+  });
 
   const pendingCell = {
     content: <Label color={'yellow'} content={'Pending'} />,
@@ -208,6 +248,8 @@ export const Claims = () => {
 
   const contextMenuItems = ['Add to selection', 'Remove', 'Download'];
 
+  function generateTable() {}
+
   const rowsPlain = [
     {
       key: 1,
@@ -219,7 +261,7 @@ export const Claims = () => {
         { content: 'Robert Tan, BO Novena', key: '1-4' },
         { content: 'Dr John Low, Novena', key: '1-5' },
         { key: '1-6', ...pendingCell },
-        { key: '1-7', ...menuCell }
+        { key: '1-7', ...menuCell('0') }
       ],
       onClick: () => handleRowClick(1),
       'aria-labelledby': 'name-1 age-1',
@@ -237,7 +279,7 @@ export const Claims = () => {
         { content: 'Robert Tan, BO Novena', key: '2-4' },
         { content: 'Dr John Low, Novena', key: '1-5' },
         { key: '2-6', ...rejectedCell },
-        { key: '2-7', ...moreOptionCell }
+        { key: '2-7', ...menuCell('0') }
       ],
       onClick: () => handleRowClick(2),
       children: (Component, { key, ...rest }) => (
@@ -254,7 +296,7 @@ export const Claims = () => {
         { content: 'Robert Tan, BO Novena', key: '3-4' },
         { content: 'Dr John Low, Novena', key: '3-5' },
         { key: '3-6', ...approvedCell },
-        { key: '3-7', ...moreOptionCell }
+        { key: '3-7', ...menuCell('0') }
       ],
       onClick: () => handleRowClick(3),
       children: (Component, { key, ...rest }) => (
@@ -271,7 +313,7 @@ export const Claims = () => {
         { content: 'Robert Tan, BO Novena', key: '4-4' },
         { content: 'Dr John Low, Novena', key: '4-5' },
         { key: '4-6', ...approvedCell },
-        { key: '4-7', ...moreOptionCell }
+        { key: '4-7', ...menuCell('0') }
       ],
       onClick: () => handleRowClick(3),
       children: (Component, { key, ...rest }) => (
@@ -288,7 +330,7 @@ export const Claims = () => {
         { content: 'Robert Tan, BO Novena', key: '5-4' },
         { content: 'Dr John Low, Novena', key: '5-5' },
         { key: '5-6', ...approvedCell },
-        { key: '5-7', ...moreOptionCell }
+        { key: '5-7', ...menuCell('0') }
       ],
       onClick: () => handleRowClick(3),
       children: (Component, { key, ...rest }) => (

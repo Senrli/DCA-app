@@ -63,7 +63,7 @@ router.delete('/users', async (req, res) => {
 });
 
 /** Create new user entry */
-router.post('/api/users', async (req: Request<unknown, unknown, User>, res) => {
+router.post('/users', async (req: Request<unknown, unknown, User>, res) => {
   log('Create users');
   try {
     const newUser = await createNewUser(req.body);
@@ -76,7 +76,7 @@ router.post('/api/users', async (req: Request<unknown, unknown, User>, res) => {
 });
 
 /** Update user entry */
-router.patch('/api/users', async (req: Request<unknown, unknown, User>, res) => {
+router.patch('/users', async (req: Request<unknown, unknown, User>, res) => {
   log('Update users');
   try {
     const Update = await UpdateUserInfo(req.body);
