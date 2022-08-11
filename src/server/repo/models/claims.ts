@@ -24,7 +24,7 @@ export interface Claim {
   requestor: ClaimMemberData;
   creator: ClaimMemberData;
   approver: ClaimMemberData;
-  documents: [DocumentData];
+  documents?: [DocumentData];
   status: StatusType;
 }
 
@@ -51,7 +51,7 @@ const ClaimSchema = new mongoose.Schema({
   requestor: ClaimMemberDataSchema,
   creator: ClaimMemberDataSchema,
   approver: ClaimMemberDataSchema,
-  documents: [DocumentDataSchema],
+  documents: { type: [DocumentDataSchema], required: false },
   status: { type: String, enum: Object.values(StatusType) }
 });
 

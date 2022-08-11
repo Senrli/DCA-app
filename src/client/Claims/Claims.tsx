@@ -1,16 +1,19 @@
 import * as React from 'react';
-import { Provider, Text, Button, Header, MoreIcon, Table, Flex, MenuButton, FlexItem, Checkbox, Label } from '@fluentui/react-northstar';
+import { Provider, Text, Button, Header, MoreIcon, Table, Flex, MenuButton, FlexItem, Checkbox, Label, ShorthandCollection, TableRowProps } from '@fluentui/react-northstar';
 import { useState, useEffect } from 'react';
 import { useTeams } from 'msteams-react-base-component';
 import { app, authentication, dialog } from '@microsoft/teams-js';
 import jwtDecode from 'jwt-decode';
 import { gridNestedBehavior, gridCellWithFocusableElementBehavior, gridCellMultipleFocusableBehavior } from '@fluentui/accessibility';
+import { decode } from 'jsonwebtoken';
 
 export const Claims = () => {
   const [{ inTeams, theme, context }] = useTeams();
   const [entityId, setEntityId] = useState<string | undefined>();
   const [name, setName] = useState<string>();
   const [error, setError] = useState<string>();
+  const [userId, setUserId] = useState<string>();
+
   let discountClaimAmount;
 
   useEffect(() => {
@@ -23,6 +26,7 @@ export const Claims = () => {
         .then((token) => {
           const decoded: { [key: string]: any } = jwtDecode(token) as { [key: string]: any };
           setName(decoded.name);
+          setUserId(decoded.oid);
           app.notifySuccess();
         })
         .catch((message) => {
@@ -81,7 +85,7 @@ export const Claims = () => {
     const redirectVeriformTypeD = {
       url: `https://${process.env.PUBLIC_HOSTNAME}/Claims/veriformd.html`,
       size: { height: 768, width: 1024 },
-      title: `VeriformTypeC`
+      title: `VeriformTypeD`
     };
 
     const approvalDialog = {
@@ -108,6 +112,21 @@ export const Claims = () => {
     };
 
     dialog.open(generateFormURLDialogInfo, submitHandler);
+  }
+
+  function convertStatustoColor(status: string) {
+    switch (status) {
+      case 'PENDING':
+        return 'yellow';
+      case 'REJECTED':
+        return 'red';
+      case 'APPROVED':
+        return 'green';
+      case 'UNKNOWN':
+        return 'gray';
+      default:
+        return 'gray';
+    }
   }
 
   function handleRowClick(index) {
@@ -170,14 +189,28 @@ export const Claims = () => {
     }
   };
 
-  const statusCell = (StatusType: string, color: string) => ({
-    content: <Label color={`${color}`} content={`${StatusType}`} />,
+  const statusCell = (StatusType: string) => ({
+    content: (
+      <Label
+        color={`${(status: string) => {
+          switch (status) {
+            case 'PENDING':
+              return 'yellow';
+            case 'REJECTED':
+              return 'red';
+            case 'APPROVED':
+              return 'green';
+            case 'UNKNOWN':
+              return 'gray';
+            default:
+              return 'gray';
+          }
+        }}}`}
+        content={`${StatusType}`}
+      />
+    ),
     truncateContent: true,
-    accessibility: gridCellWithFocusableElementBehavior,
-    onClick: (e) => {
-      alert('pendingCell clicked');
-      e.stopPropagation();
-    }
+    accessibility: gridCellWithFocusableElementBehavior
   });
 
   const pendingCell = {
@@ -248,7 +281,43 @@ export const Claims = () => {
 
   const contextMenuItems = ['Add to selection', 'Remove', 'Download'];
 
-  function generateTable() {}
+  async function generateTableContent() {
+    const response = await fetch(`https://${process.env.PUBLIC_HOSTNAME}/api/claims/user`, {
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({ userId }) // body data type must match "Content-Type" header
+    });
+
+    const resData = await response.json();
+
+    const rowsPlain: Partial<ShorthandCollection<TableRowProps>> = [];
+    resData.forEach((row) => {
+      const index = resData.indexOf(row);
+      const rowPlain = {
+        key: `${index + 1}`,
+        items: [
+          { key: `${index + 1}-0`, ...checkBoxCell },
+          { content: `${row.caseId}`, key: `${index + 1}-1` },
+          { content: `${row.patientName}`, key: `${index + 1}-2` },
+          { content: `${row.requestor.displayName}`, key: `${index + 1}-3` },
+          { content: `${row.creator.displayName}`, key: `${index + 1}-4` },
+          { content: `${row.approver.displayName}`, key: `${index + 1}-5` },
+          { key: `${index + 1}-6`, ...statusCell(row.status) },
+          { key: `${index + 1}-7`, ...menuCell('0') }
+        ],
+        // onClick: () => handleRowClick(1),
+        'aria-labelledby': 'name-1 age-1'
+        // children: (Component, { key, ...rest }) => (
+        //   <MenuButton menu={contextMenuItems} key={key} contextMenu trigger={<Component {...rest} />} />
+        // )
+      };
+      rowsPlain.push(rowPlain);
+    });
+    return rowsPlain;
+  }
 
   const rowsPlain = [
     {
@@ -383,7 +452,7 @@ export const Claims = () => {
           <Table
             variables={{ cellContentOverflow: 'none' }}
             header={header}
-            rows={rowsPlain}
+            rows={JSON.stringify(generateTableContent())}
             aria-label="Nested navigation"
             accessibility={gridNestedBehavior}
             style={{
