@@ -133,6 +133,9 @@ For local debugging of mongodb, deploy the docker container:
 docker -d compose up mongodb
 ```
 
+### User Testing
+Questionnaire: https://forms.office.com/Pages/ResponsePage.aspx?id=drd2NJDpck-5UGJImDFiPajmdshhaw1NlolBxVCfzp1UNVNPNDlLNjhUNzAyMzRaS0FPSlNNR1NHRy4u 
+
 ## Useful Links and Documentation
 * [Debugging with Visual Studio Code](https://github.com/pnp/generator-teams/blob/master/docs/docs/user-guide/vscode.md)
 * [Developing with ngrok](https://github.com/pnp/generator-teams/blob/master/docs/docs/concepts/ngrok.md)
